@@ -248,7 +248,7 @@ If you use ARIA in your research or build upon this work, please cite:
 
 ```bibtex
 @misc{aria2025,
-  author       = {Butler, Darryl},
+  author       = {Butler, Durayveon},
   title        = {{ARIA}: Adaptive Robotic Intelligence for Aging — Open-Source Assistive Companions for Parkinson's Disease},
   year         = {2025},
   publisher    = {GitHub},
@@ -263,6 +263,8 @@ If you use ARIA in your research or build upon this work, please cite:
 
 **IEEE Format:**
 > D. Butler, "ARIA: Adaptive Robotic Intelligence for Aging," GitHub, 2025. [Online]. Available: https://github.com/dbutler-a11y/aria-research
+
+**Author:** Durayveon Butler
 
 ---
 
