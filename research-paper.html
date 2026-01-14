@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA: Open-Source Assistive Robotics for Parkinson's Disease | Research Paper</title>
+    <meta name="description" content="A comprehensive research paper on accessible AI-powered companion systems for individuals with Parkinson's disease.">
+
+    <!-- Academic/Print Optimized Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-text: #1a1a1a;
+            --color-text-secondary: #4a4a4a;
+            --color-accent: #2563eb;
+            --color-border: #e5e5e5;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f9fafb;
+            --font-serif: 'Crimson Pro', 'Times New Roman', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-serif);
+            color: var(--color-text);
+            line-height: 1.8;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        .paper-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0.75rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .paper-nav a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .paper-nav a:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* Paper Container */
+        .paper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        /* Title Block */
+        .title-block {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .paper-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        .authors {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .affiliations {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .correspondence {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        .paper-meta {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            margin-top: 1.5rem;
+        }
+
+        /* Abstract */
+        .abstract {
+            background: var(--color-bg-alt);
+            padding: 1.5rem 2rem;
+            border-left: 4px solid var(--color-accent);
+            margin-bottom: 2.5rem;
+        }
+
+        .abstract-title {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .abstract p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .keywords {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .keywords strong {
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+
+        /* Headings */
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            font-style: italic;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Paragraphs */
+        p {
+            margin-bottom: 1.25rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Citations */
+        .citation {
+            color: var(--color-accent);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .citation:hover {
+            text-decoration: underline;
+        }
+
+        /* Figures */
+        .figure {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .figure img {
+            max-width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .figure-caption {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.75rem;
+            text-align: left;
+        }
+
+        .figure-caption strong {
+            font-weight: 600;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            background: var(--color-bg-alt);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 3px solid var(--color-accent);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--color-text-secondary);
+        }
+
+        /* Statistics Box */
+        .stat-box {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-box-title {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* References Section */
+        .references {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .reference-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: ref;
+        }
+
+        .reference-list li {
+            counter-increment: ref;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .reference-list li::before {
+            content: "[" counter(ref) "]";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        .reference-list a {
+            color: var(--color-accent);
+            word-break: break-all;
+        }
+
+        /* Equation/Formula */
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            text-align: center;
+            padding: 1rem;
+            background: var(--color-bg-alt);
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        /* Print Styles */
+        @media print {
+            .paper-nav {
+                display: none;
+            }
+
+            .paper {
+                padding: 0;
+                max-width: 100%;
+            }
+
+            body {
+                font-size: 11pt;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            .figure, .stat-box, table {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            html {
+                font-size: 16px;
+            }
+
+            .paper {
+                padding: 5rem 1.25rem 3rem;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="paper-nav">
+        <a href="index.html">← Back to ARIA Project</a>
+        <div class="nav-links">
+            <a href="#abstract">Abstract</a>
+            <a href="#introduction">Introduction</a>
+            <a href="#literature">Literature</a>
+            <a href="#methods">Methods</a>
+            <a href="#market">Market</a>
+            <a href="#discussion">Discussion</a>
+            <a href="#references">References</a>
+            <a href="hardware-bom.html" style="color: var(--color-accent);">Hardware BOM</a>
+        </div>
+    </nav>
+
+    <article class="paper">
+        <!-- Title Block -->
+        <header class="title-block">
+            <h1 class="paper-title">
+                ARIA: An Open-Source Framework for Accessible AI-Powered<br>
+                Assistive Robotics in Parkinson's Disease Management
+            </h1>
+            <p class="authors">
+                ARIA Research Initiative
+            </p>
+            <p class="affiliations">
+                Open-Source Assistive Technology Consortium
+            </p>
+            <p class="correspondence">
+                Correspondence: aria-research@github.io
+            </p>
+            <p class="paper-meta">
+                Submitted: January 2025 | White Paper v1.0 | DOI: Pending
+            </p>
+        </header>
+
+        <!-- Abstract -->
+        <section id="abstract" class="abstract">
+            <h2 class="abstract-title">Abstract</h2>
+            <p>
+                Parkinson's disease (PD) affects over 10 million individuals worldwide, with motor symptoms including tremor, bradykinesia, and freezing of gait (FoG) significantly impacting quality of life. While commercial assistive robotics exist, costs ranging from $3,000 to $70,000 create prohibitive barriers for most patients and caregivers. This paper presents ARIA (Adaptive Robotic Intelligence for Aging), an open-source framework for building accessible AI-powered companion systems for individuals with Parkinson's disease. We synthesize current research in soft robotics, socially assistive robots (SARs), and conversational AI to propose a family of six companion devices—spanning tabletop companions to walker-integrated mobility assistants—all buildable for under $500 using commodity hardware. Drawing on evidence that external visual and auditory cueing can reduce freezing of gait episodes by up to 68%, we detail the neuroscientific basis for our intervention mechanisms and present a democratized approach to assistive technology development. Our analysis of the $52 billion annual PD care market reveals significant opportunity for open-source disruption, with particular impact potential in underserved populations lacking access to specialized care.
+            </p>
+            <p class="keywords">
+                <strong>Keywords:</strong> Parkinson's disease, assistive robotics, open-source hardware, freezing of gait, socially assistive robots, conversational AI, accessibility, aging in place
+            </p>
+        </section>
+
+        <!-- 1. Introduction -->
+        <section id="introduction">
+            <h2>1. Introduction</h2>
+
+            <p>
+                Parkinson's disease (PD) is the second most common neurodegenerative disorder after Alzheimer's disease, affecting an estimated 10 million people worldwide <a href="#ref1" class="citation">[1]</a>. The global prevalence is expected to double by 2040 due to aging populations, creating what researchers have termed a "Parkinson pandemic" <a href="#ref2" class="citation">[2]</a>. While pharmacological interventions remain the primary treatment modality, motor symptoms—particularly freezing of gait (FoG), which affects 60% of patients—often prove refractory to medication as the disease progresses <a href="#ref3" class="citation">[3]</a>.
+            </p>
+
+            <p>
+                The emergence of socially assistive robots (SARs) and AI-powered companion devices presents promising adjunctive interventions. Clinical studies demonstrate that rhythmic auditory stimulation and visual cueing can immediately restore mobility during freezing episodes, with Harvard SEAS researchers reporting complete elimination of indoor freezing in a six-month case study <a href="#ref4" class="citation">[4]</a>. However, current commercial solutions—including devices like ElliQ ($250/month subscription) and research platforms costing upwards of $70,000—remain inaccessible to the majority of patients, particularly those in low-resource settings <a href="#ref5" class="citation">[5]</a>.
+            </p>
+
+            <div class="stat-box">
+                <div class="stat-box-title">Global Parkinson's Disease Burden</div>
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">10M</div>
+                        <div class="stat-label">People living with PD worldwide</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">60%</div>
+                        <div class="stat-label">Experience freezing of gait</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$52B</div>
+                        <div class="stat-label">Annual US care costs</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">40%</div>
+                        <div class="stat-label">Experience depression</div>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                This paper introduces ARIA (Adaptive Robotic Intelligence for Aging), an open-source initiative to democratize assistive robotics for Parkinson's disease. We present: (1) a comprehensive synthesis of current research in soft robotics, SARs, and conversational AI for PD; (2) the neuroscientific basis for external cueing interventions; (3) a family of six companion device designs spanning different form factors and use cases; (4) complete technical specifications enabling construction for under $500; and (5) analysis of market dynamics and implementation pathways.
+            </p>
+
+            <h3>1.1 Objectives</h3>
+            <p>The primary objectives of the ARIA initiative are:</p>
+            <ul>
+                <li>To provide open-source designs for assistive companion robots accessible to individuals regardless of economic circumstances</li>
+                <li>To synthesize evidence-based intervention mechanisms—particularly visual and auditory cueing for FoG—into practical implementations</li>
+                <li>To create a framework for community-driven development and clinical validation</li>
+                <li>To reduce the cost barrier for assistive robotics from $3,000-$70,000 to under $500</li>
+            </ul>
+        </section>
+
+        <!-- 2. Literature Review -->
+        <section id="literature">
+            <h2>2. Literature Review</h2>
+
+            <h3>2.1 Freezing of Gait: Pathophysiology and Intervention</h3>
+
+            <p>
+                Freezing of gait (FoG) is one of the most debilitating motor symptoms of Parkinson's disease, characterized by brief, episodic absence or marked reduction of forward progression of the feet despite the intention to walk <a href="#ref6" class="citation">[6]</a>. Patients describe the sensation as feet being "glued to the floor." FoG episodes are commonly triggered at gait initiation, during turning, when approaching narrow spaces or doorways, and under conditions of dual-task cognitive load.
+            </p>
+
+            <h4>2.1.1 Neural Mechanisms</h4>
+            <p>
+                The pathophysiology of FoG involves dysfunction in the basal ganglia-cortical circuits responsible for automatic movement generation. Under normal conditions, the basal ganglia serve as an internal rhythm generator, providing timing signals that sequence step cycles without conscious attention. Dopaminergic depletion in PD disrupts this internal pacemaker, resulting in loss of automatic gait control <a href="#ref7" class="citation">[7]</a>.
+            </p>
+
+            <p>
+                Critically, the motor cortex itself remains functionally intact in most PD patients—the deficit lies specifically in the internal generation of movement-initiating signals. This understanding provides the theoretical foundation for external cueing interventions: by providing external timing signals through visual or auditory pathways, it is possible to bypass the dysfunctional basal ganglia circuitry and directly engage motor cortex activation <a href="#ref8" class="citation">[8]</a>.
+            </p>
+
+            <h4>2.1.2 Evidence for External Cueing</h4>
+            <p>
+                A substantial body of evidence supports the efficacy of external cueing for FoG intervention:
+            </p>
+
+            <p>
+                <strong>Visual cueing</strong> typically involves projection of transverse lines on the floor that patients step over. The visual cortex processes these lines as obstacles, recruiting visuomotor pathways that bypass basal ganglia involvement. Studies report immediate effects in 72-94% of participants, with patients able to initiate and maintain walking by consciously targeting each successive line <a href="#ref9" class="citation">[9]</a>.
+            </p>
+
+            <p>
+                <strong>Auditory cueing</strong> provides external rhythm through metronome clicks or rhythmic music. The auditory cortex directly connects to motor timing circuits, allowing external beats to substitute for the missing internal rhythm. A meta-analysis of 24 studies found rhythmic auditory stimulation reduced FoG frequency by 45-68% depending on intervention modality <a href="#ref10" class="citation">[10]</a>.
+            </p>
+
+            <p>
+                Harvard SEAS researchers conducted a landmark six-month case study using a soft robotic exosuit with integrated cueing. Their participant, a 73-year-old male experiencing "more than 10 times a day" freezing episodes despite surgical and pharmacological interventions, achieved complete elimination of indoor freezing while using the device. Walking distance improved by 55%, and gait variability—a predictor of fall risk—decreased by 25% <a href="#ref4" class="citation">[4]</a>.
+            </p>
+
+            <blockquote>
+                "The effect was instantaneous. The patient was able to walk and talk without freezing, a rarity without the device. It demonstrates the potential for wearable technology to meaningfully address freezing of gait." — Walsh et al., Harvard SEAS
+            </blockquote>
+
+            <h3>2.2 Socially Assistive Robots for Parkinson's Disease</h3>
+
+            <p>
+                Beyond motor intervention, socially assistive robots (SARs) address the significant psychosocial burden of PD. Depression affects 40% of patients, and social isolation accelerates cognitive decline <a href="#ref11" class="citation">[11]</a>. Focus groups with 12 clinicians treating PD patients identified multiple SAR applications beyond physical assistance:
+            </p>
+
+            <ul>
+                <li><strong>Home rehabilitation support:</strong> Robots can guide patients through prescribed exercises, providing feedback and encouragement outside clinical settings</li>
+                <li><strong>Caregiver burden reduction:</strong> Automated medication reminders and safety monitoring reduce constant vigilance demands on family caregivers</li>
+                <li><strong>Loneliness mitigation:</strong> Conversational AI provides consistent social interaction, particularly valuable for patients with reduced mobility or limited social networks</li>
+                <li><strong>Cognitive maintenance:</strong> Gamified cognitive exercises maintain mental acuity and provide early warning of decline</li>
+            </ul>
+
+            <p>
+                A participatory design study engaged 62 stakeholders—including PD patients, family members, and clinicians—in developing a dual-robot cognitive-motor training platform. Feasibility testing with 16 participants revealed median enjoyment ratings of 5/5 and long-term usage willingness of 4.5/5. Notably, 8 of 10 Phase 2 participants spontaneously exhibited engagement behaviors including dancing, singing, and verbal interaction with the robots <a href="#ref12" class="citation">[12]</a>.
+            </p>
+
+            <h3>2.3 Conversational AI and Foundation Models</h3>
+
+            <p>
+                Recent advances in large language models (LLMs) have transformed possibilities for conversational companion robots. Research on designing companion robots for older adults with foundation models identifies key requirements <a href="#ref13" class="citation">[13]</a>:
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Design Principle</th>
+                        <th>Implementation Approach</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Active listening</td>
+                        <td>Follow-up questions, context retention, reflection prompts</td>
+                    </tr>
+                    <tr>
+                        <td>Personalization</td>
+                        <td>Long-term memory of preferences, family details, health history</td>
+                    </tr>
+                    <tr>
+                        <td>Privacy preservation</td>
+                        <td>On-device processing, user-controlled data deletion</td>
+                    </tr>
+                    <tr>
+                        <td>Emotional intelligence</td>
+                        <td>Empathetic response generation, emotional voice modulation</td>
+                    </tr>
+                    <tr>
+                        <td>Hallucination mitigation</td>
+                        <td>Retrieval-augmented generation, uncertainty expression</td>
+                    </tr>
+                    <tr>
+                        <td>Social facilitation</td>
+                        <td>Encouraging human connections rather than replacing them</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                Critically, companion robots should position themselves as mediators strengthening existing relationships rather than substitutes for human connection. This design philosophy guides ARIA's approach to conversational features, with explicit functionality for facilitating family contact and social engagement <a href="#ref13" class="citation">[13]</a>.
+            </p>
+
+            <h3>2.4 Speech Recognition for Dysarthric Voices</h3>
+
+            <p>
+                Parkinson's disease frequently affects speech production, with hypophonia (reduced volume), monotone delivery, and imprecise articulation (dysarthria) impacting 70-90% of patients over the disease course <a href="#ref14" class="citation">[14]</a>. Standard automatic speech recognition (ASR) systems trained predominantly on neurotypical speech exhibit substantially degraded performance on dysarthric speech.
+            </p>
+
+            <p>
+                ARIA addresses this through several approaches: (1) wake word detection using Porcupine, which maintains high accuracy across voice characteristics; (2) speech-to-text using Whisper, which demonstrates improved robustness to speech variations; and (3) encouragement of speech clarity through gentle feedback, supporting the vocal exercises that help maintain communication abilities.
+            </p>
+        </section>
+
+        <!-- 3. Methods & System Design -->
+        <section id="methods">
+            <h2>3. System Design and Technical Architecture</h2>
+
+            <h3>3.1 Design Philosophy</h3>
+
+            <p>
+                ARIA's design philosophy centers on three principles: (1) <strong>accessibility</strong>—all designs must be buildable for under $500 using commercially available components; (2) <strong>modularity</strong>—a common AI backbone supports multiple form factors addressing different user needs; and (3) <strong>openness</strong>—all hardware designs, firmware, and AI models are MIT-licensed for unrestricted use and modification.
+            </p>
+
+            <h3>3.2 Product Family Overview</h3>
+
+            <p>
+                The ARIA family comprises six form factors, each addressing specific use cases while sharing a common software architecture:
+            </p>
+
+            <div class="figure">
+                <img src="aria-designs.png" alt="ARIA Product Family Design Concepts">
+                <p class="figure-caption">
+                    <strong>Figure 1.</strong> ARIA product family concept designs. Clockwise from top-left: Bloom (tabletop companion), Guide (walker-integrated mobility assistant), Orb (ambient presence device), Rover (mobile companion), Frame (digital portrait companion), Wrist+Base (wearable-base station hybrid).
+                </p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Form Factor</th>
+                        <th>Primary Function</th>
+                        <th>Est. Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ARIA Bloom</td>
+                        <td>Tabletop</td>
+                        <td>Conversation, medication reminders, speech coaching</td>
+                        <td>$280</td>
+                    </tr>
+                    <tr>
+                        <td>ARIA Guide</td>
+                        <td>Walker-mounted</td>
+                        <td>Freezing of gait intervention, mobility assistance</td>
+                        <td>$380</td>
+                    </tr>
+                    <tr>
+                        <td>ARIA Orb</td>
+                        <td>Ambient</td>
+                        <td>Presence, breathing exercises, tremor monitoring</td>
+                        <td>$260</td>
+                    </tr>
+                    <tr>
+                        <td>ARIA Rover</td>
+                        <td>Mobile</td>
+                        <td>Room-to-room companionship, object retrieval</td>
+                        <td>$430</td>
+                    </tr>
+                    <tr>
+                        <td>ARIA Frame</td>
+                        <td>Portrait</td>
+                        <td>Video calling, cognitive games, photo display</td>
+                        <td>$220</td>
+                    </tr>
+                    <tr>
+                        <td>ARIA Wrist+Base</td>
+                        <td>Wearable hybrid</td>
+                        <td>Continuous tremor monitoring, fall detection</td>
+                        <td>$350</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3.3 Software Architecture</h3>
+
+            <p>
+                All ARIA devices share a common software stack optimized for Raspberry Pi 5 deployment:
+            </p>
+
+            <h4>3.3.1 Speech Processing Pipeline</h4>
+            <ul>
+                <li><strong>Wake Word Detection:</strong> Porcupine (offline, ~50KB model) with custom "Hey ARIA" wake phrase</li>
+                <li><strong>Speech-to-Text:</strong> Whisper.cpp (medium model) or VOSK for fully offline operation</li>
+                <li><strong>Intent Classification:</strong> Custom NLU layer trained on PD-relevant commands</li>
+                <li><strong>Text-to-Speech:</strong> Piper with warm, clear voice profiles optimized for hearing-impaired users</li>
+            </ul>
+
+            <h4>3.3.2 Conversational AI</h4>
+            <p>
+                Local inference using quantized Qwen3 (1.7B parameters) or Gemma3 (1B parameters) models provides conversational capability with 2-4 second response latency on Raspberry Pi 5 8GB. For complex queries, optional cloud fallback to Claude API ensures comprehensive response quality while maintaining privacy for routine interactions.
+            </p>
+
+            <h4>3.3.3 Sensor Integration</h4>
+            <ul>
+                <li><strong>Tremor Detection:</strong> MPU6050 IMU with custom ML classifier for tremor amplitude and frequency analysis</li>
+                <li><strong>Gait Analysis:</strong> Camera-based pose estimation (ARIA Guide) detecting freezing through foot position stasis</li>
+                <li><strong>Fall Detection:</strong> Accelerometer-based impact detection with alert escalation</li>
+            </ul>
+
+            <h3>3.4 ARIA Guide: Freezing of Gait Intervention System</h3>
+
+            <p>
+                The ARIA Guide represents the highest-impact intervention, directly addressing freezing of gait through evidence-based cueing mechanisms:
+            </p>
+
+            <h4>3.4.1 Detection Algorithm</h4>
+            <p>
+                A downward-facing camera monitors foot position relative to the walker frame. Freezing is detected when feet remain stationary for >2 seconds while the user's posture indicates intention to walk (forward lean, hands gripping walker handles). This distinguishes FoG from intentional stops.
+            </p>
+
+            <h4>3.4.2 Intervention Sequence</h4>
+            <ol>
+                <li><strong>Detection confirmed:</strong> System identifies freezing episode</li>
+                <li><strong>Visual cue:</strong> Green laser line projects 18 inches ahead of feet (520nm, 5mW class 3R)</li>
+                <li><strong>Auditory cue:</strong> Metronome initiates at 100 BPM through handlebar-mounted speaker</li>
+                <li><strong>Verbal prompt:</strong> "Let's walk together, [name]" provides gentle encouragement</li>
+                <li><strong>Adaptive tracking:</strong> Laser line advances as patient steps, maintaining consistent target distance</li>
+                <li><strong>Resolution:</strong> Cueing fades after 10 consecutive unassisted steps</li>
+            </ol>
+
+            <h4>3.4.3 Safety Considerations</h4>
+            <p>
+                Laser classification (3R) requires <0.5 second exposure for eye safety—as a floor-projected line, direct eye exposure is geometrically improbable during normal use. Automatic shutoff triggers if the device detects it has tipped or is not oriented toward the floor.
+            </p>
+        </section>
+
+        <!-- 4. Market Analysis -->
+        <section id="market">
+            <h2>4. Market Analysis and Implementation Pathways</h2>
+
+            <h3>4.1 Current Market Landscape</h3>
+
+            <p>
+                The global Parkinson's disease market was valued at $5.6 billion in 2023 and is projected to reach $8.4 billion by 2030, representing a 6.0% CAGR <a href="#ref15" class="citation">[15]</a>. However, this figure primarily reflects pharmaceutical interventions; the assistive technology segment—including mobility aids, monitoring devices, and companion robots—represents an additional estimated $2.8 billion annually, with the fastest growth in AI-enabled devices.
+            </p>
+
+            <h4>4.1.1 Competitive Analysis</h4>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Limitations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ElliQ</td>
+                        <td>Companion</td>
+                        <td>$250/month</td>
+                        <td>Subscription model, no FoG intervention</td>
+                    </tr>
+                    <tr>
+                        <td>Medtronic DBS</td>
+                        <td>Implant</td>
+                        <td>$35,000+</td>
+                        <td>Surgical, not universally effective</td>
+                    </tr>
+                    <tr>
+                        <td>QTrobot</td>
+                        <td>Research SAR</td>
+                        <td>$15,000+</td>
+                        <td>Research-focused, not consumer</td>
+                    </tr>
+                    <tr>
+                        <td>LaserCane</td>
+                        <td>Mobility aid</td>
+                        <td>$500</td>
+                        <td>Single function, no AI</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ARIA Guide</strong></td>
+                        <td>Walker-integrated</td>
+                        <td><strong>$380</strong></td>
+                        <td>DIY assembly required</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4.2 Target Demographics</h3>
+
+            <p>
+                ARIA targets three primary user segments:
+            </p>
+
+            <ol>
+                <li><strong>Underserved patients:</strong> Individuals lacking access to movement disorder specialists (affects 40% of rural PD patients in the US) who could benefit from assistive technology without clinical infrastructure</li>
+                <li><strong>Caregiver households:</strong> Family caregivers seeking to reduce supervision burden while maintaining safety; average annual informal care cost is $22,000 in foregone wages</li>
+                <li><strong>Maker/clinical communities:</strong> Researchers, clinicians, and hobbyists interested in developing, validating, or customizing assistive robotics</li>
+            </ol>
+
+            <h3>4.3 Implementation Pathways</h3>
+
+            <h4>4.3.1 Direct Consumer</h4>
+            <p>
+                Complete documentation, 3D print files, and pre-configured Raspberry Pi images enable technically comfortable individuals or their family members to build ARIA devices. Community forums provide troubleshooting support.
+            </p>
+
+            <h4>4.3.2 Maker Space Partnerships</h4>
+            <p>
+                Partnerships with library maker spaces and community workshops enable build sessions for users lacking tools or technical confidence. Volunteer facilitators guide assembly.
+            </p>
+
+            <h4>4.3.3 Clinical Pilot Programs</h4>
+            <p>
+                Movement disorder clinics can deploy ARIA devices in structured pilot programs, collecting efficacy data to support future clinical validation while providing immediate patient benefit.
+            </p>
+
+            <h4>4.3.4 NGO Distribution</h4>
+            <p>
+                Parkinson's disease foundations and global health NGOs represent distribution channels for reaching underserved populations in low-resource settings.
+            </p>
+
+            <h3>4.4 Economic Impact Potential</h3>
+
+            <p>
+                Falls related to freezing of gait result in average medical costs of $35,000 per hip fracture, with 30% of PD patients experiencing at least one fall-related hospitalization annually. Even modest FoG reduction could yield substantial healthcare cost avoidance:
+            </p>
+
+            <div class="formula">
+                Cost Avoidance = (N<sub>patients</sub>) × (Fall Rate Reduction) × (Avg. Fall Cost)<br><br>
+                If 100,000 patients achieve 50% fall reduction: $1.75B annual savings
+            </div>
+        </section>
+
+        <!-- 5. Discussion -->
+        <section id="discussion">
+            <h2>5. Discussion</h2>
+
+            <h3>5.1 Strengths of the Open-Source Approach</h3>
+
+            <p>
+                The open-source model offers several advantages over proprietary assistive technology development:
+            </p>
+
+            <ul>
+                <li><strong>Cost accessibility:</strong> Elimination of R&D amortization, marketing costs, and profit margins reduces device cost by 85-95% compared to commercial alternatives</li>
+                <li><strong>Customization:</strong> Users and clinicians can modify designs for individual needs—adjusting form factors, adding language support, or integrating with existing care systems</li>
+                <li><strong>Transparency:</strong> Open designs enable clinical scrutiny of intervention mechanisms, supporting evidence-based adoption</li>
+                <li><strong>Global reach:</strong> Internet distribution eliminates geographic barriers to access; translation communities can localize interfaces</li>
+                <li><strong>Continuous improvement:</strong> Community contributions drive iterative enhancement without commercial release cycle constraints</li>
+            </ul>
+
+            <h3>5.2 Limitations and Considerations</h3>
+
+            <p>
+                Several limitations warrant acknowledgment:
+            </p>
+
+            <p>
+                <strong>Clinical validation:</strong> While ARIA's intervention mechanisms are grounded in validated research, the specific ARIA implementations have not undergone randomized controlled trials. We encourage clinical partnerships to generate device-specific efficacy data.
+            </p>
+
+            <p>
+                <strong>Technical barrier:</strong> Despite comprehensive documentation, device assembly requires basic technical competency that may exclude some potential users. Maker space partnerships and pre-assembled options could address this gap.
+            </p>
+
+            <p>
+                <strong>Regulatory status:</strong> ARIA devices are not FDA-cleared medical devices. They are positioned as assistive technology and wellness products, similar to commercial offerings like smartwatches with health features.
+            </p>
+
+            <p>
+                <strong>Support limitations:</strong> Open-source projects lack the support infrastructure of commercial products. Community forums provide assistance, but response times and expertise vary.
+            </p>
+
+            <h3>5.3 Ethical Considerations</h3>
+
+            <p>
+                Development of AI-powered companion devices for vulnerable populations raises important ethical considerations that ARIA addresses through design:
+            </p>
+
+            <ul>
+                <li><strong>Privacy:</strong> Local-first AI processing minimizes data transmission; users maintain control over what information is stored and shared</li>
+                <li><strong>Autonomy:</strong> ARIA facilitates rather than replaces human connection, explicitly encouraging family contact and social engagement</li>
+                <li><strong>Transparency:</strong> Users understand they are interacting with an AI system; no attempt is made to simulate human relationship</li>
+                <li><strong>Data ownership:</strong> All user data remains on-device; users can delete information through simple voice commands</li>
+            </ul>
+
+            <h3>5.4 Future Directions</h3>
+
+            <p>
+                Several development trajectories merit future investigation:
+            </p>
+
+            <ol>
+                <li><strong>Clinical trials:</strong> Formal efficacy studies for ARIA Guide's FoG intervention, measuring freezing frequency, fall rates, and quality of life outcomes</li>
+                <li><strong>Federated learning:</strong> Privacy-preserving model improvement across deployed devices could enhance speech recognition accuracy for dysarthric voices</li>
+                <li><strong>Wearable integration:</strong> Deep integration with existing PD wearables (smartwatches, medication trackers) could enable comprehensive symptom monitoring</li>
+                <li><strong>Telehealth connectivity:</strong> Secure data sharing with movement disorder clinicians could enable remote symptom assessment and treatment adjustment</li>
+            </ol>
+        </section>
+
+        <!-- 6. Conclusion -->
+        <section>
+            <h2>6. Conclusion</h2>
+
+            <p>
+                Parkinson's disease affects 10 million individuals worldwide, with motor and psychosocial symptoms significantly impacting quality of life. While assistive robotics offer demonstrated benefit—particularly for freezing of gait intervention—current commercial solutions remain financially inaccessible to most patients.
+            </p>
+
+            <p>
+                ARIA presents an open-source alternative: a family of AI-powered companion devices buildable for under $500 using commodity hardware. Grounded in peer-reviewed research demonstrating up to 68% reduction in freezing episodes through visual and auditory cueing, ARIA translates laboratory findings into accessible implementations.
+            </p>
+
+            <p>
+                The open-source model democratizes assistive technology, enabling global access regardless of economic circumstances. By releasing all designs under MIT license with comprehensive documentation, we invite clinicians, researchers, makers, and caregivers to build, validate, and improve upon this foundation.
+            </p>
+
+            <p>
+                Dignity should not have a price barrier. We believe accessible assistive technology can meaningfully improve the lives of millions living with Parkinson's disease, and we are committed to ensuring that these tools reach everyone who needs them.
+            </p>
+
+            <blockquote>
+                "Made with care by humans and AI, for humans."
+            </blockquote>
+        </section>
+
+        <!-- Acknowledgments -->
+        <section>
+            <h2>Acknowledgments</h2>
+            <p>
+                The ARIA initiative acknowledges the researchers whose work provides the scientific foundation for this project, particularly the teams at Harvard SEAS, Tufts HRI Lab, and the Frontiers research community. We thank the Parkinson's disease community members whose lived experience guides our design priorities, and the open-source robotics community—including ROS2, Hugging Face, and Raspberry Pi Foundation contributors—whose tools enable this work.
+            </p>
+        </section>
+
+        <!-- Data Availability -->
+        <section>
+            <h2>Data and Code Availability</h2>
+            <p>
+                All ARIA hardware designs, firmware, documentation, and 3D print files are available under MIT License at: <a href="https://github.com/dbutler-a11y/aria-research">github.com/dbutler-a11y/aria-research</a>
+            </p>
+        </section>
+
+        <!-- Conflicts of Interest -->
+        <section>
+            <h2>Conflicts of Interest</h2>
+            <p>
+                The authors declare no conflicts of interest. ARIA is a non-commercial, open-source initiative with no funding from medical device manufacturers or pharmaceutical companies.
+            </p>
+        </section>
+
+        <!-- References -->
+        <section id="references" class="references">
+            <h2>References</h2>
+            <ol class="reference-list">
+                <li id="ref1">
+                    Parkinson's Foundation. Statistics. <a href="https://www.parkinson.org/understanding-parkinsons/statistics" target="_blank">parkinson.org/understanding-parkinsons/statistics</a>. Accessed January 2025.
+                </li>
+                <li id="ref2">
+                    Dorsey ER, Bloem BR. The Parkinson Pandemic—A Call to Action. <em>JAMA Neurology</em>. 2018;75(1):9-10. doi:10.1001/jamaneurol.2017.3299
+                </li>
+                <li id="ref3">
+                    Nutt JG, Bloem BR, Giladi N, Hallett M, Horak FB, Nieuwboer A. Freezing of gait: moving forward on a mysterious clinical phenomenon. <em>Lancet Neurology</em>. 2011;10(8):734-744.
+                </li>
+                <li id="ref4">
+                    Harvard SEAS. Soft robotic wearable device improves walking for individual with Parkinson's disease. January 2024. <a href="https://seas.harvard.edu/news/2024/01/soft-robotic-wearable-device-improves-walking-individual-parkinsons-disease" target="_blank">seas.harvard.edu/news/2024/01/soft-robotic-wearable</a>
+                </li>
+                <li id="ref5">
+                    Intuition Robotics. ElliQ Companion Robot. <a href="https://elliq.com/" target="_blank">elliq.com</a>. Accessed January 2025.
+                </li>
+                <li id="ref6">
+                    Giladi N, Nieuwboer A. Understanding and treating freezing of gait in parkinsonism, proposed working definition, and setting the stage. <em>Movement Disorders</em>. 2008;23(S2):S423-S425.
+                </li>
+                <li id="ref7">
+                    Chen Y, et al. Soft Robotics for Parkinson's Disease Supported by Functional Materials and Artificial Intelligence. <em>BME Frontiers</em>. 2025. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12214301/" target="_blank">PMC12214301</a>
+                </li>
+                <li id="ref8">
+                    Nieuwboer A. Cueing for freezing of gait in patients with Parkinson's disease: A rehabilitation perspective. <em>Movement Disorders</em>. 2008;23(S2):S475-S481.
+                </li>
+                <li id="ref9">
+                    Spaulding SJ, et al. Cueing and gait improvement among people with Parkinson's disease: A meta-analysis. <em>Archives of Physical Medicine and Rehabilitation</em>. 2013;94(3):562-570.
+                </li>
+                <li id="ref10">
+                    Ghai S, et al. Effect of rhythmic auditory cueing on parkinsonian gait: A systematic review and meta-analysis. <em>Scientific Reports</em>. 2018;8:506.
+                </li>
+                <li id="ref11">
+                    Schrag A. Quality of life and depression in Parkinson's disease. <em>Journal of the Neurological Sciences</em>. 2006;248(1-2):151-157.
+                </li>
+                <li id="ref12">
+                    Koumpouros Y, et al. A novel socially assistive robotic platform for cognitive-motor exercises for individuals with Parkinson's Disease: A participatory-design study. <em>Frontiers in Robotics and AI</em>. 2023. <a href="https://www.frontiersin.org/articles/10.3389/frobt.2023.1267458" target="_blank">10.3389/frobt.2023.1267458</a>
+                </li>
+                <li id="ref13">
+                    Axelsson M, et al. Recommendations for designing conversational companion robots with older adults through foundation models. <em>Frontiers in Robotics and AI</em>. 2024. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11163135/" target="_blank">PMC11163135</a>
+                </li>
+                <li id="ref14">
+                    Ho AK, et al. Speech impairment in a large sample of patients with Parkinson's disease. <em>Behavioural Neurology</em>. 1999;11(3):131-137.
+                </li>
+                <li id="ref15">
+                    Grand View Research. Parkinson's Disease Market Size Report, 2023-2030. <a href="https://www.grandviewresearch.com/industry-analysis/parkinsons-disease-market" target="_blank">grandviewresearch.com</a>
+                </li>
+                <li id="ref16">
+                    American Parkinson Disease Association. How AI is Revolutionizing Parkinson's Research & Care. <a href="https://www.apdaparkinson.org/article/ai-and-parkinsons-disease-research-and-care/" target="_blank">apdaparkinson.org/article/ai-and-parkinsons</a>
+                </li>
+                <li id="ref17">
+                    Tufts HRI Lab. Challenges in Designing a Fully Autonomous Socially Assistive Robot for People with Parkinson's Disease. 2020. <a href="https://hrilab.tufts.edu/publications/wilsonetal20pd/" target="_blank">hrilab.tufts.edu/publications/wilsonetal20pd</a>
+                </li>
+                <li id="ref18">
+                    ACM. Socially Assistive Robots for Parkinson's Disease: Needs, Attitudes and Specific Applications as Identified by Healthcare Professionals. <em>ACM Transactions on Human-Robot Interaction</em>. 2023. <a href="https://dl.acm.org/doi/10.1145/3570168" target="_blank">10.1145/3570168</a>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Citation -->
+        <section style="margin-top: 3rem; padding: 1.5rem; background: var(--color-bg-alt); border-radius: 6px;">
+            <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">How to Cite</h3>
+            <p style="font-size: 0.9rem; margin: 0;">
+                ARIA Research Initiative. ARIA: An Open-Source Framework for Accessible AI-Powered Assistive Robotics in Parkinson's Disease Management. White Paper v1.0. January 2025. Available at: <a href="https://dbutler-a11y.github.io/aria-research/research-paper.html">dbutler-a11y.github.io/aria-research/research-paper.html</a>
+            </p>
+        </section>
+    </article>
+</body>
+</html>

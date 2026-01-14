@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware Bill of Materials | ARIA Project</title>
+    <meta name="description" content="Complete hardware specifications and bill of materials for building ARIA assistive robots.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-accent: #3182ce;
+            --color-success: #38a169;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fafc;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.6;
+            background: var(--color-bg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        nav a:hover { color: var(--color-accent); }
+
+        .nav-links { display: flex; gap: 2rem; }
+
+        /* Main */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .page-header h1 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Product Tabs */
+        .product-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--color-border);
+            background: white;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--color-accent);
+        }
+
+        .tab-btn.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Summary Cards */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            background: var(--color-bg-alt);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .summary-value {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-success);
+        }
+
+        .summary-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* BOM Table */
+        .bom-section {
+            margin-bottom: 3rem;
+        }
+
+        .bom-section h2 {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 0.75rem;
+            background: var(--color-bg-alt);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: rgba(49, 130, 206, 0.03);
+        }
+
+        .component-name {
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .component-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        .price {
+            font-family: var(--font-mono);
+            color: var(--color-success);
+            font-weight: 500;
+        }
+
+        .qty {
+            font-family: var(--font-mono);
+            text-align: center;
+        }
+
+        .source-link {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .source-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Totals Row */
+        .total-row {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .total-row td {
+            font-weight: 600;
+            border-bottom: none;
+        }
+
+        .total-row .price {
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        /* Notes */
+        .notes {
+            background: var(--color-bg-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .notes h3 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-primary);
+        }
+
+        .notes ul {
+            margin-left: 1.5rem;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .notes li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Download Button */
+        .download-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            transform: translateY(-1px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">← Back to ARIA Project</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="research-paper.html">Research Paper</a>
+            <a href="https://github.com/dbutler-a11y/aria-research">GitHub</a>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <h1>Hardware Bill of Materials</h1>
+            <p>Complete component lists and specifications for building each ARIA variant. All prices are estimates based on common retail sources.</p>
+        </header>
+
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+            <button class="tab-btn active" onclick="showProduct('bloom')">ARIA Bloom</button>
+            <button class="tab-btn" onclick="showProduct('guide')">ARIA Guide</button>
+            <button class="tab-btn" onclick="showProduct('frame')">ARIA Frame</button>
+            <button class="tab-btn" onclick="showProduct('rover')">ARIA Rover</button>
+        </div>
+
+        <!-- ARIA Bloom BOM -->
+        <div id="bloom-bom" class="product-bom">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-value">$278</div>
+                    <div class="summary-label">Estimated Total</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">15</div>
+                    <div class="summary-label">Components</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">4-6 hrs</div>
+                    <div class="summary-label">Build Time</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">Beginner</div>
+                    <div class="summary-label">Difficulty</div>
+                </div>
+            </div>
+
+            <div class="bom-section">
+                <h2>Compute & Processing</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">Raspberry Pi 5 8GB</div>
+                                <div class="component-desc">Main compute unit for AI processing</div>
+                            </td>
+                            <td>BCM2712 quad-core, 8GB LPDDR4X</td>
+                            <td class="qty">1</td>
+                            <td class="price">$80</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">MicroSD Card 64GB</div>
+                                <div class="component-desc">Boot drive and storage</div>
+                            </td>
+                            <td>Class 10, A2 rating recommended</td>
+                            <td class="qty">1</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">USB-C Power Supply 27W</div>
+                                <div class="component-desc">Official Pi 5 power supply</div>
+                            </td>
+                            <td>5V/5A USB-C PD</td>
+                            <td class="qty">1</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">Active Cooler</div>
+                                <div class="component-desc">Heatsink + fan for sustained AI workloads</div>
+                            </td>
+                            <td>Official Pi 5 active cooler</td>
+                            <td class="qty">1</td>
+                            <td class="price">$5</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bom-section">
+                <h2>Audio System</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">ReSpeaker 4-Mic Array</div>
+                                <div class="component-desc">Far-field voice capture</div>
+                            </td>
+                            <td>4 microphones, I2C/USB interface</td>
+                            <td class="qty">1</td>
+                            <td class="price">$35</td>
+                            <td><a href="https://www.seeedstudio.com" class="source-link">Seeed Studio</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">3W Amplified Speaker</div>
+                                <div class="component-desc">Audio output with clear speech</div>
+                            </td>
+                            <td>PAM8302 amplifier, 4ohm speaker</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.adafruit.com" class="source-link">Adafruit</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bom-section">
+                <h2>Visual Output & Sensing</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">3.5" IPS LCD Display</div>
+                                <div class="component-desc">Emotion/status display</div>
+                            </td>
+                            <td>320x480, SPI interface</td>
+                            <td class="qty">1</td>
+                            <td class="price">$25</td>
+                            <td><a href="https://www.waveshare.com" class="source-link">Waveshare</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">WS2812B LED Ring (24)</div>
+                                <div class="component-desc">Petal emotion display</div>
+                            </td>
+                            <td>Addressable RGB, 5V</td>
+                            <td class="qty">1</td>
+                            <td class="price">$10</td>
+                            <td><a href="https://www.adafruit.com" class="source-link">Adafruit</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">Pi Camera Module 3</div>
+                                <div class="component-desc">User presence detection</div>
+                            </td>
+                            <td>12MP autofocus, wide angle</td>
+                            <td class="qty">1</td>
+                            <td class="price">$25</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">MPU6050 IMU</div>
+                                <div class="component-desc">Tremor detection sensor</div>
+                            </td>
+                            <td>Accelerometer + gyroscope, I2C</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bom-section">
+                <h2>Enclosure & Miscellaneous</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">3D Printed Enclosure</div>
+                                <div class="component-desc">Bloom flower shell (STL provided)</div>
+                            </td>
+                            <td>PLA filament, ~200g</td>
+                            <td class="qty">1</td>
+                            <td class="price">$25</td>
+                            <td><a href="#" class="source-link">Self/Service</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">Jumper Wire Kit</div>
+                                <div class="component-desc">M-M, M-F, F-F assorted</div>
+                            </td>
+                            <td>Various lengths</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">Standoffs & Screws</div>
+                                <div class="component-desc">M2.5 and M3 for mounting</div>
+                            </td>
+                            <td>Nylon standoff kit</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">USB-C PD Battery (Optional)</div>
+                                <div class="component-desc">Portable power</div>
+                            </td>
+                            <td>20000mAh, 45W PD output</td>
+                            <td class="qty">1</td>
+                            <td class="price">$40</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table>
+                <tbody>
+                    <tr class="total-row">
+                        <td colspan="3"><strong>ARIA Bloom Total (without optional battery)</strong></td>
+                        <td class="price">$278</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ARIA Guide BOM -->
+        <div id="guide-bom" class="product-bom" style="display: none;">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-value">$383</div>
+                    <div class="summary-label">Estimated Total</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">18</div>
+                    <div class="summary-label">Components</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">6-8 hrs</div>
+                    <div class="summary-label">Build Time</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">Intermediate</div>
+                    <div class="summary-label">Difficulty</div>
+                </div>
+            </div>
+
+            <div class="bom-section">
+                <h2>Core Components (Same as Bloom)</h2>
+                <table>
+                    <thead>
+                        <tr><th>Component</th><th>Description</th><th>Qty</th><th>Price</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="component-name">Raspberry Pi 5 8GB</div></td>
+                            <td>Main compute unit</td>
+                            <td class="qty">1</td>
+                            <td class="price">$80</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">MicroSD Card 64GB</div></td>
+                            <td>Class 10, A2</td>
+                            <td class="qty">1</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">USB-C Power Supply 27W</div></td>
+                            <td>5V/5A</td>
+                            <td class="qty">1</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">Active Cooler</div></td>
+                            <td>Heatsink + fan</td>
+                            <td class="qty">1</td>
+                            <td class="price">$5</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">ReSpeaker 4-Mic Array</div></td>
+                            <td>Far-field microphone</td>
+                            <td class="qty">1</td>
+                            <td class="price">$35</td>
+                            <td><a href="https://www.seeedstudio.com" class="source-link">Seeed Studio</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">3W Amplified Speaker</div></td>
+                            <td>Audio + metronome output</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.adafruit.com" class="source-link">Adafruit</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bom-section">
+                <h2>FoG Intervention System</h2>
+                <table>
+                    <thead>
+                        <tr><th>Component</th><th>Description</th><th>Qty</th><th>Price</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">Green Laser Line Module</div>
+                                <div class="component-desc">Visual gait cueing projector</div>
+                            </td>
+                            <td>520nm, 5mW, Class 3R, line lens</td>
+                            <td class="qty">1</td>
+                            <td class="price">$15</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">SG90 Servo Motor</div>
+                                <div class="component-desc">Laser angle adjustment</div>
+                            </td>
+                            <td>180° rotation, 5V</td>
+                            <td class="qty">1</td>
+                            <td class="price">$5</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">Pi Camera Module 3</div>
+                                <div class="component-desc">Foot/gait detection</div>
+                            </td>
+                            <td>12MP, downward facing</td>
+                            <td class="qty">1</td>
+                            <td class="price">$25</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">3.5" IPS LCD Display</div>
+                                <div class="component-desc">Status and prompts</div>
+                            </td>
+                            <td>320x480, SPI</td>
+                            <td class="qty">1</td>
+                            <td class="price">$25</td>
+                            <td><a href="https://www.waveshare.com" class="source-link">Waveshare</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bom-section">
+                <h2>Walker Mount & Enclosure</h2>
+                <table>
+                    <thead>
+                        <tr><th>Component</th><th>Description</th><th>Qty</th><th>Price</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">Aluminum Mounting Bracket</div>
+                                <div class="component-desc">Attaches to walker crossbar</div>
+                            </td>
+                            <td>Universal clamp mount</td>
+                            <td class="qty">1</td>
+                            <td class="price">$15</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">3D Printed Enclosure</div>
+                                <div class="component-desc">Guide housing (STL provided)</div>
+                            </td>
+                            <td>PETG recommended, ~250g</td>
+                            <td class="qty">1</td>
+                            <td class="price">$30</td>
+                            <td><a href="#" class="source-link">Self/Service</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">USB-C PD Battery Pack</div>
+                                <div class="component-desc">Portable power (required)</div>
+                            </td>
+                            <td>20000mAh, 45W output</td>
+                            <td class="qty">1</td>
+                            <td class="price">$40</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">MPU6050 IMU</div>
+                                <div class="component-desc">Fall detection</div>
+                            </td>
+                            <td>Accelerometer + gyroscope</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">Wiring & Hardware</div>
+                                <div class="component-desc">Jumpers, screws, standoffs</div>
+                            </td>
+                            <td>Assorted kit</td>
+                            <td class="qty">1</td>
+                            <td class="price">$18</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table>
+                <tbody>
+                    <tr class="total-row">
+                        <td colspan="3"><strong>ARIA Guide Total</strong></td>
+                        <td class="price">$383</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="notes">
+                <h3>Important Notes for ARIA Guide</h3>
+                <ul>
+                    <li><strong>Laser Safety:</strong> The 5mW 520nm laser is Class 3R. While safe for brief incidental exposure, avoid direct eye contact. The floor-facing orientation minimizes risk during normal use.</li>
+                    <li><strong>Walker Compatibility:</strong> Mounting bracket fits standard rollator frames (1" tubing). Verify your walker dimensions before purchasing.</li>
+                    <li><strong>Battery Life:</strong> Expect 4-6 hours of active use per charge depending on usage patterns.</li>
+                    <li><strong>Weather Resistance:</strong> Not rated for outdoor use in rain. Consider a protective cover for outdoor walking.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ARIA Frame BOM -->
+        <div id="frame-bom" class="product-bom" style="display: none;">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-value">$223</div>
+                    <div class="summary-label">Estimated Total</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">11</div>
+                    <div class="summary-label">Components</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">3-4 hrs</div>
+                    <div class="summary-label">Build Time</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">Beginner</div>
+                    <div class="summary-label">Difficulty</div>
+                </div>
+            </div>
+
+            <div class="bom-section">
+                <h2>Complete Bill of Materials</h2>
+                <table>
+                    <thead>
+                        <tr><th>Component</th><th>Description</th><th>Qty</th><th>Price</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="component-name">Raspberry Pi 5 8GB</div></td>
+                            <td>Main compute unit</td>
+                            <td class="qty">1</td>
+                            <td class="price">$80</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">MicroSD Card 64GB</div></td>
+                            <td>Class 10, A2</td>
+                            <td class="qty">1</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">USB-C Power Supply 27W</div></td>
+                            <td>5V/5A</td>
+                            <td class="qty">1</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">Active Cooler</div></td>
+                            <td>Heatsink + fan</td>
+                            <td class="qty">1</td>
+                            <td class="price">$5</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">10.1" HDMI Display</div>
+                                <div class="component-desc">Main display for avatar/photos</div>
+                            </td>
+                            <td>1024x600 IPS, capacitive touch</td>
+                            <td class="qty">1</td>
+                            <td class="price">$55</td>
+                            <td><a href="https://www.waveshare.com" class="source-link">Waveshare</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">ReSpeaker 4-Mic Array</div></td>
+                            <td>Far-field microphone</td>
+                            <td class="qty">1</td>
+                            <td class="price">$35</td>
+                            <td><a href="https://www.seeedstudio.com" class="source-link">Seeed Studio</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">3W Amplified Speaker</div></td>
+                            <td>Audio output</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.adafruit.com" class="source-link">Adafruit</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">Picture Frame Enclosure</div>
+                                <div class="component-desc">10" frame with depth</div>
+                            </td>
+                            <td>Shadow box style, 2" depth</td>
+                            <td class="qty">1</td>
+                            <td class="price">$15</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">Wiring & Hardware</div></td>
+                            <td>Jumpers, screws</td>
+                            <td class="qty">1</td>
+                            <td class="price">$10</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table>
+                <tbody>
+                    <tr class="total-row">
+                        <td colspan="3"><strong>ARIA Frame Total</strong></td>
+                        <td class="price">$223</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ARIA Rover BOM -->
+        <div id="rover-bom" class="product-bom" style="display: none;">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-value">$432</div>
+                    <div class="summary-label">Estimated Total</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">22</div>
+                    <div class="summary-label">Components</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">8-12 hrs</div>
+                    <div class="summary-label">Build Time</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-value">Advanced</div>
+                    <div class="summary-label">Difficulty</div>
+                </div>
+            </div>
+
+            <div class="bom-section">
+                <h2>Core Electronics</h2>
+                <table>
+                    <thead>
+                        <tr><th>Component</th><th>Description</th><th>Qty</th><th>Price</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="component-name">Raspberry Pi 5 8GB</div></td>
+                            <td>Main compute unit</td>
+                            <td class="qty">1</td>
+                            <td class="price">$80</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">MicroSD Card 64GB</div></td>
+                            <td>Class 10, A2</td>
+                            <td class="qty">1</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">ReSpeaker 4-Mic Array</div></td>
+                            <td>Far-field microphone</td>
+                            <td class="qty">1</td>
+                            <td class="price">$35</td>
+                            <td><a href="https://www.seeedstudio.com" class="source-link">Seeed Studio</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">3W Amplified Speaker</div></td>
+                            <td>Audio output</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.adafruit.com" class="source-link">Adafruit</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">Pi Camera Module 3</div></td>
+                            <td>Navigation + person detection</td>
+                            <td class="qty">1</td>
+                            <td class="price">$25</td>
+                            <td><a href="https://www.raspberrypi.com" class="source-link">raspberrypi.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">WS2812B LED Ring (16)</div></td>
+                            <td>Expressive eyes</td>
+                            <td class="qty">2</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.adafruit.com" class="source-link">Adafruit</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bom-section">
+                <h2>Mobility Platform</h2>
+                <table>
+                    <thead>
+                        <tr><th>Component</th><th>Description</th><th>Qty</th><th>Price</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">Mecanum Wheel Chassis Kit</div>
+                                <div class="component-desc">Omnidirectional movement</div>
+                            </td>
+                            <td>4WD, 60mm wheels, aluminum frame</td>
+                            <td class="qty">1</td>
+                            <td class="price">$45</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">L298N Motor Driver</div>
+                                <div class="component-desc">DC motor control</div>
+                            </td>
+                            <td>Dual H-bridge, 2A per channel</td>
+                            <td class="qty">2</td>
+                            <td class="price">$10</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">HC-SR04 Ultrasonic Sensor</div>
+                                <div class="component-desc">Obstacle detection</div>
+                            </td>
+                            <td>2-400cm range</td>
+                            <td class="qty">3</td>
+                            <td class="price">$6</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">MPU6050 IMU</div></td>
+                            <td>Fall detection + orientation</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bom-section">
+                <h2>Power System</h2>
+                <table>
+                    <thead>
+                        <tr><th>Component</th><th>Description</th><th>Qty</th><th>Price</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">18650 Battery Holder (3S)</div>
+                                <div class="component-desc">Main robot power</div>
+                            </td>
+                            <td>3-cell series, 11.1V nominal</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">18650 Li-ion Cells</div>
+                                <div class="component-desc">High capacity cells</div>
+                            </td>
+                            <td>3000mAh+, protected</td>
+                            <td class="qty">3</td>
+                            <td class="price">$24</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">DC-DC Buck Converter</div>
+                                <div class="component-desc">5V regulated output for Pi</div>
+                            </td>
+                            <td>12V to 5V, 5A</td>
+                            <td class="qty">1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">BMS Board (3S)</div>
+                                <div class="component-desc">Battery protection</div>
+                            </td>
+                            <td>Overcharge/discharge protection</td>
+                            <td class="qty">1</td>
+                            <td class="price">$5</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bom-section">
+                <h2>Enclosure & Accessories</h2>
+                <table>
+                    <thead>
+                        <tr><th>Component</th><th>Description</th><th>Qty</th><th>Price</th><th>Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="component-name">3D Printed Body Shell</div>
+                                <div class="component-desc">Rover enclosure (STL provided)</div>
+                            </td>
+                            <td>PLA/PETG, ~400g</td>
+                            <td class="qty">1</td>
+                            <td class="price">$40</td>
+                            <td><a href="#" class="source-link">Self/Service</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="component-name">Servo Gripper (Optional)</div>
+                                <div class="component-desc">Object retrieval</div>
+                            </td>
+                            <td>Magnetic gripper arm</td>
+                            <td class="qty">1</td>
+                            <td class="price">$15</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><div class="component-name">Wiring & Hardware</div></td>
+                            <td>Comprehensive kit</td>
+                            <td class="qty">1</td>
+                            <td class="price">$20</td>
+                            <td><a href="https://www.amazon.com" class="source-link">Amazon</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table>
+                <tbody>
+                    <tr class="total-row">
+                        <td colspan="3"><strong>ARIA Rover Total</strong></td>
+                        <td class="price">$432</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="download-section">
+            <p style="margin-bottom: 1rem; color: var(--color-text-secondary);">Download the complete BOM as a spreadsheet for easy ordering.</p>
+            <a href="https://github.com/dbutler-a11y/aria-research" class="btn">Download CSV from GitHub</a>
+        </div>
+    </main>
+
+    <script>
+        function showProduct(product) {
+            // Hide all BOMs
+            document.querySelectorAll('.product-bom').forEach(el => el.style.display = 'none');
+            // Show selected BOM
+            document.getElementById(product + '-bom').style.display = 'block';
+            // Update tab styles
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
