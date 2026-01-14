@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA - Adaptive Robotic Intelligence for Aging | Parkinson's Research Initiative</title>
+    <meta name="description" content="Open-source AI companions restoring independence for individuals with Parkinson's disease. Research-backed assistive robotics buildable for under $500.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-warm: #dd6b20;
+            --color-success: #38a169;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fafc;
+            --color-bg-code: #1e293b;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+            --max-width-prose: 720px;
+            --spacing: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 2.75rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.875rem; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.375rem; margin-bottom: 1rem; }
+        h4 { font-size: 1.125rem; margin-bottom: 0.75rem; }
+
+        p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .prose {
+            max-width: var(--max-width-prose);
+        }
+
+        .prose-wide {
+            max-width: 900px;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .logo span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+            margin-left: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.375rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-secondary);
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* Product Designs Section */
+        .designs {
+            background: var(--color-bg);
+            padding: 4rem 0;
+        }
+
+        .designs-image {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .designs-caption {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--color-primary);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-accent-light);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* Science Section */
+        .science {
+            background: var(--color-bg-alt);
+        }
+
+        .science-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .science-text h2 {
+            margin-bottom: 1rem;
+        }
+
+        .science-intro {
+            font-size: 1.125rem;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+        }
+
+        /* Code/Diagram Blocks */
+        .diagram-block {
+            background: var(--color-bg-code);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .diagram-block pre {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+
+        .diagram-block .comment {
+            color: #64748b;
+        }
+
+        .diagram-block .highlight {
+            color: #fbbf24;
+        }
+
+        .diagram-block .success {
+            color: #4ade80;
+        }
+
+        .diagram-block .error {
+            color: #f87171;
+        }
+
+        .diagram-label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Subsections */
+        .subsection {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .subsection:first-of-type {
+            margin-top: 2rem;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .feature-card h4 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.75rem;
+            transition: all 0.2s;
+        }
+
+        .product-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.1);
+        }
+
+        .product-card.featured {
+            border-color: var(--color-accent);
+            background: linear-gradient(135deg, rgba(49, 130, 206, 0.03) 0%, white 100%);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            margin: 0;
+        }
+
+        .product-price {
+            font-family: var(--font-mono);
+            font-size: 1.125rem;
+            color: var(--color-success);
+            font-weight: 500;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-features {
+            list-style: none;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--color-border);
+            padding-top: 1rem;
+        }
+
+        .product-features li {
+            padding: 0.25rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--color-text-muted);
+        }
+
+        .product-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        /* References Section */
+        .references {
+            background: var(--color-bg);
+        }
+
+        .reference-list {
+            list-style: none;
+            counter-reset: ref-counter;
+        }
+
+        .reference-list li {
+            counter-increment: ref-counter;
+            padding: 1rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.9rem;
+        }
+
+        .reference-list li:last-child {
+            border-bottom: none;
+        }
+
+        .reference-list li::before {
+            content: "[" counter(ref-counter) "]";
+            position: absolute;
+            left: 0;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        .reference-list .ref-title {
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .reference-list .ref-source {
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        /* Build Section */
+        .build {
+            background: var(--color-bg-alt);
+        }
+
+        .build-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .build-step {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0 auto 1rem;
+        }
+
+        .build-step h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .build-step p {
+            font-size: 0.85rem;
+        }
+
+        /* Callout Box */
+        .callout {
+            background: white;
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .callout-title {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-primary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .footer-links h4 {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 2;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .science-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .build-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            html {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .build-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav, .cta-group, footer {
+                display: none;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">ARIA <span>Research Initiative</span></a>
+            <ul class="nav-links">
+                <li><a href="#designs">Designs</a></li>
+                <li><a href="#science">The Science</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#references">Research</a></li>
+                <li><a href="#build">Build Guide</a></li>
+                <li><a href="https://github.com/aria-project" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Open Source Research</span>
+                <h1>ARIA</h1>
+                <p class="hero-subtitle">Adaptive Robotic Intelligence for Aging</p>
+                <p class="hero-description">
+                    An open-source initiative creating accessible AI-powered companion systems
+                    for individuals with Parkinson's disease. Research-backed. Buildable for under $500.
+                    Because dignity shouldn't have a price barrier.
+                </p>
+                <div class="cta-group">
+                    <a href="#build" class="btn btn-primary">Start Building</a>
+                    <a href="#science" class="btn btn-secondary">Read the Science</a>
+                    <a href="https://github.com/aria-project" class="btn btn-secondary">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10M</div>
+                    <div class="stat-label">People living with Parkinson's worldwide</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-label">Experience freezing of gait (FoG)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">68%</div>
+                    <div class="stat-label">FoG reduction with rhythmic cueing</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">&lt;$500</div>
+                    <div class="stat-label">Cost to build any ARIA variant</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Designs Section -->
+    <section id="designs" class="designs">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>The ARIA Product Family</h2>
+                <p class="prose" style="margin: 0 auto;">Six form factors designed for different needs—all sharing a common AI backbone and open-source design.</p>
+            </div>
+            <img src="aria-designs.png" alt="ARIA Product Family - Six design concepts including Bloom, Guide, Orb, Rover, Frame, and Wrist+Base" class="designs-image">
+            <p class="designs-caption">
+                <strong>Figure 1:</strong> ARIA product family concept designs. From left: Bloom (tabletop companion), Guide (walker-integrated),
+                Orb (ambient presence), Rover (mobile companion), Frame (digital portrait), Wrist+Base (wearable hybrid).
+            </p>
+        </div>
+    </section>
+
+    <!-- Science Section -->
+    <section id="science" class="science">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2>The Science Behind ARIA</h2>
+                <p class="prose" style="margin: 0 auto;">Understanding why external cueing works requires understanding what breaks in Parkinson's disease.</p>
+            </div>
+
+            <div class="prose-wide" style="margin: 0 auto;">
+
+                <!-- How Gait Works -->
+                <div class="subsection">
+                    <h3>How Gait Normally Works</h3>
+                    <p>
+                        Walking is mostly <strong>automatic</strong>—your brain's basal ganglia (deep brain structures) generate
+                        internal timing signals that sequence your steps without conscious thought. You don't think
+                        "lift right foot, swing forward, plant heel, shift weight..."—it just happens.
+                    </p>
+
+                    <div class="diagram-block">
+                        <div class="diagram-label">Normal Walking Neural Loop</div>
+<pre>
+<span class="success">Basal Ganglia</span> → Internal Rhythm → <span class="success">Motor Cortex</span> → Leg Movement
+       ↑                                                    ↓
+       └──────────────── Feedback Loop ────────────────────┘
+</pre>
+                    </div>
+
+                    <p>
+                        The basal ganglia act as an <strong>internal metronome</strong>, providing the rhythmic timing
+                        that allows walking to feel effortless and automatic.
+                    </p>
+                </div>
+
+                <!-- What Breaks -->
+                <div class="subsection">
+                    <h3>What Breaks in Parkinson's Disease</h3>
+                    <p>
+                        Parkinson's disease damages dopamine-producing neurons in the substantia nigra, which connects
+                        to the basal ganglia. Without adequate dopamine, the <strong>internal rhythm generator fails</strong>.
+                        The brain literally loses its internal metronome.
+                    </p>
+
+                    <div class="diagram-block">
+                        <div class="diagram-label">Parkinson's Walking (Broken Pathway)</div>
+<pre>
+<span class="error">Basal Ganglia</span> → <span class="error">❌ NO SIGNAL</span> → Motor Cortex → <span class="error">Nothing happens</span>
+       ↑
+       └── <span class="comment">Dopamine depleted, rhythm generator offline</span>
+</pre>
+                    </div>
+
+                    <div class="callout">
+                        <div class="callout-title">Freezing of Gait (FoG)</div>
+                        <p>
+                            Freezing of Gait occurs when the person <em>wants</em> to walk—the motor cortex is ready—but
+                            the internal timing signal never arrives. Feet feel "glued to the floor." Episodes are often
+                            triggered at doorways, turns, or when initiating walking. It's not weakness or fear—it's a
+                            neurological signal failure.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- The Bypass -->
+                <div class="subsection">
+                    <h3>Why External Cueing Works: The Neural Bypass</h3>
+                    <p>
+                        Here's the critical insight: <strong>the motor cortex still works perfectly</strong>.
+                        Only the internal timing mechanism is broken. External cues provide a substitute rhythm
+                        that bypasses the damaged basal ganglia entirely, using sensory pathways that remain intact.
+                    </p>
+
+                    <div class="diagram-block">
+                        <div class="diagram-label">External Cueing Bypass Mechanism</div>
+<pre>
+                          ┌─────── <span class="success">BYPASS</span> ───────┐
+                          ↓                      │
+<span class="highlight">Eyes/Ears</span> → Sensory Cortex → <span class="success">Motor Cortex</span> → <span class="success">Walking!</span>
+     │
+<span class="highlight">Laser line / Metronome click</span>
+</pre>
+                    </div>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>Visual Cueing (Laser Line)</h4>
+                            <p>
+                                Projects a target 18 inches ahead of feet. The brain treats it as an
+                                <strong>obstacle to step over</strong>, recruiting visual-motor pathways instead of
+                                basal ganglia. Each new line position triggers a conscious step, converting
+                                automatic walking into a series of visual targets.
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Auditory Cueing (Metronome)</h4>
+                            <p>
+                                Provides external rhythm at ~100 BPM. The auditory cortex receives the beat and
+                                directly activates motor timing circuits. Patients synchronize steps to clicks—the
+                                beat becomes the missing internal metronome. Works even with eyes closed.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Instant -->
+                <div class="subsection">
+                    <h3>Why the Effect Is Immediate</h3>
+                    <p>
+                        This isn't therapy that takes weeks of training. The effect is <strong>instant</strong> because:
+                    </p>
+                    <ol style="margin-left: 1.5rem; color: var(--color-text-secondary);">
+                        <li style="margin-bottom: 0.5rem;">The motor system is fully intact—it's just waiting for a "go" signal</li>
+                        <li style="margin-bottom: 0.5rem;">External cues provide that signal through an alternate neural route</li>
+                        <li style="margin-bottom: 0.5rem;">The moment the cue appears, the brain has something to respond to</li>
+                    </ol>
+
+                    <div class="callout">
+                        <div class="callout-title">Clinical Evidence</div>
+                        <p>
+                            Harvard SEAS studies demonstrated a <strong>68% reduction</strong> in freezing episodes with rhythmic cueing.
+                            Their soft robotic exosuit with rhythmic assistance improved walking distance by <strong>55%</strong>
+                            and completely abolished freezing of gait during interior walking. Visual laser cueing showed
+                            immediate effect in <strong>94% of participants</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ARIA Implementation -->
+                <div class="subsection">
+                    <h3>ARIA Guide Implementation</h3>
+                    <p>
+                        ARIA Guide translates this neuroscience into a practical intervention system:
+                    </p>
+
+                    <div class="diagram-block">
+                        <div class="diagram-label">ARIA Guide Intervention Sequence</div>
+<pre>
+<span class="highlight">Detection:</span>   Camera sees feet stopped > 2 seconds
+     ↓
+<span class="highlight">Visual Cue:</span>  Projects green laser line 18" ahead (stepping target)
+     ↓
+<span class="highlight">Audio Cue:</span>   Starts metronome at 100 BPM (rhythm substitute)
+     ↓
+<span class="highlight">Patient:</span>    Steps onto line, synchronized to beat
+     ↓
+<span class="highlight">System:</span>     Advances laser, maintains rhythm until walking fluid
+     ↓
+<span class="success">Result:</span>     <span class="success">Walking restored in seconds</span>
+</pre>
+                    </div>
+
+                    <p>
+                        The laser and metronome aren't "helping" the damaged system—they're <strong>replacing</strong> the
+                        broken internal signal with an external one that uses pathways that still work perfectly.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products" style="background: var(--color-bg);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>Product Specifications</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    Each ARIA variant addresses specific needs. All share the same AI backbone
+                    and can be built with common tools and components.
+                </p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card featured">
+                    <div class="product-header">
+                        <h3>ARIA Bloom</h3>
+                        <span class="product-price">~$280</span>
+                    </div>
+                    <p class="product-description">
+                        Flower-shaped tabletop companion. Petals contain LED emotion display,
+                        central camera eye tracks user. Ideal for conversation, medication reminders,
+                        and daily companionship.
+                    </p>
+                    <ul class="product-features">
+                        <li>Petal LED emotion display</li>
+                        <li>Medication scheduling & reminders</li>
+                        <li>Speech clarity coaching</li>
+                        <li>Conversational AI with memory</li>
+                        <li>Tremor detection via touch sensors</li>
+                    </ul>
+                </div>
+
+                <div class="product-card featured">
+                    <div class="product-header">
+                        <h3>ARIA Guide</h3>
+                        <span class="product-price">~$380</span>
+                    </div>
+                    <p class="product-description">
+                        Walker-integrated mobility assistant. Mounts to standard rollators.
+                        Provides laser gait cueing and rhythmic audio to break freezing episodes.
+                        Highest clinical impact.
+                    </p>
+                    <ul class="product-features">
+                        <li>Laser line gait cueing</li>
+                        <li>Metronome rhythmic audio</li>
+                        <li>Freezing of gait detection</li>
+                        <li>Fall detection & alerts</li>
+                        <li>Step counting & progress tracking</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>ARIA Frame</h3>
+                        <span class="product-price">~$220</span>
+                    </div>
+                    <p class="product-description">
+                        Digital portrait companion in picture frame form factor. Shows family photos
+                        when idle, animated avatar during conversation. Lowest build complexity.
+                    </p>
+                    <ul class="product-features">
+                        <li>10" display with avatar</li>
+                        <li>Family photo slideshow</li>
+                        <li>Video calling integration</li>
+                        <li>Cognitive games & exercises</li>
+                        <li>Wall-mount or tabletop</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>ARIA Rover</h3>
+                        <span class="product-price">~$430</span>
+                    </div>
+                    <p class="product-description">
+                        Mobile companion robot that follows users room-to-room. Provides
+                        active companionship and can fetch small objects with magnetic gripper.
+                    </p>
+                    <ul class="product-features">
+                        <li>Autonomous home navigation</li>
+                        <li>Room-to-room following</li>
+                        <li>Magnetic gripper for fetching</li>
+                        <li>Floor-level fall detection</li>
+                        <li>Expressive LED eyes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="references">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>Research References</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    ARIA is built on peer-reviewed research in neuroscience, assistive robotics, and Parkinson's care.
+                </p>
+            </div>
+
+            <div class="prose-wide" style="margin: 0 auto;">
+                <ol class="reference-list">
+                    <li>
+                        <span class="ref-title">Soft Robotics for Parkinson's Disease Supported by Functional Materials and Artificial Intelligence.</span><br>
+                        <span class="ref-source">PMC/BME Frontiers, 2025.</span><br>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12214301/" target="_blank">pmc.ncbi.nlm.nih.gov/articles/PMC12214301</a>
+                    </li>
+                    <li>
+                        <span class="ref-title">Soft Robotic Wearable Device Improves Walking for Individual with Parkinson's Disease.</span><br>
+                        <span class="ref-source">Harvard SEAS, January 2024.</span><br>
+                        <a href="https://seas.harvard.edu/news/2024/01/soft-robotic-wearable-device-improves-walking-individual-parkinsons-disease" target="_blank">seas.harvard.edu/news/2024/01/soft-robotic-wearable</a>
+                    </li>
+                    <li>
+                        <span class="ref-title">Socially Assistive Robots for Parkinson's Disease: Needs, Attitudes and Specific Applications as Identified by Healthcare Professionals.</span><br>
+                        <span class="ref-source">ACM Transactions on Human-Robot Interaction, 2023.</span><br>
+                        <a href="https://dl.acm.org/doi/10.1145/3570168" target="_blank">dl.acm.org/doi/10.1145/3570168</a>
+                    </li>
+                    <li>
+                        <span class="ref-title">Recommendations for Designing Conversational Companion Robots with Older Adults through Foundation Models.</span><br>
+                        <span class="ref-source">Frontiers in Robotics and AI / PMC, 2024.</span><br>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11163135/" target="_blank">pmc.ncbi.nlm.nih.gov/articles/PMC11163135</a>
+                    </li>
+                    <li>
+                        <span class="ref-title">A Novel Socially Assistive Robotic Platform for Cognitive-Motor Exercises for Individuals with Parkinson's Disease.</span><br>
+                        <span class="ref-source">Frontiers in Robotics and AI, 2023.</span><br>
+                        <a href="https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2023.1267458/full" target="_blank">frontiersin.org/articles/10.3389/frobt.2023.1267458</a>
+                    </li>
+                    <li>
+                        <span class="ref-title">Challenges in Designing a Fully Autonomous Socially Assistive Robot for People with Parkinson's Disease.</span><br>
+                        <span class="ref-source">Tufts HRI Lab, 2020.</span><br>
+                        <a href="https://hrilab.tufts.edu/publications/wilsonetal20pd/" target="_blank">hrilab.tufts.edu/publications/wilsonetal20pd</a>
+                    </li>
+                    <li>
+                        <span class="ref-title">An Interdisciplinary Approach to Assistive Technology for Parkinson's Disease Dementia.</span><br>
+                        <span class="ref-source">PMC, 2025.</span><br>
+                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12363541/" target="_blank">pmc.ncbi.nlm.nih.gov/articles/PMC12363541</a>
+                    </li>
+                    <li>
+                        <span class="ref-title">How AI is Revolutionizing Parkinson's Research & Care.</span><br>
+                        <span class="ref-source">American Parkinson Disease Association.</span><br>
+                        <a href="https://www.apdaparkinson.org/article/ai-and-parkinsons-disease-research-and-care/" target="_blank">apdaparkinson.org/article/ai-and-parkinsons</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Build Section -->
+    <section id="build" class="build">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2>Build Your Own</h2>
+                <p class="prose" style="margin: 0 auto 2rem;">
+                    Complete documentation to build any ARIA variant. No prior robotics experience required.
+                </p>
+            </div>
+
+            <div class="build-steps">
+                <div class="build-step">
+                    <div class="step-number">1</div>
+                    <h4>Hardware Assembly</h4>
+                    <p>Step-by-step guide with video. 3D print files included. 4-6 hours build time.</p>
+                </div>
+                <div class="build-step">
+                    <div class="step-number">2</div>
+                    <h4>Software Setup</h4>
+                    <p>One-click Raspberry Pi image. Flash, boot, configure. All AI models pre-loaded.</p>
+                </div>
+                <div class="build-step">
+                    <div class="step-number">3</div>
+                    <h4>Personalization</h4>
+                    <p>Train ARIA to recognize voices. Set medication schedules. Add family contacts.</p>
+                </div>
+                <div class="build-step">
+                    <div class="step-number">4</div>
+                    <h4>Community Support</h4>
+                    <p>Active Discord. Weekly build sessions. Troubleshooting from builders worldwide.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <div class="cta-group">
+                    <a href="https://github.com/aria-project/aria-bloom" class="btn btn-primary">Download Build Guide</a>
+                    <a href="hardware-bom.html" class="btn btn-secondary">View Bill of Materials</a>
+                    <a href="https://github.com/aria-project" class="btn btn-secondary">GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0;">ARIA Project</h3>
+                    <p>
+                        An open-source research initiative creating accessible AI companions
+                        for individuals with Parkinson's disease. Built with care by caregivers,
+                        makers, and researchers worldwide.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Hardware BOM</a></li>
+                        <li><a href="#">3D Print Files</a></li>
+                        <li><a href="#">Software Image</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Research</h4>
+                    <ul>
+                        <li><a href="#science">The Science</a></li>
+                        <li><a href="#references">References</a></li>
+                        <li><a href="#">Clinical Partners</a></li>
+                        <li><a href="#">Publications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/aria-project">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>MIT License © 2025 ARIA Project</span>
+                <span style="font-style: italic;">"Made with care by humans and AI, for humans."</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
