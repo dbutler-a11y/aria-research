@@ -9,10 +9,38 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
+  <img src="https://img.shields.io/badge/cost-under%20%24500-green.svg" alt="Cost: Under $500">
+  <img src="https://img.shields.io/badge/platform-Raspberry%20Pi%205-red.svg" alt="Platform: Raspberry Pi 5">
+  <img src="https://img.shields.io/badge/status-research%20phase-yellow.svg" alt="Status: Research Phase">
+  <img src="https://img.shields.io/github/stars/dbutler-a11y/aria-research?style=social" alt="GitHub Stars">
+</p>
+
+<p align="center">
   <a href="https://dbutler-a11y.github.io/aria-research/">Live Site</a> •
   <a href="https://dbutler-a11y.github.io/aria-research/research-paper.html">Research Paper</a> •
-  <a href="https://dbutler-a11y.github.io/aria-research/hardware-bom.html">Hardware BOM</a>
+  <a href="https://dbutler-a11y.github.io/aria-research/hardware-bom.html">Hardware BOM</a> •
+  <a href="#citation">Cite This Work</a>
 </p>
+
+---
+
+## Table of Contents
+
+- [The Challenge](#the-challenge)
+- [The Science](#the-science)
+- [Product Family](#product-family)
+- [Concept Videos](#concept-videos)
+- [Technical Architecture](#technical-architecture)
+- [Quick Start](#quick-start)
+- [Repository Structure](#repository-structure)
+- [Research Foundation](#research-foundation)
+- [Contributing](#contributing)
+- [Roadmap](#roadmap)
+- [Citation](#citation)
+- [Support](#support)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
 ---
 
@@ -67,11 +95,13 @@ All variants share a common **AI backbone**:
 These concept visualizations demonstrate ARIA's intervention patterns:
 
 ### ARIA Guide — Freezing of Gait Intervention
+
 https://github.com/user-attachments/assets/aria-guide-video.mp4
 
 Walker-integrated system detects freezing episode and deploys laser line cueing with rhythmic audio to restore gait initiation.
 
 ### ARIA Bloom — Medication Reminder & Companionship
+
 https://github.com/user-attachments/assets/aria-bloom-video.mp4
 
 Tabletop companion provides gentle medication reminders, tracks speech patterns, and maintains connection to family.
@@ -212,6 +242,45 @@ We welcome contributions from:
 
 ---
 
+## Citation
+
+If you use ARIA in your research or build upon this work, please cite:
+
+```bibtex
+@misc{aria2025,
+  author       = {Butler, Darryl},
+  title        = {{ARIA}: Adaptive Robotic Intelligence for Aging — Open-Source Assistive Companions for Parkinson's Disease},
+  year         = {2025},
+  publisher    = {GitHub},
+  journal      = {GitHub Repository},
+  howpublished = {\url{https://github.com/dbutler-a11y/aria-research}},
+  note         = {Open-source hardware and software for accessible assistive robotics}
+}
+```
+
+**APA Format:**
+> Butler, D. (2025). *ARIA: Adaptive Robotic Intelligence for Aging — Open-Source Assistive Companions for Parkinson's Disease*. GitHub. https://github.com/dbutler-a11y/aria-research
+
+**IEEE Format:**
+> D. Butler, "ARIA: Adaptive Robotic Intelligence for Aging," GitHub, 2025. [Online]. Available: https://github.com/dbutler-a11y/aria-research
+
+---
+
+## Support
+
+Need help or want to get involved?
+
+| Channel | Purpose |
+|---------|---------|
+| [GitHub Issues](https://github.com/dbutler-a11y/aria-research/issues) | Bug reports, feature requests |
+| [GitHub Discussions](https://github.com/dbutler-a11y/aria-research/discussions) | Questions, ideas, community chat |
+| [Research Paper](https://dbutler-a11y.github.io/aria-research/research-paper.html) | Technical deep-dive |
+| [Hardware BOM](https://dbutler-a11y.github.io/aria-research/hardware-bom.html) | Build specifications |
+
+**For clinical partnership inquiries or media requests**, please open a GitHub issue with the `partnership` or `media` label.
+
+---
+
 ## License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
@@ -227,6 +296,7 @@ Built with insights from:
 - Research teams at Harvard SEAS, Tufts HRI Lab, LuxAI
 - Open-source robotics community (ROS2, Hugging Face)
 - Raspberry Pi Foundation
+- Claude AI by Anthropic
 
 ---
 
@@ -235,5 +305,7 @@ Built with insights from:
 </p>
 
 <p align="center">
-  <a href="https://dbutler-a11y.github.io/aria-research/">View Live Site</a>
+  <a href="https://dbutler-a11y.github.io/aria-research/">View Live Site</a> •
+  <a href="#citation">Cite This Work</a> •
+  <a href="https://github.com/dbutler-a11y/aria-research/stargazers">Star on GitHub</a>
 </p>
