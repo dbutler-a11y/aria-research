@@ -700,9 +700,127 @@
                 padding: 2rem 0;
             }
         }
+
+        /* Floating Publications Sidebar */
+        .publications-sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            padding: 1rem;
+            width: 160px;
+            border: 1px solid var(--color-border);
+        }
+
+        .publications-sidebar h4 {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .publications-sidebar ul {
+            list-style: none;
+        }
+
+        .publications-sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .publications-sidebar li:last-child {
+            margin-bottom: 0;
+        }
+
+        .publications-sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .publications-sidebar a:hover {
+            background: var(--color-bg-alt);
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .publications-sidebar .pub-icon {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .publications-sidebar .pub-badge {
+            font-size: 0.6rem;
+            background: var(--color-warm);
+            color: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            margin-left: auto;
+        }
+
+        .publications-sidebar .pub-new {
+            background: var(--color-success);
+        }
+
+        @media (max-width: 1200px) {
+            .publications-sidebar {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Floating Publications Sidebar -->
+    <div class="publications-sidebar">
+        <h4>📄 Read Paper</h4>
+        <ul>
+            <li>
+                <a href="https://zenodo.org/records/18250818" target="_blank">
+                    <span class="pub-icon">🔬</span>
+                    Zenodo
+                    <span class="pub-badge pub-new">NEW</span>
+                </a>
+            </li>
+            <li>
+                <a href="research-paper.html">
+                    <span class="pub-icon">📑</span>
+                    Website
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/dbutler-a11y/aria-research" target="_blank">
+                    <span class="pub-icon">💻</span>
+                    GitHub
+                </a>
+            </li>
+            <li>
+                <a href="hardware-bom.html">
+                    <span class="pub-icon">🔧</span>
+                    Hardware
+                </a>
+            </li>
+        </ul>
+    </div>
+
     <!-- Navigation -->
     <nav>
         <div class="container">
