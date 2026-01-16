@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA Ecosystem — Open Core, Community-Governed Research Initiative</title>
+    <meta name="description" content="Learn how ARIA's open-source model, tokenized participation layer, and donation-driven development create accessible assistive technology for Parkinson's disease.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-warm: #dd6b20;
+            --color-success: #38a169;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fafc;
+            --color-bg-code: #1e293b;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+            --max-width-prose: 720px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.75rem; margin-bottom: 1.5rem; margin-top: 3rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 1rem; margin-top: 2rem; }
+
+        p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .prose {
+            max-width: var(--max-width-prose);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+            margin-left: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* Hero */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 3rem;
+            background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content Sections */
+        section {
+            padding: 3rem 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--color-bg-alt);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            background: white;
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .callout-title {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .callout-warning {
+            border-left-color: var(--color-warm);
+            background: #fffaf5;
+        }
+
+        .callout-success {
+            border-left-color: var(--color-success);
+            background: #f0fff4;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .card h4 {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Roadmap */
+        .roadmap {
+            margin: 2rem 0;
+        }
+
+        .roadmap-phase {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid var(--color-border);
+        }
+
+        .roadmap-phase:last-child {
+            border-left-color: transparent;
+            padding-bottom: 0;
+        }
+
+        .roadmap-phase::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--color-border);
+            border: 3px solid white;
+        }
+
+        .roadmap-phase.completed::before {
+            background: var(--color-success);
+        }
+
+        .roadmap-phase.active::before {
+            background: var(--color-accent);
+            box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.2);
+        }
+
+        .roadmap-phase h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-status {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+        }
+
+        .phase-status.completed {
+            background: #c6f6d5;
+            color: #276749;
+        }
+
+        .phase-status.active {
+            background: #bee3f8;
+            color: #2b6cb0;
+        }
+
+        .phase-status.upcoming {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .roadmap-phase ul {
+            margin-left: 1.25rem;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .roadmap-phase li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--color-text-secondary);
+        }
+
+        .feature-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .check-list li::before {
+            content: "✓";
+            color: var(--color-success);
+        }
+
+        .x-list li::before {
+            content: "✗";
+            color: #e53e3e;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-bg-alt);
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg-code);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Quote */
+        blockquote {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-text);
+            border-left: 3px solid var(--color-accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ARIA <span>Ecosystem</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#open-core">Open Core</a></li>
+                <li><a href="#participation">Participation</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#donate">Support</a></li>
+                <li><a href="research-paper.html">Research</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>ARIA as an Open Core, Community-Governed Research Ecosystem</h1>
+            <p class="hero-subtitle">
+                A transparent model for building accessible assistive technology through open research,
+                community coordination, and long-term stewardship—not ownership.
+            </p>
+        </div>
+    </section>
+
+    <!-- Positioning Statement -->
+    <section id="positioning">
+        <div class="container prose" style="margin: 0 auto;">
+            <p style="font-size: 1.1rem; color: var(--color-text);">
+                ARIA is an open-source research and development initiative dedicated to creating accessible
+                AI-powered assistive technology for individuals with Parkinson's disease and other
+                neurodegenerative conditions.
+            </p>
+
+            <p>
+                Our core AI models, hardware designs, research findings, and educational materials remain
+                <strong>open and accessible to everyone</strong>—researchers, caregivers, makers, and institutions alike.
+                We believe that technology addressing fundamental human dignity should not be locked behind
+                proprietary barriers or priced beyond reach.
+            </p>
+
+            <p>
+                Value within the ARIA ecosystem is created not through ownership, but through
+                <strong>coordination, contribution, and adoption</strong>. As more researchers build upon our work,
+                more caregivers deploy our solutions, and more communities adapt our designs to local needs,
+                the ecosystem grows stronger for everyone.
+            </p>
+
+            <p>
+                To align contributors, donors, and builders around long-term ecosystem goals, ARIA employs
+                a <strong>tokenized participation model</strong>. This is not a financial instrument—it is a coordination
+                mechanism designed to recognize contribution, enable governance, and ensure that those who
+                help build ARIA have a voice in its future direction.
+            </p>
+
+            <blockquote>
+                "Dignity should not be gated by cost. Research should not be gated by access.
+                Governance should not be gated by capital."
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Open Core Explained -->
+    <section id="open-core">
+        <div class="container">
+            <div class="section-header">
+                <h2>What "Open Core" Means for ARIA</h2>
+                <p>
+                    Understanding how openness accelerates trust, safety, and adoption—especially
+                    in healthcare and aging populations.
+                </p>
+            </div>
+
+            <div class="prose" style="margin: 0 auto;">
+                <h3>The Foundation Remains Open</h3>
+                <p>
+                    All foundational research, hardware designs, AI models, and software interfaces
+                    developed by ARIA are released under permissive open-source licenses. This means:
+                </p>
+
+                <ul class="feature-list check-list">
+                    <li>Anyone can study our research and methodology</li>
+                    <li>Anyone can build ARIA devices for personal or community use</li>
+                    <li>Anyone can extend, modify, or improve upon our designs</li>
+                    <li>Institutions can evaluate our approach without vendor lock-in</li>
+                    <li>Researchers can reproduce and validate our findings</li>
+                </ul>
+
+                <p>
+                    This openness is not incidental—it is essential. Assistive technology for vulnerable
+                    populations must be transparent, auditable, and trustworthy. Families and healthcare
+                    providers need confidence that the systems they deploy are safe, well-understood, and
+                    free from hidden agendas.
+                </p>
+
+                <h3>Coordination Layers for Sustainability</h3>
+                <p>
+                    While the core remains open, certain coordination functions are structured to ensure
+                    ARIA does not stagnate or fragment:
+                </p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Quality Certification</h4>
+                        <p>
+                            Voluntary certification standards ensure that community-built devices meet
+                            safety and performance benchmarks before deployment in care settings.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4>Governance Coordination</h4>
+                        <p>
+                            Community governance structures guide roadmap priorities, research directions,
+                            and resource allocation through transparent, participatory processes.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4>Funding Stewardship</h4>
+                        <p>
+                            Donated funds are allocated through accountable, community-informed processes
+                            with public reporting on usage and outcomes.
+                        </p>
+                    </div>
+                </div>
+
+                <p>
+                    These coordination layers exist to serve the open core—not to capture value from it.
+                    They ensure that ARIA remains a coherent, high-quality initiative rather than a
+                    fragmented collection of incompatible forks.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenized Participation -->
+    <section id="participation">
+        <div class="container">
+            <div class="section-header">
+                <h2>A Tokenized Participation Layer</h2>
+                <p>
+                    Coordinating a growing ecosystem through recognition, governance, and access—not ownership.
+                </p>
+            </div>
+
+            <div class="prose" style="margin: 0 auto;">
+                <p>
+                    As ARIA grows beyond a single research project into a global ecosystem of researchers,
+                    builders, caregivers, and institutions, we need mechanisms to coordinate participation,
+                    recognize contribution, and enable collective decision-making.
+                </p>
+
+                <p>
+                    ARIA Participation Tokens serve this coordination function. They are issued to recognize
+                    meaningful contributions to the ecosystem and enable participation in its governance.
+                </p>
+
+                <h3>Tokens Are Issued to Recognize:</h3>
+                <ul class="feature-list">
+                    <li><strong>Donations</strong> — Financial contributions that fund research and development</li>
+                    <li><strong>Research contributions</strong> — Published findings, validated datasets, clinical insights</li>
+                    <li><strong>Development work</strong> — Code, hardware designs, documentation, translations</li>
+                    <li><strong>Community coordination</strong> — Organizing pilots, supporting builders, facilitating governance</li>
+                </ul>
+
+                <h3>Tokens Enable:</h3>
+                <ul class="feature-list check-list">
+                    <li>Governance participation in ecosystem decisions</li>
+                    <li>Voting on roadmap priorities and research directions</li>
+                    <li>Access to early pilots, datasets, and development previews</li>
+                    <li>Proposal submission for funding allocation</li>
+                    <li>Recognition within the contributor community</li>
+                </ul>
+
+                <h3>Tokens Do Not:</h3>
+                <ul class="feature-list x-list">
+                    <li>Represent ownership in any entity</li>
+                    <li>Promise or imply financial return</li>
+                    <li>Provide dividends, revenue shares, or profit claims</li>
+                    <li>Function as investment instruments</li>
+                    <li>Guarantee any future value</li>
+                </ul>
+
+                <div class="callout callout-warning">
+                    <div class="callout-title">Important Clarification</div>
+                    <p>
+                        ARIA Participation Tokens exist to coordinate a growing ecosystem, not to speculate
+                        on financial outcomes. They are governance and recognition instruments—tools for
+                        community stewardship, not vehicles for investment. Anyone approaching ARIA tokens
+                        with expectation of financial return has fundamentally misunderstood their purpose.
+                    </p>
+                </div>
+
+                <p>
+                    This model draws from decades of open-source governance experience. Like commit access
+                    in software projects or voting rights in cooperatives, ARIA tokens formalize the
+                    relationship between contribution and voice—ensuring that those who build the ecosystem
+                    help guide its direction.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Donations Matter -->
+    <section id="donations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why We Accept Donations</h2>
+                <p>
+                    Direct funding for research, prototypes, and pilots—with transparent
+                    allocation and measurable outcomes.
+                </p>
+            </div>
+
+            <div class="prose" style="margin: 0 auto;">
+                <p>
+                    ARIA is not venture-backed. We do not have investors expecting returns. This is
+                    intentional—it ensures that every decision we make prioritizes the people we serve,
+                    not the financial interests of shareholders.
+                </p>
+
+                <p>
+                    But research costs money. Prototypes require components. Pilots need coordination.
+                    Publications require time. Donations directly fund the work that transforms research
+                    into reality.
+                </p>
+
+                <h3>Your Donation Directly Funds:</h3>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Prototype Development</h4>
+                        <p>Components, 3D printing, assembly, and iteration on physical devices that will reach caregivers and patients.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Hardware Testing</h4>
+                        <p>Rigorous safety testing, durability assessment, and performance validation before community release.</p>
+                    </div>
+                    <div class="card">
+                        <h4>AI Model Refinement</h4>
+                        <p>Training speech recognition for dysarthric voices, improving conversational AI, optimizing for low-power hardware.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Open Datasets</h4>
+                        <p>Ethically collected, consented datasets that enable the broader research community to advance Parkinson's care.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Caregiver & Patient Pilots</h4>
+                        <p>Real-world testing with families, feedback collection, and iterative improvement based on lived experience.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Research Validation</h4>
+                        <p>Peer review, publication fees, conference presentations, and scientific collaboration.</p>
+                    </div>
+                </div>
+
+                <div class="callout callout-success">
+                    <div class="callout-title">Donors as Stewards</div>
+                    <p>
+                        When you donate to ARIA, you are not purchasing a product or making an investment.
+                        You are becoming an <strong>early steward</strong> of an open, dignified future for aging and
+                        neurodegenerative care. Your contribution joins a community commitment to proving
+                        that accessible, high-quality assistive technology is possible—and that it should
+                        belong to everyone.
+                    </p>
+                </div>
+
+                <p>
+                    Every donation is tied to real-world outcomes and transparent milestones. We publish
+                    regular updates on fund allocation, progress toward goals, and lessons learned.
+                    This accountability is not bureaucratic overhead—it is fundamental respect for the
+                    trust donors place in us.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <h2>ARIA Development Roadmap</h2>
+                <p>
+                    A clear path from research to deployment, with opportunities to contribute at every phase.
+                </p>
+            </div>
+
+            <div class="prose" style="margin: 0 auto;">
+                <div class="roadmap">
+                    <!-- Phase 1 -->
+                    <div class="roadmap-phase completed">
+                        <h4>Phase 1 — Foundation <span class="phase-status completed">Completed</span></h4>
+                        <p style="margin-bottom: 1rem;">Establishing the research foundation and public visibility.</p>
+                        <ul>
+                            <li>Research paper published and peer-reviewed</li>
+                            <li>Core concept validation through literature synthesis</li>
+                            <li>Open-source release of designs and documentation</li>
+                            <li>Community visibility through academic platforms</li>
+                            <li>Hardware bill of materials finalized</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-success);">
+                            <strong>Success:</strong> Research foundation established. ARIA concepts validated against clinical evidence.
+                            Community can now study, critique, and build upon our work.
+                        </p>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="roadmap-phase active">
+                        <h4>Phase 2 — Prototype & Pilot <span class="phase-status active">In Progress</span></h4>
+                        <p style="margin-bottom: 1rem;">Building functional devices and testing with real users.</p>
+                        <ul>
+                            <li>Functional ARIA Bloom prototype assembly</li>
+                            <li>ARIA Guide walker-integration development</li>
+                            <li>Initial caregiver and patient testing (consented)</li>
+                            <li>Parkinson's-specific interaction tuning</li>
+                            <li>Dysarthric speech recognition optimization</li>
+                            <li>Ethical data collection protocols</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-text-muted);">
+                            <strong>Success looks like:</strong> Working prototypes in the hands of 10+ caregivers.
+                            Documented feedback driving design iteration. Speech recognition accuracy exceeding 85% for dysarthric voices.
+                        </p>
+                        <p style="font-size: 0.9rem; color: var(--color-accent);">
+                            <strong>How donations help:</strong> Component costs, 3D printing, caregiver stipends, testing equipment.
+                        </p>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="roadmap-phase">
+                        <h4>Phase 3 — Ecosystem Formation <span class="phase-status upcoming">Upcoming</span></h4>
+                        <p style="margin-bottom: 1rem;">Building governance structures and expanding participation.</p>
+                        <ul>
+                            <li>Tokenized governance system launch</li>
+                            <li>Research grants to external contributors</li>
+                            <li>Hardware certification standards development</li>
+                            <li>Institutional pilot program initiation</li>
+                            <li>Community forum and support infrastructure</li>
+                            <li>Multi-language documentation</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-text-muted);">
+                            <strong>Success looks like:</strong> Active governance with 100+ participating contributors.
+                            First institutional pilots in care facilities. Certified builder network emerging.
+                        </p>
+                        <p style="font-size: 0.9rem; color: var(--color-accent);">
+                            <strong>How to participate:</strong> Contribute research, build prototypes, translate documentation,
+                            coordinate local pilots.
+                        </p>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div class="roadmap-phase">
+                        <h4>Phase 4 — Scaled Deployment <span class="phase-status upcoming">Future</span></h4>
+                        <p style="margin-bottom: 1rem;">Expanding access globally through partnerships and manufacturing.</p>
+                        <ul>
+                            <li>Open manufacturing partnerships</li>
+                            <li>Hospital and nonprofit integrations</li>
+                            <li>Expanded form factors (ARIA Rover, Frame, Wrist)</li>
+                            <li>Global accessibility initiatives</li>
+                            <li>Insurance and reimbursement pathways</li>
+                            <li>Clinical validation studies</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-text-muted);">
+                            <strong>Success looks like:</strong> ARIA devices deployed in care facilities across multiple countries.
+                            Measurable improvement in patient outcomes. Sustainable ecosystem funding model proven.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency & Trust -->
+    <section id="transparency">
+        <div class="container">
+            <div class="section-header">
+                <h2>Transparency, Ethics, and Accountability</h2>
+                <p>
+                    ARIA is designed to earn trust slowly and keep it permanently.
+                </p>
+            </div>
+
+            <div class="prose" style="margin: 0 auto;">
+                <p>
+                    Working with vulnerable populations—elderly individuals, those with neurodegenerative
+                    conditions, their families and caregivers—demands the highest ethical standards.
+                    Trust, once broken, cannot be rebuilt. We commit to practices that earn and maintain
+                    that trust.
+                </p>
+
+                <h3>Our Commitments:</h3>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Open Financial Reporting</h4>
+                        <p>
+                            Public quarterly reports on donation allocation, expenditures, and fund balances.
+                            Every dollar accounted for, every decision explained.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4>Public Roadmap Updates</h4>
+                        <p>
+                            Monthly progress updates on development milestones, challenges encountered,
+                            and lessons learned. Honest assessment, not marketing spin.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4>Ethical Data Handling</h4>
+                        <p>
+                            Informed consent for all data collection. Privacy by design. No data sales.
+                            Community oversight of research protocols.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4>Community Governance</h4>
+                        <p>
+                            Major decisions made through transparent, participatory processes.
+                            Contributors have voice proportional to contribution, not capital.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4>Scientific Rigor</h4>
+                        <p>
+                            Claims backed by evidence. Limitations acknowledged. Peer review welcomed.
+                            No hype, no exaggeration, no false promises.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h4>Accessible Communication</h4>
+                        <p>
+                            Documentation written for real people, not just experts. Multiple languages.
+                            Multiple formats. No one excluded by jargon.
+                        </p>
+                    </div>
+                </div>
+
+                <blockquote>
+                    "We measure success not by growth metrics or market capture, but by dignity preserved,
+                    independence restored, and caregivers supported."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="donate" class="cta-section">
+        <div class="container">
+            <h2>Join the ARIA Ecosystem</h2>
+            <p>
+                If you believe dignity should not be gated by cost, your contribution helps turn
+                research into reality. Whether through donation, development, research, or simply
+                sharing our work—you become part of a community building a more accessible future.
+            </p>
+
+            <div>
+                <a href="#" class="btn btn-primary">Support ARIA</a>
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-secondary">Contribute on GitHub</a>
+                <a href="research-paper.html" class="btn btn-secondary">Read the Research</a>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+                Researchers, caregivers, makers, and institutions—there is a place for you here.<br>
+                Not as customers. Not as investors. As stewards.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                ARIA Project — Open-source assistive technology for Parkinson's disease<br>
+                <a href="index.html">Home</a> ·
+                <a href="research-paper.html">Research</a> ·
+                <a href="hardware-bom.html">Hardware</a> ·
+                <a href="https://github.com/dbutler-a11y/aria-research">GitHub</a>
+            </p>
+            <p style="margin-top: 1rem; font-style: italic;">
+                "Made with care by humans and AI, for humans."
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
