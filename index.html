@@ -786,6 +786,182 @@
                 display: none;
             }
         }
+
+        /* Mobile Publications FAB & Panel */
+        .mobile-pub-fab {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(26, 54, 93, 0.35);
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-pub-fab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(26, 54, 93, 0.45);
+        }
+
+        .mobile-pub-fab:active {
+            transform: scale(0.95);
+        }
+
+        .mobile-pub-fab.active {
+            background: var(--color-text-muted);
+            transform: rotate(45deg);
+        }
+
+        /* Mobile Publications Panel */
+        .mobile-pub-panel {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .mobile-pub-panel.open {
+            transform: translateY(0);
+        }
+
+        .mobile-pub-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            background: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .mobile-pub-panel-header h4 {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .mobile-pub-panel-header .drag-indicator {
+            width: 36px;
+            height: 4px;
+            background: var(--color-border);
+            border-radius: 2px;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mobile-pub-panel-content {
+            padding: 0.5rem 1rem 2rem;
+        }
+
+        .mobile-pub-panel ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .mobile-pub-panel li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 0.75rem;
+            border-radius: 12px;
+            background: var(--color-bg-alt);
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .mobile-pub-panel li a:hover {
+            background: white;
+            border-color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .mobile-pub-panel .pub-icon {
+            font-size: 1.5rem;
+        }
+
+        .mobile-pub-panel .pub-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .mobile-pub-panel .pub-badge {
+            font-size: 0.6rem;
+            background: var(--color-warm);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .mobile-pub-panel .pub-new {
+            background: var(--color-success);
+        }
+
+        /* Backdrop overlay */
+        .mobile-pub-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-pub-backdrop.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 1200px) {
+            .mobile-pub-fab,
+            .mobile-pub-panel,
+            .mobile-pub-backdrop {
+                display: block;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .mobile-pub-panel ul {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-pub-panel li a {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 1rem;
+                padding: 1rem 1.25rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1362,5 +1538,115 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Publications FAB & Panel -->
+    <div class="mobile-pub-backdrop" id="pubBackdrop"></div>
+
+    <button class="mobile-pub-fab" id="pubFab" aria-label="View Publications">
+        📄
+    </button>
+
+    <div class="mobile-pub-panel" id="pubPanel">
+        <div class="mobile-pub-panel-header">
+            <span class="drag-indicator"></span>
+            <h4>📄 Read the Research</h4>
+        </div>
+        <div class="mobile-pub-panel-content">
+            <ul>
+                <li>
+                    <a href="https://zenodo.org/records/18250818" target="_blank">
+                        <span class="pub-icon">🔬</span>
+                        <span class="pub-name">Zenodo</span>
+                        <span class="pub-badge pub-new">DOI</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://osf.io/preprints/mediarxiv" target="_blank">
+                        <span class="pub-icon">🏥</span>
+                        <span class="pub-name">MediArXiv</span>
+                        <span class="pub-badge pub-new">NEW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://independent.academia.edu/DurayveonButler" target="_blank">
+                        <span class="pub-icon">🎓</span>
+                        <span class="pub-name">Academia.edu</span>
+                        <span class="pub-badge pub-new">NEW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="research-paper.html">
+                        <span class="pub-icon">📑</span>
+                        <span class="pub-name">Website Paper</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/dbutler-a11y/aria-research" target="_blank">
+                        <span class="pub-icon">💻</span>
+                        <span class="pub-name">GitHub</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="hardware-bom.html">
+                        <span class="pub-icon">🔧</span>
+                        <span class="pub-name">Hardware BOM</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ecosystem.html">
+                        <span class="pub-icon">🌐</span>
+                        <span class="pub-name">Ecosystem</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Publications Panel Toggle
+        const pubFab = document.getElementById('pubFab');
+        const pubPanel = document.getElementById('pubPanel');
+        const pubBackdrop = document.getElementById('pubBackdrop');
+
+        function openPanel() {
+            pubPanel.classList.add('open');
+            pubBackdrop.classList.add('visible');
+            pubFab.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePanel() {
+            pubPanel.classList.remove('open');
+            pubBackdrop.classList.remove('visible');
+            pubFab.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        pubFab.addEventListener('click', () => {
+            if (pubPanel.classList.contains('open')) {
+                closePanel();
+            } else {
+                openPanel();
+            }
+        });
+
+        pubBackdrop.addEventListener('click', closePanel);
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && pubPanel.classList.contains('open')) {
+                closePanel();
+            }
+        });
+
+        // Close panel when clicking a link (for same-page navigation)
+        pubPanel.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!link.getAttribute('target')) {
+                    closePanel();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
