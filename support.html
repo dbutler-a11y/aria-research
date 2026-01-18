@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support ARIA - Help Build Accessible Futures | Parkinson's Research Initiative</title>
+    <meta name="description" content="Support the ARIA open-source project creating accessible AI companions for individuals with Parkinson's disease. Donate via GitHub Sponsors or contribute in other ways.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-warm: #dd6b20;
+            --color-success: #38a169;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fafc;
+            --color-bg-code: #1e293b;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+            --max-width-prose: 720px;
+            --spacing: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 2.75rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.875rem; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.375rem; margin-bottom: 1rem; }
+        h4 { font-size: 1.125rem; margin-bottom: 0.75rem; }
+
+        p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .prose {
+            max-width: var(--max-width-prose);
+        }
+
+        .prose-wide {
+            max-width: 900px;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .logo span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+            margin-left: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links a.active {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-success);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.375rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-secondary);
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .btn-sponsor {
+            background: #ea4aaa;
+            color: white;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+        }
+
+        .btn-sponsor:hover {
+            background: #d63a9a;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.75rem;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Callout Box */
+        .callout {
+            background: white;
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .callout-success {
+            border-left-color: var(--color-success);
+            background: #f0fff4;
+        }
+
+        .callout-title {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Sponsor Section */
+        .sponsor-section {
+            background: var(--color-bg-alt);
+            text-align: center;
+        }
+
+        .sponsor-box {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .sponsor-box h3 {
+            margin-bottom: 1rem;
+        }
+
+        .sponsor-features {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        .sponsor-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .sponsor-features li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: 1.5rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-family: var(--font-serif);
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--color-bg-alt);
+        }
+
+        .cta-section .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-section .btn-secondary:hover {
+            border-color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-primary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .footer-links h4 {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 2;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .sponsor-box {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            html {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .sponsor-box {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav, .cta-group, footer, .cta-section {
+                display: none;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+        }
+
+        /* Mobile Publications FAB & Panel */
+        .mobile-pub-fab {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(26, 54, 93, 0.35);
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-pub-fab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(26, 54, 93, 0.45);
+        }
+
+        .mobile-pub-fab:active {
+            transform: scale(0.95);
+        }
+
+        .mobile-pub-fab.active {
+            background: var(--color-text-muted);
+            transform: rotate(45deg);
+        }
+
+        .mobile-pub-panel {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .mobile-pub-panel.open {
+            transform: translateY(0);
+        }
+
+        .mobile-pub-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            background: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .mobile-pub-panel-header h4 {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .mobile-pub-panel-header .drag-indicator {
+            width: 36px;
+            height: 4px;
+            background: var(--color-border);
+            border-radius: 2px;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mobile-pub-panel-content {
+            padding: 0.5rem 1rem 2rem;
+        }
+
+        .mobile-pub-panel ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .mobile-pub-panel li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 0.75rem;
+            border-radius: 12px;
+            background: var(--color-bg-alt);
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .mobile-pub-panel li a:hover {
+            background: white;
+            border-color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .mobile-pub-panel .pub-icon {
+            font-size: 1.5rem;
+        }
+
+        .mobile-pub-panel .pub-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .mobile-pub-panel .pub-badge {
+            font-size: 0.6rem;
+            background: var(--color-warm);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .mobile-pub-panel .pub-new {
+            background: var(--color-success);
+        }
+
+        .mobile-pub-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-pub-backdrop.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 1200px) {
+            .mobile-pub-fab,
+            .mobile-pub-panel,
+            .mobile-pub-backdrop {
+                display: block;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .mobile-pub-panel ul {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-pub-panel li a {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 1rem;
+                padding: 1rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ARIA <span>Research Initiative</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research-paper.html">Research</a></li>
+                <li><a href="ecosystem.html">Ecosystem</a></li>
+                <li><a href="hardware-bom.html">Hardware</a></li>
+                <li><a href="support.html" class="active">Support</a></li>
+                <li><a href="https://github.com/dbutler-a11y/aria-research" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Support the Mission</span>
+                <h1>Help Build Accessible Futures</h1>
+                <p class="hero-subtitle">Stewardship, not charity. Community, not customers.</p>
+                <p class="hero-description">
+                    ARIA is building open-source AI companions for people with Parkinson's disease.
+                    Your support helps us develop technology that preserves dignity without price barriers.
+                </p>
+                <div class="cta-group">
+                    <a href="#sponsor" class="btn btn-primary">Become a Sponsor</a>
+                    <a href="#contribute" class="btn btn-secondary">Other Ways to Help</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Support Section -->
+    <section style="background: var(--color-bg);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2>Why Your Support Matters</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    10 million people worldwide live with Parkinson's disease. Commercial assistive robots cost
+                    $3,000 to $70,000. We believe dignity shouldn't have a price barrier.
+                </p>
+            </div>
+
+            <div class="prose-wide" style="margin: 0 auto;">
+                <div class="callout callout-success">
+                    <div class="callout-title">Our Promise</div>
+                    <p>
+                        Every dollar goes directly toward making assistive technology accessible. We're not building
+                        a company to sell to investors. We're building tools to give away to families who need them.
+                        <strong>ARIA will always be open source, always be buildable for under $500, and always put
+                        patients first.</strong>
+                    </p>
+                </div>
+
+                <p>
+                    ARIA operates on an <a href="ecosystem.html">Open Core + Community Stewardship</a> model.
+                    Donors aren't customers or investors—they're stewards who help decide the project's direction.
+                    We publish how every dollar is used and welcome community input on priorities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Donations Help -->
+    <section style="background: var(--color-bg-alt);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>How Your Donation Helps</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    Every contribution directly funds the development of accessible assistive technology.
+                </p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">🔧</div>
+                    <h3>Prototype Hardware</h3>
+                    <p>
+                        Funds Raspberry Pi units, sensors, 3D printing materials, and components
+                        for testing new ARIA variants before releasing build guides.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>AI Model Development</h3>
+                    <p>
+                        Supports fine-tuning speech recognition for dysarthric voices and optimizing
+                        local LLMs to run on affordable hardware.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📖</div>
+                    <h3>Open Documentation</h3>
+                    <p>
+                        Creates step-by-step build guides, video tutorials, and multi-language
+                        documentation so anyone can build an ARIA companion.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏥</div>
+                    <h3>Patient Pilot Programs</h3>
+                    <p>
+                        Funds real-world testing with Parkinson's patients and caregivers, gathering
+                        feedback to improve safety and usability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Sponsors Section -->
+    <section id="sponsor" class="sponsor-section">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2>Sponsor via GitHub</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    GitHub Sponsors is our primary donation platform. 100% of your contribution goes
+                    directly to ARIA development—GitHub charges no fees.
+                </p>
+            </div>
+
+            <div class="sponsor-box">
+                <h3>Become an ARIA Sponsor</h3>
+                <p style="color: var(--color-text-secondary);">
+                    Join our community of supporters helping make assistive technology accessible to everyone.
+                </p>
+
+                <ul class="sponsor-features">
+                    <li>0% platform fees—every dollar reaches the project</li>
+                    <li>Transparent spending reports published monthly</li>
+                    <li>Recognition in project documentation (optional)</li>
+                    <li>Input on development priorities</li>
+                    <li>Early access to build guides and updates</li>
+                </ul>
+
+                <a href="https://github.com/sponsors/dbutler-a11y" target="_blank" class="btn btn-sponsor">
+                    ❤️ Sponsor on GitHub
+                </a>
+
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 1.5rem;">
+                    One-time and monthly options available. Cancel anytime.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Ways to Contribute -->
+    <section id="contribute" style="background: var(--color-bg);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>Other Ways to Contribute</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    Financial support is just one way to help. Here's how you can contribute your skills and time.
+                </p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Contribute Code</h3>
+                    <p>
+                        Help improve ARIA's AI models, software, or documentation. All skill levels welcome.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        <a href="https://github.com/dbutler-a11y/aria-research" target="_blank">View on GitHub →</a>
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛠️</div>
+                    <h3>Build & Document</h3>
+                    <p>
+                        Build an ARIA prototype and share your experience. Your build logs help others succeed.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        <a href="hardware-bom.html">View Hardware BOM →</a>
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎓</div>
+                    <h3>Share Research</h3>
+                    <p>
+                        Help spread ARIA's research paper on academic networks. Citations increase visibility.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        <a href="research-paper.html">View Research Paper →</a>
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📣</div>
+                    <h3>Spread the Word</h3>
+                    <p>
+                        Share ARIA with Parkinson's support groups, maker communities, or anyone who might benefit.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        <a href="index.html">Share the Project →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency Section -->
+    <section style="background: var(--color-bg-alt);">
+        <div class="container">
+            <div class="prose-wide" style="margin: 0 auto;">
+                <h2 style="text-align: center;">Transparency & Accountability</h2>
+
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    We believe donors deserve to know exactly how their contributions are used.
+                </p>
+
+                <div class="callout">
+                    <div class="callout-title">Our Commitments</div>
+                    <ul style="margin: 1rem 0 0 1.5rem; color: var(--color-text-secondary);">
+                        <li>Monthly public spending reports</li>
+                        <li>All major decisions discussed openly on GitHub</li>
+                        <li>No hidden fees or administrative overhead</li>
+                        <li>Community input on funding priorities</li>
+                        <li>Regular progress updates on development milestones</li>
+                    </ul>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem;">
+                    Learn more about our governance model on the <a href="ecosystem.html">Ecosystem page</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="background: var(--color-bg);">
+        <div class="container">
+            <div class="prose-wide" style="margin: 0 auto;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is my donation tax-deductible?</div>
+                    <p class="faq-answer">
+                        Currently, ARIA is an independent open-source project and donations are not tax-deductible.
+                        We're exploring fiscal sponsorship options that could enable tax-deductible contributions
+                        in the future.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How does donation relate to the tokenized participation model?</div>
+                    <p class="faq-answer">
+                        Our <a href="ecosystem.html">ecosystem model</a> includes recognition tokens for all contributors—
+                        including donors. These tokens represent your stake in the community and grant voting rights
+                        on project decisions. They are not financial instruments and have no monetary value.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What if I can't donate financially?</div>
+                    <p class="faq-answer">
+                        Financial contributions are just one way to help! You can contribute code, build prototypes,
+                        share the project, or provide feedback. All contributions—time, skills, or funds—are equally
+                        valued in our community.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I donate hardware or components instead of money?</div>
+                    <p class="faq-answer">
+                        Yes! If you have spare Raspberry Pi units, sensors, or other relevant components,
+                        please <a href="https://github.com/dbutler-a11y/aria-research/discussions" target="_blank">reach out on GitHub Discussions</a>.
+                        In-kind contributions help reduce costs for prototype development.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How can my company or organization get involved?</div>
+                    <p class="faq-answer">
+                        We welcome partnerships with companies, research institutions, and healthcare organizations.
+                        Contact us through <a href="https://github.com/dbutler-a11y/aria-research/discussions" target="_blank">GitHub Discussions</a>
+                        to explore collaboration opportunities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Join Us as a Steward</h2>
+            <p>
+                Not as a customer. Not as an investor. As a partner in building accessible futures
+                for people with Parkinson's disease.
+            </p>
+            <div class="cta-group">
+                <a href="https://github.com/sponsors/dbutler-a11y" target="_blank" class="btn btn-primary">
+                    ❤️ Sponsor on GitHub
+                </a>
+                <a href="ecosystem.html" class="btn btn-secondary">Learn About Our Model</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0;">ARIA Project</h3>
+                    <p>
+                        An open-source research initiative creating accessible AI companions
+                        for individuals with Parkinson's disease. Built with care by caregivers,
+                        makers, and researchers worldwide.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/dbutler-a11y/aria-research">Documentation</a></li>
+                        <li><a href="hardware-bom.html">Hardware BOM</a></li>
+                        <li><a href="https://github.com/dbutler-a11y/aria-research">3D Print Files</a></li>
+                        <li><a href="https://github.com/dbutler-a11y/aria-research">Software Image</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Research</h4>
+                    <ul>
+                        <li><a href="index.html#science">The Science</a></li>
+                        <li><a href="index.html#references">References</a></li>
+                        <li><a href="research-paper.html">Research Paper</a></li>
+                        <li><a href="ecosystem.html">Ecosystem</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/dbutler-a11y/aria-research">GitHub</a></li>
+                        <li><a href="https://github.com/dbutler-a11y/aria-research/discussions">Discussions</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="https://github.com/dbutler-a11y/aria-research">Contribute</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>MIT License © 2025 ARIA Project</span>
+                <span style="font-style: italic;">"Made with care by humans and AI, for humans."</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Publications FAB & Panel -->
+    <div class="mobile-pub-backdrop" id="pubBackdrop"></div>
+
+    <button class="mobile-pub-fab" id="pubFab" aria-label="View Publications">
+        📄
+    </button>
+
+    <div class="mobile-pub-panel" id="pubPanel">
+        <div class="mobile-pub-panel-header">
+            <span class="drag-indicator"></span>
+            <h4>📄 Quick Links</h4>
+        </div>
+        <div class="mobile-pub-panel-content">
+            <ul>
+                <li>
+                    <a href="https://zenodo.org/records/18250818" target="_blank">
+                        <span class="pub-icon">🔬</span>
+                        <span class="pub-name">Zenodo</span>
+                        <span class="pub-badge pub-new">DOI</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://osf.io/preprints/mediarxiv" target="_blank">
+                        <span class="pub-icon">🏥</span>
+                        <span class="pub-name">MediArXiv</span>
+                        <span class="pub-badge pub-new">NEW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://independent.academia.edu/DurayveonButler" target="_blank">
+                        <span class="pub-icon">🎓</span>
+                        <span class="pub-name">Academia.edu</span>
+                        <span class="pub-badge pub-new">NEW</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="research-paper.html">
+                        <span class="pub-icon">📑</span>
+                        <span class="pub-name">Research Paper</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/dbutler-a11y/aria-research" target="_blank">
+                        <span class="pub-icon">💻</span>
+                        <span class="pub-name">GitHub</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="hardware-bom.html">
+                        <span class="pub-icon">🔧</span>
+                        <span class="pub-name">Hardware BOM</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ecosystem.html">
+                        <span class="pub-icon">🌐</span>
+                        <span class="pub-name">Ecosystem</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="support.html">
+                        <span class="pub-icon">❤️</span>
+                        <span class="pub-name">Support</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const pubFab = document.getElementById('pubFab');
+        const pubPanel = document.getElementById('pubPanel');
+        const pubBackdrop = document.getElementById('pubBackdrop');
+
+        function openPanel() {
+            pubPanel.classList.add('open');
+            pubBackdrop.classList.add('visible');
+            pubFab.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePanel() {
+            pubPanel.classList.remove('open');
+            pubBackdrop.classList.remove('visible');
+            pubFab.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        pubFab.addEventListener('click', () => {
+            if (pubPanel.classList.contains('open')) {
+                closePanel();
+            } else {
+                openPanel();
+            }
+        });
+
+        pubBackdrop.addEventListener('click', closePanel);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && pubPanel.classList.contains('open')) {
+                closePanel();
+            }
+        });
+
+        pubPanel.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!link.getAttribute('target')) {
+                    closePanel();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
