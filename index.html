@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARIA - Adaptive Robotic Intelligence for Aging | Parkinson's Research Initiative</title>
+    <title>ARIA — Open-Source AI Companions for Parkinson's Disease</title>
     <meta name="description" content="Open-source AI companions restoring independence for individuals with Parkinson's disease. Research-backed assistive robotics buildable for under $500.">
 
     <!-- Favicon -->
@@ -26,27 +26,18 @@
             --color-text-secondary: #4a5568;
             --color-text-muted: #718096;
             --color-bg: #ffffff;
-            --color-bg-alt: #f8fafc;
+            --color-bg-alt: #f7fafc;
             --color-bg-code: #1e293b;
             --color-border: #e2e8f0;
             --font-serif: 'Source Serif 4', Georgia, serif;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
             --max-width: 1100px;
-            --max-width-prose: 720px;
-            --spacing: 8px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            font-size: 17px;
-        }
+        html { scroll-behavior: smooth; font-size: 17px; }
 
         body {
             font-family: var(--font-sans);
@@ -56,7 +47,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Typography */
         h1, h2, h3, h4 {
             font-family: var(--font-serif);
             font-weight: 500;
@@ -64,60 +54,24 @@
             color: var(--color-primary);
         }
 
-        h1 { font-size: 2.75rem; letter-spacing: -0.02em; }
-        h2 { font-size: 1.875rem; margin-bottom: 1.5rem; }
-        h3 { font-size: 1.375rem; margin-bottom: 1rem; }
-        h4 { font-size: 1.125rem; margin-bottom: 0.75rem; }
+        h1 { font-size: 3rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.875rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
 
-        p {
-            color: var(--color-text-secondary);
-            margin-bottom: 1.25rem;
-        }
+        p { color: var(--color-text-secondary); margin-bottom: 1rem; }
 
-        p:last-child {
-            margin-bottom: 0;
-        }
+        a { color: var(--color-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        a {
-            color: var(--color-accent);
-            text-decoration: none;
-        }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        strong {
-            color: var(--color-text);
-            font-weight: 600;
-        }
-
-        /* Layout */
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .prose {
-            max-width: var(--max-width-prose);
-        }
-
-        .prose-wide {
-            max-width: 900px;
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        /* Navigation */
+        /* Navigation - Clean & Simple */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.97);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
@@ -132,68 +86,48 @@
 
         .logo {
             font-family: var(--font-serif);
-            font-size: 1.375rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--color-primary);
             text-decoration: none;
-            letter-spacing: 0.02em;
-        }
-
-        .logo span {
-            font-weight: 400;
-            color: var(--color-text-muted);
-            font-size: 0.875rem;
-            margin-left: 0.75rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--color-text-secondary);
-            text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-primary);
             text-decoration: none;
         }
 
-        /* Hero Section */
-        .hero {
-            padding-top: 8rem;
-            padding-bottom: 4rem;
-            background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
-        }
+        .nav-links a:hover { color: var(--color-primary); }
 
-        .hero-content {
+        /* Hero - Clean & Centered */
+        .hero {
+            padding: 10rem 0 5rem;
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+            background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
         }
 
         .hero-badge {
             display: inline-block;
             background: var(--color-primary);
             color: white;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            padding: 0.375rem 1rem;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
             margin-bottom: 1.5rem;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
         }
 
-        .hero h1 {
-            margin-bottom: 0.5rem;
-        }
+        .hero h1 { margin-bottom: 1rem; }
 
         .hero-subtitle {
             font-family: var(--font-serif);
@@ -206,7 +140,8 @@
         .hero-description {
             font-size: 1.125rem;
             max-width: 600px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 2.5rem;
+            color: var(--color-text-secondary);
         }
 
         .cta-group {
@@ -220,14 +155,12 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-decoration: none;
             transition: all 0.2s;
-            cursor: pointer;
-            border: none;
         }
 
         .btn-primary {
@@ -238,7 +171,7 @@
         .btn-primary:hover {
             background: var(--color-secondary);
             text-decoration: none;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
@@ -252,33 +185,11 @@
             text-decoration: none;
         }
 
-        /* Product Designs Section */
-        .designs {
-            background: var(--color-bg);
-            padding: 4rem 0;
-        }
-
-        .designs-image {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            display: block;
-            border-radius: 12px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .designs-caption {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
-        }
-
-        /* Stats Section */
+        /* Stats Bar */
         .stats {
             background: var(--color-primary);
             color: white;
-            padding: 3rem 0;
+            padding: 2.5rem 0;
         }
 
         .stats-grid {
@@ -286,10 +197,6 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             text-align: center;
-        }
-
-        .stat-item {
-            padding: 1rem;
         }
 
         .stat-number {
@@ -301,137 +208,63 @@
             margin-bottom: 0.5rem;
         }
 
-        .stat-label {
+        .stat-label { font-size: 0.875rem; opacity: 0.9; }
+
+        /* Designs Section */
+        .designs {
+            padding: 5rem 0;
+            background: var(--color-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .designs-image {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .designs-caption {
+            text-align: center;
+            margin-top: 1.5rem;
             font-size: 0.875rem;
-            opacity: 0.9;
-        }
-
-        /* Science Section */
-        .science {
-            background: var(--color-bg-alt);
-        }
-
-        .science-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .science-text h2 {
-            margin-bottom: 1rem;
-        }
-
-        .science-intro {
-            font-size: 1.125rem;
-            color: var(--color-text);
-            margin-bottom: 2rem;
-        }
-
-        /* Code/Diagram Blocks */
-        .diagram-block {
-            background: var(--color-bg-code);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            overflow-x: auto;
-        }
-
-        .diagram-block pre {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: #e2e8f0;
-            line-height: 1.6;
-            margin: 0;
-            white-space: pre;
-        }
-
-        .diagram-block .comment {
-            color: #64748b;
-        }
-
-        .diagram-block .highlight {
-            color: #fbbf24;
-        }
-
-        .diagram-block .success {
-            color: #4ade80;
-        }
-
-        .diagram-block .error {
-            color: #f87171;
-        }
-
-        .diagram-label {
-            font-size: 0.75rem;
             color: var(--color-text-muted);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Subsections */
-        .subsection {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .subsection:first-of-type {
-            margin-top: 2rem;
-            padding-top: 0;
-            border-top: none;
-        }
-
-        /* Feature Cards */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-
-        .feature-card h4 {
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-card p {
-            font-size: 0.9rem;
-            margin: 0;
         }
 
         /* Products Grid */
+        .products {
+            padding: 5rem 0;
+            background: var(--color-bg-alt);
+        }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
-            margin-top: 2rem;
         }
 
         .product-card {
             background: white;
             border: 1px solid var(--color-border);
-            border-radius: 10px;
-            padding: 1.75rem;
+            border-radius: 12px;
+            padding: 2rem;
             transition: all 0.2s;
         }
 
         .product-card:hover {
             border-color: var(--color-accent);
-            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.1);
-        }
-
-        .product-card.featured {
-            border-color: var(--color-accent);
-            background: linear-gradient(135deg, rgba(49, 130, 206, 0.03) 0%, white 100%);
+            box-shadow: 0 4px 20px rgba(49, 130, 206, 0.1);
         }
 
         .product-header {
@@ -441,9 +274,7 @@
             margin-bottom: 1rem;
         }
 
-        .product-card h3 {
-            margin: 0;
-        }
+        .product-card h3 { margin: 0; }
 
         .product-price {
             font-family: var(--font-mono);
@@ -465,7 +296,7 @@
         }
 
         .product-features li {
-            padding: 0.25rem 0;
+            padding: 0.3rem 0;
             padding-left: 1.25rem;
             position: relative;
             color: var(--color-text-muted);
@@ -476,1024 +307,405 @@
             position: absolute;
             left: 0;
             color: var(--color-success);
-            font-weight: 600;
         }
 
-        /* References Section */
-        .references {
+        /* Videos Section */
+        .videos {
+            padding: 5rem 0;
             background: var(--color-bg);
         }
 
-        .reference-list {
-            list-style: none;
-            counter-reset: ref-counter;
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .reference-list li {
-            counter-increment: ref-counter;
-            padding: 1rem 0;
-            padding-left: 2.5rem;
-            position: relative;
-            border-bottom: 1px solid var(--color-border);
-            font-size: 0.9rem;
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        .reference-list li:last-child {
-            border-bottom: none;
+        .video-card video {
+            width: 100%;
+            display: block;
         }
 
-        .reference-list li::before {
-            content: "[" counter(ref-counter) "]";
-            position: absolute;
-            left: 0;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--color-accent);
-            font-weight: 500;
+        .video-info {
+            padding: 1.25rem;
         }
 
-        .reference-list .ref-title {
-            font-weight: 500;
-            color: var(--color-text);
+        .video-info h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
         }
 
-        .reference-list .ref-source {
+        .video-info p {
+            font-size: 0.85rem;
             color: var(--color-text-muted);
-            font-style: italic;
+            margin: 0;
         }
 
-        /* Build Section */
-        .build {
+        /* Quick Links Section */
+        .quick-links {
+            padding: 4rem 0;
             background: var(--color-bg-alt);
         }
 
-        .build-steps {
+        .links-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            margin: 2rem 0;
         }
 
-        .build-step {
+        .link-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.5rem;
             text-align: center;
-            padding: 1.5rem 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
         }
 
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: var(--color-primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-serif);
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin: 0 auto 1rem;
+        .link-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            text-decoration: none;
         }
 
-        .build-step h4 {
+        .link-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .link-card h4 {
             font-size: 1rem;
             margin-bottom: 0.5rem;
-        }
-
-        .build-step p {
-            font-size: 0.85rem;
-        }
-
-        /* Callout Box */
-        .callout {
-            background: white;
-            border-left: 4px solid var(--color-accent);
-            padding: 1.5rem;
-            border-radius: 0 8px 8px 0;
-            margin: 2rem 0;
-        }
-
-        .callout-title {
-            font-family: var(--font-serif);
-            font-weight: 600;
             color: var(--color-primary);
-            margin-bottom: 0.5rem;
         }
 
-        .callout p {
+        .link-card p {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
             margin: 0;
-            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: var(--color-primary);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--color-bg-alt);
+        }
+
+        .cta-section .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .cta-section .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
         }
 
         /* Footer */
         footer {
-            background: var(--color-primary);
+            background: #0f172a;
             color: white;
-            padding: 4rem 0 2rem;
+            padding: 3rem 0 2rem;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
-        .footer-brand p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-top: 1rem;
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
         }
 
-        .footer-links h4 {
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            opacity: 0.7;
-        }
-
-        .footer-links ul {
-            list-style: none;
+        .footer-links {
+            display: flex;
+            gap: 2rem;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
-            line-height: 2;
         }
 
-        .footer-links a:hover {
-            color: white;
-            text-decoration: none;
-        }
+        .footer-links a:hover { color: white; }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .footer-copy {
+            width: 100%;
+            text-align: center;
             padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.85rem;
-            opacity: 0.7;
+            opacity: 0.6;
         }
 
         /* Responsive */
         @media (max-width: 900px) {
-            .science-content {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .build-steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .products-grid { grid-template-columns: 1fr; }
+            .videos-grid { grid-template-columns: 1fr; }
+            .links-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 600px) {
-            html {
-                font-size: 16px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .build-steps {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-        }
-
-        /* Print Styles */
-        @media print {
-            nav, .cta-group, footer {
-                display: none;
-            }
-
-            section {
-                padding: 2rem 0;
-            }
-        }
-
-        /* Floating Publications Sidebar */
-        .publications-sidebar {
-            position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 999;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-            padding: 1rem;
-            width: 160px;
-            border: 1px solid var(--color-border);
-        }
-
-        .publications-sidebar h4 {
-            font-family: var(--font-sans);
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--color-text-muted);
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .publications-sidebar ul {
-            list-style: none;
-        }
-
-        .publications-sidebar li {
-            margin-bottom: 0.5rem;
-        }
-
-        .publications-sidebar li:last-child {
-            margin-bottom: 0;
-        }
-
-        .publications-sidebar a {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .publications-sidebar a:hover {
-            background: var(--color-bg-alt);
-            color: var(--color-primary);
-            text-decoration: none;
-        }
-
-        .publications-sidebar .pub-icon {
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-        }
-
-        .publications-sidebar .pub-badge {
-            font-size: 0.6rem;
-            background: var(--color-warm);
-            color: white;
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            margin-left: auto;
-        }
-
-        .publications-sidebar .pub-new {
-            background: var(--color-success);
-        }
-
-        @media (max-width: 1200px) {
-            .publications-sidebar {
-                display: none;
-            }
-        }
-
-        /* Mobile Publications FAB & Panel */
-        .mobile-pub-fab {
-            display: none;
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 56px;
-            height: 56px;
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            box-shadow: 0 4px 16px rgba(26, 54, 93, 0.35);
-            cursor: pointer;
-            z-index: 1000;
-            font-size: 1.25rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .mobile-pub-fab:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(26, 54, 93, 0.45);
-        }
-
-        .mobile-pub-fab:active {
-            transform: scale(0.95);
-        }
-
-        .mobile-pub-fab.active {
-            background: var(--color-text-muted);
-            transform: rotate(45deg);
-        }
-
-        /* Mobile Publications Panel */
-        .mobile-pub-panel {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.15);
-            z-index: 999;
-            transform: translateY(100%);
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-
-        .mobile-pub-panel.open {
-            transform: translateY(0);
-        }
-
-        .mobile-pub-panel-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--color-border);
-            position: sticky;
-            top: 0;
-            background: white;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .mobile-pub-panel-header h4 {
-            font-family: var(--font-sans);
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--color-primary);
-            margin: 0;
-        }
-
-        .mobile-pub-panel-header .drag-indicator {
-            width: 36px;
-            height: 4px;
-            background: var(--color-border);
-            border-radius: 2px;
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .mobile-pub-panel-content {
-            padding: 0.5rem 1rem 2rem;
-        }
-
-        .mobile-pub-panel ul {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-        }
-
-        .mobile-pub-panel li a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 0.75rem;
-            border-radius: 12px;
-            background: var(--color-bg-alt);
-            text-decoration: none;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .mobile-pub-panel li a:hover {
-            background: white;
-            border-color: var(--color-accent);
-            text-decoration: none;
-        }
-
-        .mobile-pub-panel .pub-icon {
-            font-size: 1.5rem;
-        }
-
-        .mobile-pub-panel .pub-name {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--color-text);
-        }
-
-        .mobile-pub-panel .pub-badge {
-            font-size: 0.6rem;
-            background: var(--color-warm);
-            color: white;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-        }
-
-        .mobile-pub-panel .pub-new {
-            background: var(--color-success);
-        }
-
-        /* Backdrop overlay */
-        .mobile-pub-backdrop {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 998;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .mobile-pub-backdrop.visible {
-            opacity: 1;
-        }
-
-        @media (max-width: 1200px) {
-            .mobile-pub-fab,
-            .mobile-pub-panel,
-            .mobile-pub-backdrop {
-                display: block;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .mobile-pub-panel ul {
-                grid-template-columns: 1fr;
-            }
-
-            .mobile-pub-panel li a {
-                flex-direction: row;
-                justify-content: flex-start;
-                gap: 1rem;
-                padding: 1rem 1.25rem;
-            }
+            .nav-links { display: none; }
+            h1 { font-size: 2.25rem; }
+            .links-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Publications Sidebar -->
-    <div class="publications-sidebar">
-        <h4>📄 Read Paper</h4>
-        <ul>
-            <li>
-                <a href="https://zenodo.org/records/18250818" target="_blank">
-                    <span class="pub-icon">🔬</span>
-                    Zenodo
-                    <span class="pub-badge pub-new">DOI</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://osf.io/preprints/mediarxiv" target="_blank">
-                    <span class="pub-icon">🏥</span>
-                    MediArXiv
-                    <span class="pub-badge pub-new">NEW</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://independent.academia.edu/DurayveonButler" target="_blank">
-                    <span class="pub-icon">🎓</span>
-                    Academia
-                    <span class="pub-badge pub-new">NEW</span>
-                </a>
-            </li>
-            <li>
-                <a href="research-paper.html">
-                    <span class="pub-icon">📑</span>
-                    Website
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/dbutler-a11y/aria-research" target="_blank">
-                    <span class="pub-icon">💻</span>
-                    GitHub
-                </a>
-            </li>
-            <li>
-                <a href="hardware-bom.html">
-                    <span class="pub-icon">🔧</span>
-                    Hardware
-                </a>
-            </li>
-            <li>
-                <a href="ecosystem.html">
-                    <span class="pub-icon">🌐</span>
-                    Ecosystem
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Navigation -->
+    <!-- Clean Navigation -->
     <nav>
         <div class="container">
-            <a href="#" class="logo">ARIA <span>Research Initiative</span></a>
+            <a href="#" class="logo">ARIA</a>
             <ul class="nav-links">
-                <li><a href="#designs">Designs</a></li>
-                <li><a href="#science">The Science</a></li>
                 <li><a href="#products">Products</a></li>
                 <li><a href="research-paper.html">Research</a></li>
-                <li><a href="ecosystem.html">Ecosystem</a></li>
                 <li><a href="hardware-bom.html">Hardware</a></li>
                 <li><a href="connectivity.html">Sentinel</a></li>
                 <li><a href="research-data.html">Investors</a></li>
-                <li><a href="support.html">Support</a></li>
                 <li><a href="https://github.com/dbutler-a11y/aria-research" target="_blank">GitHub</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <span class="hero-badge">Open Source Research</span>
-                <h1>ARIA</h1>
-                <p class="hero-subtitle">Adaptive Robotic Intelligence for Aging</p>
-                <p class="hero-description">
-                    An open-source initiative creating accessible AI-powered companion systems
-                    for individuals with Parkinson's disease. Research-backed. Buildable for under $500.
-                    Because dignity shouldn't have a price barrier.
-                </p>
-                <div class="cta-group">
-                    <a href="#build" class="btn btn-primary">Start Building</a>
-                    <a href="#science" class="btn btn-secondary">Read the Science</a>
-                    <a href="https://github.com/aria-project" class="btn btn-secondary">GitHub</a>
-                </div>
+            <span class="hero-badge">Open Source Research</span>
+            <h1>ARIA</h1>
+            <p class="hero-subtitle">Adaptive Robotic Intelligence for Aging</p>
+            <p class="hero-description">
+                Open-source AI companions for individuals with Parkinson's disease.
+                Research-backed. Buildable for under $500. Because dignity shouldn't have a price barrier.
+            </p>
+            <div class="cta-group">
+                <a href="hardware-bom.html" class="btn btn-primary">Start Building</a>
+                <a href="research-paper.html" class="btn btn-secondary">Read the Science</a>
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-secondary">GitHub</a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats -->
     <section class="stats">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-number">10M</div>
-                    <div class="stat-label">People living with Parkinson's worldwide</div>
+                    <div class="stat-label">People with Parkinson's worldwide</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">60%</div>
-                    <div class="stat-label">Experience freezing of gait (FoG)</div>
+                    <div class="stat-label">Experience freezing of gait</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">68%</div>
-                    <div class="stat-label">FoG reduction with rhythmic cueing</div>
+                    <div class="stat-label">FoG reduction with cueing</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">&lt;$500</div>
-                    <div class="stat-label">Cost to build any ARIA variant</div>
+                    <div class="stat-label">Cost to build any ARIA</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Product Designs Section -->
+    <!-- Designs -->
     <section id="designs" class="designs">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 2rem;">
+            <div class="section-header">
                 <h2>The ARIA Product Family</h2>
-                <p class="prose" style="margin: 0 auto;">Six form factors designed for different needs—all sharing a common AI backbone and open-source design.</p>
+                <p>Six form factors designed for different needs—all sharing a common AI backbone and open-source design.</p>
             </div>
-            <img src="aria-designs.png" alt="ARIA Product Family - Six design concepts including Bloom, Guide, Orb, Rover, Frame, and Wrist+Base" class="designs-image">
+            <img src="aria-designs.png" alt="ARIA Product Family" class="designs-image">
             <p class="designs-caption">
-                <strong>Figure 1:</strong> ARIA product family concept designs. From left: Bloom (tabletop companion), Guide (walker-integrated),
-                Orb (ambient presence), Rover (mobile companion), Frame (digital portrait), Wrist+Base (wearable hybrid).
+                <strong>From left:</strong> Bloom (tabletop), Guide (walker), Orb (ambient), Rover (mobile), Frame (portrait), Wrist+Base (wearable)
             </p>
         </div>
     </section>
 
-    <!-- Science Section -->
-    <section id="science" class="science">
+    <!-- Products -->
+    <section id="products" class="products">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <h2>The Science Behind ARIA</h2>
-                <p class="prose" style="margin: 0 auto;">Understanding why external cueing works requires understanding what breaks in Parkinson's disease.</p>
-            </div>
-
-            <div class="prose-wide" style="margin: 0 auto;">
-
-                <!-- How Gait Works -->
-                <div class="subsection">
-                    <h3>How Gait Normally Works</h3>
-                    <p>
-                        Walking is mostly <strong>automatic</strong>—your brain's basal ganglia (deep brain structures) generate
-                        internal timing signals that sequence your steps without conscious thought. You don't think
-                        "lift right foot, swing forward, plant heel, shift weight..."—it just happens.
-                    </p>
-
-                    <div class="diagram-block">
-                        <div class="diagram-label">Normal Walking Neural Loop</div>
-<pre>
-<span class="success">Basal Ganglia</span> → Internal Rhythm → <span class="success">Motor Cortex</span> → Leg Movement
-       ↑                                                    ↓
-       └──────────────── Feedback Loop ────────────────────┘
-</pre>
-                    </div>
-
-                    <p>
-                        The basal ganglia act as an <strong>internal metronome</strong>, providing the rhythmic timing
-                        that allows walking to feel effortless and automatic.
-                    </p>
-                </div>
-
-                <!-- What Breaks -->
-                <div class="subsection">
-                    <h3>What Breaks in Parkinson's Disease</h3>
-                    <p>
-                        Parkinson's disease damages dopamine-producing neurons in the substantia nigra, which connects
-                        to the basal ganglia. Without adequate dopamine, the <strong>internal rhythm generator fails</strong>.
-                        The brain literally loses its internal metronome.
-                    </p>
-
-                    <div class="diagram-block">
-                        <div class="diagram-label">Parkinson's Walking (Broken Pathway)</div>
-<pre>
-<span class="error">Basal Ganglia</span> → <span class="error">❌ NO SIGNAL</span> → Motor Cortex → <span class="error">Nothing happens</span>
-       ↑
-       └── <span class="comment">Dopamine depleted, rhythm generator offline</span>
-</pre>
-                    </div>
-
-                    <div class="callout">
-                        <div class="callout-title">Freezing of Gait (FoG)</div>
-                        <p>
-                            Freezing of Gait occurs when the person <em>wants</em> to walk—the motor cortex is ready—but
-                            the internal timing signal never arrives. Feet feel "glued to the floor." Episodes are often
-                            triggered at doorways, turns, or when initiating walking. It's not weakness or fear—it's a
-                            neurological signal failure.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- The Bypass -->
-                <div class="subsection">
-                    <h3>Why External Cueing Works: The Neural Bypass</h3>
-                    <p>
-                        Here's the critical insight: <strong>the motor cortex still works perfectly</strong>.
-                        Only the internal timing mechanism is broken. External cues provide a substitute rhythm
-                        that bypasses the damaged basal ganglia entirely, using sensory pathways that remain intact.
-                    </p>
-
-                    <div class="diagram-block">
-                        <div class="diagram-label">External Cueing Bypass Mechanism</div>
-<pre>
-                          ┌─────── <span class="success">BYPASS</span> ───────┐
-                          ↓                      │
-<span class="highlight">Eyes/Ears</span> → Sensory Cortex → <span class="success">Motor Cortex</span> → <span class="success">Walking!</span>
-     │
-<span class="highlight">Laser line / Metronome click</span>
-</pre>
-                    </div>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h4>Visual Cueing (Laser Line)</h4>
-                            <p>
-                                Projects a target 18 inches ahead of feet. The brain treats it as an
-                                <strong>obstacle to step over</strong>, recruiting visual-motor pathways instead of
-                                basal ganglia. Each new line position triggers a conscious step, converting
-                                automatic walking into a series of visual targets.
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>Auditory Cueing (Metronome)</h4>
-                            <p>
-                                Provides external rhythm at ~100 BPM. The auditory cortex receives the beat and
-                                directly activates motor timing circuits. Patients synchronize steps to clicks—the
-                                beat becomes the missing internal metronome. Works even with eyes closed.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Why Instant -->
-                <div class="subsection">
-                    <h3>Why the Effect Is Immediate</h3>
-                    <p>
-                        This isn't therapy that takes weeks of training. The effect is <strong>instant</strong> because:
-                    </p>
-                    <ol style="margin-left: 1.5rem; color: var(--color-text-secondary);">
-                        <li style="margin-bottom: 0.5rem;">The motor system is fully intact—it's just waiting for a "go" signal</li>
-                        <li style="margin-bottom: 0.5rem;">External cues provide that signal through an alternate neural route</li>
-                        <li style="margin-bottom: 0.5rem;">The moment the cue appears, the brain has something to respond to</li>
-                    </ol>
-
-                    <div class="callout">
-                        <div class="callout-title">Clinical Evidence</div>
-                        <p>
-                            Harvard SEAS studies demonstrated a <strong>68% reduction</strong> in freezing episodes with rhythmic cueing.
-                            Their soft robotic exosuit with rhythmic assistance improved walking distance by <strong>55%</strong>
-                            and completely abolished freezing of gait during interior walking. Visual laser cueing showed
-                            immediate effect in <strong>94% of participants</strong>.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- ARIA Implementation -->
-                <div class="subsection">
-                    <h3>ARIA Guide Implementation</h3>
-                    <p>
-                        ARIA Guide translates this neuroscience into a practical intervention system:
-                    </p>
-
-                    <div class="diagram-block">
-                        <div class="diagram-label">ARIA Guide Intervention Sequence</div>
-<pre>
-<span class="highlight">Detection:</span>   Camera sees feet stopped > 2 seconds
-     ↓
-<span class="highlight">Visual Cue:</span>  Projects green laser line 18" ahead (stepping target)
-     ↓
-<span class="highlight">Audio Cue:</span>   Starts metronome at 100 BPM (rhythm substitute)
-     ↓
-<span class="highlight">Patient:</span>    Steps onto line, synchronized to beat
-     ↓
-<span class="highlight">System:</span>     Advances laser, maintains rhythm until walking fluid
-     ↓
-<span class="success">Result:</span>     <span class="success">Walking restored in seconds</span>
-</pre>
-                    </div>
-
-                    <p>
-                        The laser and metronome aren't "helping" the damaged system—they're <strong>replacing</strong> the
-                        broken internal signal with an external one that uses pathways that still work perfectly.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Showcase Section -->
-    <section id="videos" class="videos" style="background: var(--color-bg-alt); padding: 4rem 0;">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 2.5rem;">
-                <h2>ARIA in Action</h2>
-                <p class="prose" style="margin: 0 auto;">
-                    See how ARIA's neural bypass intervention system works in real-world scenarios.
-                    These concept visualizations demonstrate the core interaction patterns.
-                </p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
-                <!-- ARIA Guide Video -->
-                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-                    <video controls playsinline style="width: 100%; display: block;" poster="">
-                        <source src="aria-guide-video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div style="padding: 1.25rem;">
-                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">ARIA Guide: Freezing of Gait Intervention</h4>
-                        <p style="font-size: 0.9rem; color: var(--color-text-muted); margin: 0;">
-                            Walker-integrated system detects freezing episode and deploys laser line cueing
-                            with rhythmic audio to restore gait initiation.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- ARIA Bloom Video -->
-                <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-                    <video controls playsinline style="width: 100%; display: block;" poster="">
-                        <source src="aria-bloom-video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div style="padding: 1.25rem;">
-                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">ARIA Bloom: Medication Reminder & Companionship</h4>
-                        <p style="font-size: 0.9rem; color: var(--color-text-muted); margin: 0;">
-                            Tabletop companion provides gentle medication reminders, tracks speech patterns,
-                            and maintains connection to family through conversational AI.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <p style="text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--color-text-muted);">
-                <em>Concept visualizations generated with Google Veo 3</em>
-            </p>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="products" style="background: var(--color-bg);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 2rem;">
+            <div class="section-header">
                 <h2>Product Specifications</h2>
-                <p class="prose" style="margin: 0 auto;">
-                    Each ARIA variant addresses specific needs. All share the same AI backbone
-                    and can be built with common tools and components.
-                </p>
+                <p>Each variant addresses specific needs. All can be built with common tools and components.</p>
             </div>
-
             <div class="products-grid">
-                <div class="product-card featured">
+                <div class="product-card">
                     <div class="product-header">
                         <h3>ARIA Bloom</h3>
                         <span class="product-price">~$280</span>
                     </div>
                     <p class="product-description">
-                        Flower-shaped tabletop companion. Petals contain LED emotion display,
-                        central camera eye tracks user. Ideal for conversation, medication reminders,
-                        and daily companionship.
+                        Flower-shaped tabletop companion. Ideal for conversation, medication reminders, and daily companionship.
                     </p>
                     <ul class="product-features">
                         <li>Petal LED emotion display</li>
-                        <li>Medication scheduling & reminders</li>
+                        <li>Medication scheduling</li>
                         <li>Speech clarity coaching</li>
                         <li>Conversational AI with memory</li>
-                        <li>Tremor detection via touch sensors</li>
                     </ul>
                 </div>
-
-                <div class="product-card featured">
+                <div class="product-card">
                     <div class="product-header">
                         <h3>ARIA Guide</h3>
                         <span class="product-price">~$380</span>
                     </div>
                     <p class="product-description">
-                        Walker-integrated mobility assistant. Mounts to standard rollators.
-                        Provides laser gait cueing and rhythmic audio to break freezing episodes.
-                        Highest clinical impact.
+                        Walker-integrated mobility assistant. Provides laser gait cueing and rhythmic audio to break freezing episodes.
                     </p>
                     <ul class="product-features">
                         <li>Laser line gait cueing</li>
                         <li>Metronome rhythmic audio</li>
                         <li>Freezing of gait detection</li>
                         <li>Fall detection & alerts</li>
-                        <li>Step counting & progress tracking</li>
                     </ul>
                 </div>
-
                 <div class="product-card">
                     <div class="product-header">
                         <h3>ARIA Frame</h3>
                         <span class="product-price">~$220</span>
                     </div>
                     <p class="product-description">
-                        Digital portrait companion in picture frame form factor. Shows family photos
-                        when idle, animated avatar during conversation. Lowest build complexity.
+                        Digital portrait companion. Shows family photos when idle, animated avatar during conversation.
                     </p>
                     <ul class="product-features">
                         <li>10" display with avatar</li>
-                        <li>Family photo slideshow</li>
                         <li>Video calling integration</li>
-                        <li>Cognitive games & exercises</li>
-                        <li>Wall-mount or tabletop</li>
+                        <li>Cognitive games</li>
+                        <li>Wall or tabletop mount</li>
                     </ul>
                 </div>
-
                 <div class="product-card">
                     <div class="product-header">
                         <h3>ARIA Rover</h3>
                         <span class="product-price">~$430</span>
                     </div>
                     <p class="product-description">
-                        Mobile companion robot that follows users room-to-room. Provides
-                        active companionship and can fetch small objects with magnetic gripper.
+                        Mobile companion robot. Follows users room-to-room, can fetch small objects with magnetic gripper.
                     </p>
                     <ul class="product-features">
-                        <li>Autonomous home navigation</li>
+                        <li>Autonomous navigation</li>
                         <li>Room-to-room following</li>
-                        <li>Magnetic gripper for fetching</li>
+                        <li>Magnetic gripper</li>
                         <li>Floor-level fall detection</li>
-                        <li>Expressive LED eyes</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- References Section -->
-    <section id="references" class="references">
+    <!-- Videos -->
+    <section class="videos">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h2>Research References</h2>
-                <p class="prose" style="margin: 0 auto;">
-                    ARIA is built on peer-reviewed research in neuroscience, assistive robotics, and Parkinson's care.
-                </p>
+            <div class="section-header">
+                <h2>ARIA in Action</h2>
+                <p>See how ARIA's intervention system works in real-world scenarios.</p>
             </div>
-
-            <div class="prose-wide" style="margin: 0 auto;">
-                <ol class="reference-list">
-                    <li>
-                        <span class="ref-title">Soft Robotics for Parkinson's Disease Supported by Functional Materials and Artificial Intelligence.</span><br>
-                        <span class="ref-source">PMC/BME Frontiers, 2025.</span><br>
-                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12214301/" target="_blank">pmc.ncbi.nlm.nih.gov/articles/PMC12214301</a>
-                    </li>
-                    <li>
-                        <span class="ref-title">Soft Robotic Wearable Device Improves Walking for Individual with Parkinson's Disease.</span><br>
-                        <span class="ref-source">Harvard SEAS, January 2024.</span><br>
-                        <a href="https://seas.harvard.edu/news/2024/01/soft-robotic-wearable-device-improves-walking-individual-parkinsons-disease" target="_blank">seas.harvard.edu/news/2024/01/soft-robotic-wearable</a>
-                    </li>
-                    <li>
-                        <span class="ref-title">Socially Assistive Robots for Parkinson's Disease: Needs, Attitudes and Specific Applications as Identified by Healthcare Professionals.</span><br>
-                        <span class="ref-source">ACM Transactions on Human-Robot Interaction, 2023.</span><br>
-                        <a href="https://dl.acm.org/doi/10.1145/3570168" target="_blank">dl.acm.org/doi/10.1145/3570168</a>
-                    </li>
-                    <li>
-                        <span class="ref-title">Recommendations for Designing Conversational Companion Robots with Older Adults through Foundation Models.</span><br>
-                        <span class="ref-source">Frontiers in Robotics and AI / PMC, 2024.</span><br>
-                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11163135/" target="_blank">pmc.ncbi.nlm.nih.gov/articles/PMC11163135</a>
-                    </li>
-                    <li>
-                        <span class="ref-title">A Novel Socially Assistive Robotic Platform for Cognitive-Motor Exercises for Individuals with Parkinson's Disease.</span><br>
-                        <span class="ref-source">Frontiers in Robotics and AI, 2023.</span><br>
-                        <a href="https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2023.1267458/full" target="_blank">frontiersin.org/articles/10.3389/frobt.2023.1267458</a>
-                    </li>
-                    <li>
-                        <span class="ref-title">Challenges in Designing a Fully Autonomous Socially Assistive Robot for People with Parkinson's Disease.</span><br>
-                        <span class="ref-source">Tufts HRI Lab, 2020.</span><br>
-                        <a href="https://hrilab.tufts.edu/publications/wilsonetal20pd/" target="_blank">hrilab.tufts.edu/publications/wilsonetal20pd</a>
-                    </li>
-                    <li>
-                        <span class="ref-title">An Interdisciplinary Approach to Assistive Technology for Parkinson's Disease Dementia.</span><br>
-                        <span class="ref-source">PMC, 2025.</span><br>
-                        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12363541/" target="_blank">pmc.ncbi.nlm.nih.gov/articles/PMC12363541</a>
-                    </li>
-                    <li>
-                        <span class="ref-title">How AI is Revolutionizing Parkinson's Research & Care.</span><br>
-                        <span class="ref-source">American Parkinson Disease Association.</span><br>
-                        <a href="https://www.apdaparkinson.org/article/ai-and-parkinsons-disease-research-and-care/" target="_blank">apdaparkinson.org/article/ai-and-parkinsons</a>
-                    </li>
-                </ol>
+            <div class="videos-grid">
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="aria-guide-video.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <h4>ARIA Guide: Freezing of Gait Intervention</h4>
+                        <p>Laser line cueing with rhythmic audio to restore gait initiation.</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="aria-bloom-video.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-info">
+                        <h4>ARIA Bloom: Medication Reminder</h4>
+                        <p>Gentle reminders and conversational companionship.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Build Section -->
-    <section id="build" class="build">
+    <!-- Quick Links -->
+    <section class="quick-links">
         <div class="container">
-            <div style="text-align: center;">
-                <h2>Build Your Own</h2>
-                <p class="prose" style="margin: 0 auto 2rem;">
-                    Complete documentation to build any ARIA variant. No prior robotics experience required.
-                </p>
+            <div class="section-header">
+                <h2>Explore</h2>
             </div>
-
-            <div class="build-steps">
-                <div class="build-step">
-                    <div class="step-number">1</div>
-                    <h4>Hardware Assembly</h4>
-                    <p>Step-by-step guide with video. 3D print files included. 4-6 hours build time.</p>
-                </div>
-                <div class="build-step">
-                    <div class="step-number">2</div>
-                    <h4>Software Setup</h4>
-                    <p>One-click Raspberry Pi image. Flash, boot, configure. All AI models pre-loaded.</p>
-                </div>
-                <div class="build-step">
-                    <div class="step-number">3</div>
-                    <h4>Personalization</h4>
-                    <p>Train ARIA to recognize voices. Set medication schedules. Add family contacts.</p>
-                </div>
-                <div class="build-step">
-                    <div class="step-number">4</div>
-                    <h4>Community Support</h4>
-                    <p>Active Discord. Weekly build sessions. Troubleshooting from builders worldwide.</p>
-                </div>
+            <div class="links-grid">
+                <a href="research-paper.html" class="link-card">
+                    <div class="icon">📄</div>
+                    <h4>Research Paper</h4>
+                    <p>Full scientific documentation</p>
+                </a>
+                <a href="hardware-bom.html" class="link-card">
+                    <div class="icon">🔧</div>
+                    <h4>Hardware BOM</h4>
+                    <p>Complete parts list</p>
+                </a>
+                <a href="connectivity.html" class="link-card">
+                    <div class="icon">🛰️</div>
+                    <h4>ARIA Sentinel</h4>
+                    <p>Satellite connectivity</p>
+                </a>
+                <a href="research-data.html" class="link-card">
+                    <div class="icon">📊</div>
+                    <h4>For Investors</h4>
+                    <p>Research & business case</p>
+                </a>
             </div>
+        </div>
+    </section>
 
-            <div style="text-align: center;">
-                <div class="cta-group">
-                    <a href="https://github.com/aria-project/aria-bloom" class="btn btn-primary">Download Build Guide</a>
-                    <a href="hardware-bom.html" class="btn btn-secondary">View Bill of Materials</a>
-                    <a href="https://github.com/aria-project" class="btn btn-secondary">GitHub Repository</a>
-                </div>
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Join the Mission</h2>
+            <p>Build an ARIA for someone you love. Contribute to the research. Help us democratize assistive technology.</p>
+            <div class="cta-group">
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-primary">View on GitHub</a>
+                <a href="support.html" class="btn btn-secondary">Support the Project</a>
             </div>
         </div>
     </section>
@@ -1502,163 +714,20 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0;">ARIA Project</h3>
-                    <p>
-                        An open-source research initiative creating accessible AI companions
-                        for individuals with Parkinson's disease. Built with care by caregivers,
-                        makers, and researchers worldwide.
-                    </p>
-                </div>
+                <div class="footer-brand">ARIA Project</div>
                 <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="https://github.com/dbutler-a11y/aria-research">Documentation</a></li>
-                        <li><a href="hardware-bom.html">Hardware BOM</a></li>
-                        <li><a href="https://github.com/dbutler-a11y/aria-research">3D Print Files</a></li>
-                        <li><a href="https://github.com/dbutler-a11y/aria-research">Software Image</a></li>
-                    </ul>
+                    <a href="research-paper.html">Research</a>
+                    <a href="hardware-bom.html">Hardware</a>
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="connectivity.html">Sentinel</a>
+                    <a href="support.html">Support</a>
+                    <a href="https://github.com/dbutler-a11y/aria-research">GitHub</a>
                 </div>
-                <div class="footer-links">
-                    <h4>Research</h4>
-                    <ul>
-                        <li><a href="#science">The Science</a></li>
-                        <li><a href="#references">References</a></li>
-                        <li><a href="research-paper.html">Research Paper</a></li>
-                        <li><a href="research-paper.html#references">Publications</a></li>
-                    </ul>
+                <div class="footer-copy">
+                    MIT License © 2025 ARIA Project — "Made with care by humans and AI, for humans."
                 </div>
-                <div class="footer-links">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="https://github.com/dbutler-a11y/aria-research">GitHub</a></li>
-                        <li><a href="https://github.com/dbutler-a11y/aria-research/discussions">Discussions</a></li>
-                        <li><a href="https://github.com/dbutler-a11y/aria-research/issues">Issues</a></li>
-                        <li><a href="support.html">Support</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>MIT License © 2025 ARIA Project</span>
-                <span style="font-style: italic;">"Made with care by humans and AI, for humans."</span>
             </div>
         </div>
     </footer>
-
-    <!-- Mobile Publications FAB & Panel -->
-    <div class="mobile-pub-backdrop" id="pubBackdrop"></div>
-
-    <button class="mobile-pub-fab" id="pubFab" aria-label="View Publications">
-        📄
-    </button>
-
-    <div class="mobile-pub-panel" id="pubPanel">
-        <div class="mobile-pub-panel-header">
-            <span class="drag-indicator"></span>
-            <h4>📄 Read the Research</h4>
-        </div>
-        <div class="mobile-pub-panel-content">
-            <ul>
-                <li>
-                    <a href="https://zenodo.org/records/18250818" target="_blank">
-                        <span class="pub-icon">🔬</span>
-                        <span class="pub-name">Zenodo</span>
-                        <span class="pub-badge pub-new">DOI</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://osf.io/preprints/mediarxiv" target="_blank">
-                        <span class="pub-icon">🏥</span>
-                        <span class="pub-name">MediArXiv</span>
-                        <span class="pub-badge pub-new">NEW</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://independent.academia.edu/DurayveonButler" target="_blank">
-                        <span class="pub-icon">🎓</span>
-                        <span class="pub-name">Academia.edu</span>
-                        <span class="pub-badge pub-new">NEW</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="research-paper.html">
-                        <span class="pub-icon">📑</span>
-                        <span class="pub-name">Website Paper</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/dbutler-a11y/aria-research" target="_blank">
-                        <span class="pub-icon">💻</span>
-                        <span class="pub-name">GitHub</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="hardware-bom.html">
-                        <span class="pub-icon">🔧</span>
-                        <span class="pub-name">Hardware BOM</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="ecosystem.html">
-                        <span class="pub-icon">🌐</span>
-                        <span class="pub-name">Ecosystem</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="support.html">
-                        <span class="pub-icon">❤️</span>
-                        <span class="pub-name">Support</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <script>
-        // Mobile Publications Panel Toggle
-        const pubFab = document.getElementById('pubFab');
-        const pubPanel = document.getElementById('pubPanel');
-        const pubBackdrop = document.getElementById('pubBackdrop');
-
-        function openPanel() {
-            pubPanel.classList.add('open');
-            pubBackdrop.classList.add('visible');
-            pubFab.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePanel() {
-            pubPanel.classList.remove('open');
-            pubBackdrop.classList.remove('visible');
-            pubFab.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        pubFab.addEventListener('click', () => {
-            if (pubPanel.classList.contains('open')) {
-                closePanel();
-            } else {
-                openPanel();
-            }
-        });
-
-        pubBackdrop.addEventListener('click', closePanel);
-
-        // Close on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && pubPanel.classList.contains('open')) {
-                closePanel();
-            }
-        });
-
-        // Close panel when clicking a link (for same-page navigation)
-        pubPanel.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (!link.getAttribute('target')) {
-                    closePanel();
-                }
-            });
-        });
-    </script>
 </body>
 </html>
