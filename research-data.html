@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA Research Framework — Data-Driven Health Technology Democratization</title>
+    <meta name="description" content="Comprehensive research framework for ARIA: open-source assistive robotics and satellite emergency connectivity. Backed by peer-reviewed data on Parkinson's disease, falls prevention, and healthcare connectivity gaps.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ARIA Research Framework — Data-Driven Health Technology">
+    <meta property="og:description" content="Open-source assistive technology backed by comprehensive research on Parkinson's disease, falls prevention, and healthcare connectivity gaps.">
+    <meta property="og:type" content="article">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-warm: #dd6b20;
+            --color-success: #38a169;
+            --color-danger: #e53e3e;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fafc;
+            --color-bg-dark: #0f172a;
+            --color-bg-code: #1e293b;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+            --max-width-prose: 720px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.75rem; margin-bottom: 1.5rem; margin-top: 3rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 1rem; margin-top: 2rem; }
+        h4 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+
+        p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .prose {
+            max-width: var(--max-width-prose);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+            margin-left: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 3rem;
+            background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.375rem 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            max-width: 650px;
+        }
+
+        /* Executive Summary Box */
+        .exec-summary {
+            background: var(--color-bg-dark);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        .exec-summary h2 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .exec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .exec-item h4 {
+            color: var(--color-accent-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-sans);
+        }
+
+        .exec-item p {
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Stats Highlight */
+        .stat-highlight {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card.danger {
+            border-left: 4px solid var(--color-danger);
+        }
+
+        .stat-card.warning {
+            border-left: 4px solid var(--color-warm);
+        }
+
+        .stat-card.success {
+            border-left: 4px solid var(--color-success);
+        }
+
+        .stat-card.info {
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .stat-number {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        .stat-source {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--color-bg-alt);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            margin-top: 0;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Data Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .data-table th {
+            background: var(--color-primary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background: var(--color-bg-alt);
+        }
+
+        .data-table .highlight-row {
+            background: rgba(49, 130, 206, 0.05);
+        }
+
+        .data-table .number {
+            font-family: var(--font-mono);
+            font-weight: 500;
+        }
+
+        .data-table .positive {
+            color: var(--color-success);
+        }
+
+        .data-table .negative {
+            color: var(--color-danger);
+        }
+
+        /* Research Cards */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .research-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .research-card h4 {
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .research-card p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .research-card .source {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .research-card .source a {
+            color: var(--color-accent);
+        }
+
+        /* Callout */
+        .callout {
+            background: white;
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .callout.warning {
+            border-left-color: var(--color-warm);
+            background: #fffaf0;
+        }
+
+        .callout.success {
+            border-left-color: var(--color-success);
+            background: #f0fff4;
+        }
+
+        .callout-title {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Framework Diagram */
+        .framework-diagram {
+            background: var(--color-bg-code);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .framework-diagram pre {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+            margin: 0;
+            white-space: pre;
+        }
+
+        .framework-diagram .comment { color: #64748b; }
+        .framework-diagram .highlight { color: #fbbf24; }
+        .framework-diagram .success { color: #4ade80; }
+        .framework-diagram .accent { color: #63b3ed; }
+        .framework-diagram .danger { color: #f87171; }
+
+        /* Market Opportunity */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .market-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .market-card .market-value {
+            font-family: var(--font-mono);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--color-success);
+            margin-bottom: 0.25rem;
+        }
+
+        .market-card .market-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .market-card .market-cagr {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            background: var(--color-bg-alt);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Business Model */
+        .biz-model-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .biz-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .biz-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .biz-card .icon {
+            font-size: 1.25rem;
+        }
+
+        .biz-card ul {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .biz-card li {
+            padding: 0.35rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--color-text-secondary);
+        }
+
+        .biz-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+
+        /* One-Pager */
+        .one-pager {
+            background: white;
+            border: 2px solid var(--color-primary);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .one-pager-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--color-border);
+            margin-bottom: 1.5rem;
+        }
+
+        .one-pager-header h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.75rem;
+        }
+
+        .one-pager-header .tagline {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--color-text-muted);
+        }
+
+        .one-pager-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .one-pager-section h4 {
+            color: var(--color-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+
+        .one-pager-section p,
+        .one-pager-section li {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .one-pager-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .one-pager-section li {
+            padding: 0.25rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .one-pager-section li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        .one-pager-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--color-border);
+            text-align: center;
+        }
+
+        .one-pager-footer .ask {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        /* Citation List */
+        .citation-list {
+            list-style: none;
+            counter-reset: citation;
+        }
+
+        .citation-list li {
+            counter-increment: citation;
+            padding: 1rem 0;
+            padding-left: 3rem;
+            position: relative;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.9rem;
+        }
+
+        .citation-list li:last-child {
+            border-bottom: none;
+        }
+
+        .citation-list li::before {
+            content: "[" counter(citation) "]";
+            position: absolute;
+            left: 0;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        .citation-list .cite-title {
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .citation-list .cite-source {
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-bg-alt);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-bg-dark);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .stat-highlight,
+            .market-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .exec-grid,
+            .research-grid,
+            .biz-model-grid,
+            .one-pager-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .stat-highlight,
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav, .cta-section, footer {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 2rem;
+            }
+
+            section {
+                padding: 2rem 0;
+                break-inside: avoid;
+            }
+
+            .one-pager {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ARIA <span>Research Framework</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#market">Market</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#model">Business Model</a></li>
+                <li><a href="#citations">Citations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Research-Backed Framework</span>
+                <h1>Democratizing Health Technology Through Open Infrastructure</h1>
+                <p class="hero-description">
+                    A comprehensive, data-driven case for building open-source assistive robotics
+                    and satellite emergency connectivity. Every statistic sourced, every claim verified.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Summary -->
+    <section style="padding: 3rem 0;">
+        <div class="container">
+            <div class="exec-summary">
+                <h2>Executive Summary</h2>
+                <div class="exec-grid">
+                    <div class="exec-item">
+                        <h4>The Problem</h4>
+                        <p>10M+ people live with Parkinson's disease. Falls cause 38,000 deaths annually among elderly. 85% of Earth lacks reliable emergency connectivity. Current assistive solutions cost $3,000-$70,000.</p>
+                    </div>
+                    <div class="exec-item">
+                        <h4>The Opportunity</h4>
+                        <p>$57B assistive technology market growing 7% CAGR. Satellite launch costs down 95% in a decade. Edge AI now runs on $50 devices. 3GPP Release 17 enables satellite IoT on existing hardware.</p>
+                    </div>
+                    <div class="exec-item">
+                        <h4>The Solution</h4>
+                        <p>ARIA: Open-source AI companions buildable for &lt;$500. Sentinel: Satellite emergency mesh for always-on protection. Privacy-preserving, community-governed, research-backed.</p>
+                    </div>
+                    <div class="exec-item">
+                        <h4>The Model</h4>
+                        <p>Open-source technology. Revenue from hardware sales, SaaS connectivity ($5-15/device/mo), enterprise contracts (hospitals, insurers), and anonymized data products.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Problem: A Convergence of Crises</h2>
+                <p>Three interconnected challenges create a massive, underserved population with urgent need for affordable, connected health technology.</p>
+            </div>
+
+            <!-- Parkinson's Statistics -->
+            <h3>1. Parkinson's Disease: A Growing Global Burden</h3>
+
+            <div class="stat-highlight">
+                <div class="stat-card danger">
+                    <div class="stat-number">10M+</div>
+                    <div class="stat-label">People living with Parkinson's worldwide</div>
+                    <div class="stat-source">Parkinson's Foundation, 2024</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number">25.2M</div>
+                    <div class="stat-label">Projected cases by 2050 (+112%)</div>
+                    <div class="stat-source">Global Burden of Disease Study, 2024</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-number">$61.5B</div>
+                    <div class="stat-label">Annual economic burden (US only)</div>
+                    <div class="stat-source">Michael J. Fox Foundation, 2025</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number">90,000</div>
+                    <div class="stat-label">New US diagnoses per year (+50% from prior estimates)</div>
+                    <div class="stat-source">Parkinson's Foundation Study, 2022</div>
+                </div>
+            </div>
+
+            <div class="research-grid">
+                <div class="research-card">
+                    <h4>Fastest-Growing Neurological Disorder</h4>
+                    <p>Parkinson's disease has the most rapid increases in prevalence, disability, and deaths among all neurological disorders globally. The ≥80 age group will see a 196% increase in cases by 2050.</p>
+                    <div class="source">Source: <a href="https://www.frontiersin.org/journals/aging-neuroscience/articles/10.3389/fnagi.2024.1498756/full" target="_blank">Frontiers in Aging Neuroscience, 2024</a></div>
+                </div>
+                <div class="research-card">
+                    <h4>Cost of Current Solutions</h4>
+                    <p>Medications alone cost an average of $2,500/year. Therapeutic surgery can cost up to $100,000 per person. Commercial assistive robotics range from $3,000-$70,000—out of reach for most families.</p>
+                    <div class="source">Source: <a href="https://www.parkinson.org/understanding-parkinsons/statistics" target="_blank">Parkinson's Foundation Statistics</a></div>
+                </div>
+            </div>
+
+            <!-- Falls Statistics -->
+            <h3>2. Falls: The Silent Killer of Elderly Americans</h3>
+
+            <div class="stat-highlight">
+                <div class="stat-card danger">
+                    <div class="stat-number">38,000</div>
+                    <div class="stat-label">Deaths from falls annually (age 65+)</div>
+                    <div class="stat-source">CDC, 2021</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number">14M</div>
+                    <div class="stat-label">Older adults fall each year (1 in 4)</div>
+                    <div class="stat-source">CDC, 2024</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-number">$80B</div>
+                    <div class="stat-label">Annual healthcare spending on fall injuries</div>
+                    <div class="stat-source">Injury Prevention Journal, 2024</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number">$101B</div>
+                    <div class="stat-label">Projected cost by 2030</div>
+                    <div class="stat-source">CDC Projections</div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Fall Statistic</th>
+                        <th>Data</th>
+                        <th>Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ED visits from falls annually</td>
+                        <td class="number">3,000,000</td>
+                        <td>CDC, 2021</td>
+                    </tr>
+                    <tr>
+                        <td>Fall-related hospitalizations</td>
+                        <td class="number">1,000,000</td>
+                        <td>CDC, 2024</td>
+                    </tr>
+                    <tr>
+                        <td>Hip fracture hospitalizations</td>
+                        <td class="number">319,000</td>
+                        <td>CDC, 2019</td>
+                    </tr>
+                    <tr>
+                        <td>Falls causing serious injury</td>
+                        <td class="number">1 in 5 (20%)</td>
+                        <td>CDC Facts</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Nursing home residents who fall annually</td>
+                        <td class="number negative">50-75%</td>
+                        <td>Multiple studies</td>
+                    </tr>
+                    <tr>
+                        <td>Fall death rate increase (past decade)</td>
+                        <td class="number negative">+35%</td>
+                        <td>CDC Trends</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Connectivity Gap -->
+            <h3>3. The Connectivity Crisis: When Help Can't Reach You</h3>
+
+            <div class="stat-highlight">
+                <div class="stat-card danger">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">of Earth lacks reliable cellular coverage</div>
+                    <div class="stat-source">Astrocast, 2024</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number">1 in 4</div>
+                    <div class="stat-label">Rural Americans lack broadband access</div>
+                    <div class="stat-source">Federal Reserve Atlanta, 2024</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-number">14+ min</div>
+                    <div class="stat-label">Rural EMS response time (vs 7 min urban)</div>
+                    <div class="stat-source">PMC Research, 2024</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number">2x</div>
+                    <div class="stat-label">Rural mortality rate for emergencies</div>
+                    <div class="stat-source">Statewide Analysis</div>
+                </div>
+            </div>
+
+            <div class="callout warning">
+                <div class="callout-title">The Mortality Gap</div>
+                <p>
+                    <strong>Each 1-minute increase in EMS response time reduces cardiac arrest survival by 6%.</strong>
+                    Rural areas average 14+ minutes vs 7 minutes urban. For a person with Parkinson's who falls and can't
+                    reach their phone, the combination of delayed detection + delayed response can be fatal.
+                    <br><br>
+                    <em>Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9778378/" target="_blank">PMC Systematic Review, 2024</a></em>
+                </p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Connectivity Metric</th>
+                        <th>Urban</th>
+                        <th>Rural</th>
+                        <th>Gap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Broadband access</td>
+                        <td class="number positive">95%+</td>
+                        <td class="number negative">~75%</td>
+                        <td class="number negative">-20%</td>
+                    </tr>
+                    <tr>
+                        <td>EMS response time (90th percentile)</td>
+                        <td class="number positive">8:59</td>
+                        <td class="number negative">14:59</td>
+                        <td class="number negative">+6:00</td>
+                    </tr>
+                    <tr>
+                        <td>Transit time to hospital</td>
+                        <td class="number positive">28 min</td>
+                        <td class="number negative">42 min</td>
+                        <td class="number negative">+14 min</td>
+                    </tr>
+                    <tr>
+                        <td>Motor vehicle crash mortality</td>
+                        <td class="number positive">0.90%</td>
+                        <td class="number negative">1.78%</td>
+                        <td class="number negative">+98%</td>
+                    </tr>
+                    <tr>
+                        <td>Seniors without home internet</td>
+                        <td class="number">~15%</td>
+                        <td class="number negative">~28%</td>
+                        <td class="number negative">+87%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section id="market">
+        <div class="container">
+            <div class="section-header">
+                <h2>Market Opportunity</h2>
+                <p>Three converging markets create a multi-billion dollar opportunity for health technology democratization.</p>
+            </div>
+
+            <div class="market-grid">
+                <div class="market-card">
+                    <div class="market-value">$57.7B</div>
+                    <div class="market-label">Assistive Technology Market (2024)</div>
+                    <div class="market-cagr">CAGR: 6.9% → $112B by 2034</div>
+                </div>
+                <div class="market-card">
+                    <div class="market-value">$2.0B</div>
+                    <div class="market-label">Satellite IoT Market (2024)</div>
+                    <div class="market-cagr">CAGR: 23% → $15.5B by 2034</div>
+                </div>
+                <div class="market-card">
+                    <div class="market-value">$80B</div>
+                    <div class="market-label">Fall-Related Healthcare Spending</div>
+                    <div class="market-cagr">Projected: $101B by 2030</div>
+                </div>
+            </div>
+
+            <h3>Technology Cost Curves: Why Now</h3>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Technology</th>
+                        <th>Historical Cost</th>
+                        <th>2024 Cost</th>
+                        <th>Reduction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Space launch (per kg to LEO)</td>
+                        <td class="number">$54,500 (Shuttle)</td>
+                        <td class="number positive">$2,720 (Falcon 9)</td>
+                        <td class="number positive">-95%</td>
+                    </tr>
+                    <tr>
+                        <td>SpaceX internal launch cost</td>
+                        <td class="number">$62M (2010)</td>
+                        <td class="number positive">~$15M (2024)</td>
+                        <td class="number positive">-76%</td>
+                    </tr>
+                    <tr>
+                        <td>Satellite IoT modem</td>
+                        <td class="number">$500+ (2020)</td>
+                        <td class="number positive">$119 (Swarm)</td>
+                        <td class="number positive">-76%</td>
+                    </tr>
+                    <tr>
+                        <td>Satellite IoT monthly service</td>
+                        <td class="number">$50+/device</td>
+                        <td class="number positive">$5/device</td>
+                        <td class="number positive">-90%</td>
+                    </tr>
+                    <tr>
+                        <td>Edge AI compute (Raspberry Pi 5)</td>
+                        <td class="number">$500+ (2018)</td>
+                        <td class="number positive">$80 (2024)</td>
+                        <td class="number positive">-84%</td>
+                    </tr>
+                    <tr>
+                        <td>PocketQube satellite (build + launch)</td>
+                        <td class="number">$100K+ (2015)</td>
+                        <td class="number positive">~$30K (2024)</td>
+                        <td class="number positive">-70%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout success">
+                <div class="callout-title">The Inflection Point</div>
+                <p>
+                    For the first time in history, it's possible to build a sub-$500 AI health companion that connects
+                    to satellites for emergency alerts. Five years ago, this would have cost $5,000+. Ten years ago,
+                    it was impossible at any price. <strong>The technology curves have finally converged.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Solution: ARIA + Sentinel</h2>
+                <p>Open-source assistive robotics with satellite emergency connectivity.</p>
+            </div>
+
+            <div class="framework-diagram">
+<pre>
+<span class="comment">═══════════════════════════════════════════════════════════════════════════════════════</span>
+<span class="comment">                           ARIA + SENTINEL FRAMEWORK</span>
+<span class="comment">═══════════════════════════════════════════════════════════════════════════════════════</span>
+
+<span class="highlight">LAYER 1: OPEN-SOURCE ASSISTIVE DEVICES (ARIA)</span>
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                       │
+│   <span class="accent">ARIA Bloom</span>        <span class="accent">ARIA Guide</span>        <span class="accent">ARIA Frame</span>        <span class="accent">ARIA Rover</span>              │
+│   Tabletop AI      Walker-Mount      Digital Frame     Mobile Robot            │
+│   ~$280            ~$380             ~$220             ~$430                   │
+│                                                                                       │
+│   <span class="success">Shared AI Backbone:</span>                                                              │
+│   • Speech: Whisper.cpp + VOSK (dysarthria-optimized)                                │
+│   • LLM: Qwen3:1.7b / Gemma3:1b (runs locally on Raspberry Pi 5)                    │
+│   • Vision: Pi Camera Module 3 + OpenCV                                              │
+│   • TTS: Piper (warm, natural voices)                                                │
+│                                                                                       │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+                                         │
+                                         ▼
+<span class="highlight">LAYER 2: HYBRID CONNECTIVITY</span>
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                       │
+│   <span class="success">PRIMARY: WiFi/Cellular</span>              <span class="danger">FALLBACK: Satellite (Sentinel)</span>              │
+│   • Real-time data sync                • Emergency alerts (P0)                       │
+│   • Video calls                        • Daily health check-ins (P2)                 │
+│   • Firmware updates                   • Store-and-forward when offline              │
+│                                                                                       │
+│   <span class="comment">Automatic failover: If no internet for 60 seconds, queue for satellite</span>          │
+│                                                                                       │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+                                         │
+                                         ▼
+<span class="highlight">LAYER 3: SENTINEL SATELLITE NETWORK</span>
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                       │
+│   Phase 1 (Now): Commercial Partners         Phase 3-4 (Future): Own Constellation  │
+│   • Swarm (SpaceX): $5/device/mo             • 40-100 PocketQube satellites          │
+│   • Astrocast: €25K launch option            • Open-source ground stations           │
+│   • Global coverage immediately              • Community-operated infrastructure     │
+│                                                                                       │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+                                         │
+                                         ▼
+<span class="highlight">LAYER 4: ZERO-KNOWLEDGE CLOUD</span>
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                       │
+│   <span class="success">Privacy Architecture:</span>                                                            │
+│   • End-to-end encryption (AES-256, keys on device only)                             │
+│   • Zero-knowledge server (cannot decrypt, only relay)                               │
+│   • Self-hosting option for maximum privacy                                          │
+│   • HIPAA-compliant infrastructure available for enterprise                          │
+│                                                                                       │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+                                         │
+                                         ▼
+<span class="highlight">LAYER 5: CAREGIVERS & EMERGENCY SERVICES</span>
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                       │
+│   📱 <span class="accent">Caregiver App</span>         🏥 <span class="accent">Hospital Integration</span>     🚨 <span class="accent">Emergency Services</span>       │
+│   • Real-time alerts        • EHR integration            • 911 auto-dispatch         │
+│   • Health dashboard        • Readmission prevention     • GPS location              │
+│   • Medication tracking     • Care coordination          • Medical history packet    │
+│                                                                                       │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+
+<span class="comment">═══════════════════════════════════════════════════════════════════════════════════════</span>
+</pre>
+            </div>
+
+            <h3>Clinical Evidence: Why This Works</h3>
+
+            <div class="research-grid">
+                <div class="research-card">
+                    <h4>68% Reduction in Freezing of Gait</h4>
+                    <p>Harvard SEAS studies demonstrated that rhythmic auditory cueing (metronome) reduces freezing episodes by 68%. Their soft robotic exosuit improved walking distance by 55%.</p>
+                    <div class="source">Source: <a href="https://seas.harvard.edu/news/2024/01/soft-robotic-wearable-device-improves-walking-individual-parkinsons-disease" target="_blank">Harvard SEAS, January 2024</a></div>
+                </div>
+                <div class="research-card">
+                    <h4>Remote Monitoring Reduces Readmissions</h4>
+                    <p>Patients with telemedicine/RPM follow-up were 45% less likely to be readmitted within 30 days compared to those with no follow-up. RPM shows clear downward trends in hospital readmission risk.</p>
+                    <div class="source">Source: <a href="https://www.nature.com/articles/s41746-024-01182-w" target="_blank">npj Digital Medicine, 2024</a></div>
+                </div>
+                <div class="research-card">
+                    <h4>94% Response Rate to Visual Cueing</h4>
+                    <p>Laser line visual cueing showed immediate effect in 94% of Parkinson's patients experiencing freezing of gait. External cues activate bypass neural pathways around damaged basal ganglia.</p>
+                    <div class="source">Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12214301/" target="_blank">PMC/BME Frontiers, 2025</a></div>
+                </div>
+                <div class="research-card">
+                    <h4>Satellite IoT: Global Reach for $5/month</h4>
+                    <p>New satellite IoT services now cost $5/device/month vs $50+ previously. 3GPP Release 17 enables existing cellular IoT devices to connect to satellites with software updates only.</p>
+                    <div class="source">Source: <a href="https://spacenews.com/swarm-reveals-prices/" target="_blank">SpaceNews: Swarm Pricing, 2024</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section id="model">
+        <div class="container">
+            <div class="section-header">
+                <h2>Business Model: Open Source + Value-Added Services</h2>
+                <p>The technology is open. The infrastructure, support, and premium features are paid.</p>
+            </div>
+
+            <div class="biz-model-grid">
+                <div class="biz-card">
+                    <h4><span class="icon">🔧</span> Hardware Sales</h4>
+                    <ul>
+                        <li>Pre-built, certified ARIA devices ($499-699)</li>
+                        <li>Bill of materials: ~$280, retail margin: 40-50%</li>
+                        <li>FCC/CE certified, warranty included</li>
+                        <li>DIY option always available (open-source)</li>
+                    </ul>
+                </div>
+                <div class="biz-card">
+                    <h4><span class="icon">📡</span> Connectivity SaaS</h4>
+                    <ul>
+                        <li>Basic: $5/device/month (satellite emergency only)</li>
+                        <li>Pro: $15/device/month (app, analytics, priority)</li>
+                        <li>Enterprise: Custom pricing (SLA, HIPAA, API)</li>
+                        <li>Self-host option for privacy-focused users</li>
+                    </ul>
+                </div>
+                <div class="biz-card">
+                    <h4><span class="icon">🏥</span> Enterprise Contracts</h4>
+                    <ul>
+                        <li>Nursing homes: $5K-50K/year per facility</li>
+                        <li>Hospitals: $50K-500K/year (readmission prevention)</li>
+                        <li>Insurance: $1M+/year (claims reduction)</li>
+                        <li>Government: Medicare/Medicaid infrastructure grants</li>
+                    </ul>
+                </div>
+                <div class="biz-card">
+                    <h4><span class="icon">📊</span> Data & Research</h4>
+                    <ul>
+                        <li>Anonymized, aggregated health insights</li>
+                        <li>Pharma: Real-world evidence for trials ($500K+)</li>
+                        <li>Researchers: Parkinson's progression data</li>
+                        <li>Opt-in only, user-controlled, privacy-preserving</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Revenue Projections</h3>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Revenue Stream</th>
+                        <th>Year 1</th>
+                        <th>Year 3</th>
+                        <th>Year 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hardware Sales</td>
+                        <td class="number">$500K</td>
+                        <td class="number">$5M</td>
+                        <td class="number">$20M</td>
+                    </tr>
+                    <tr>
+                        <td>Connectivity SaaS</td>
+                        <td class="number">$100K</td>
+                        <td class="number">$3M</td>
+                        <td class="number">$15M</td>
+                    </tr>
+                    <tr>
+                        <td>Enterprise Contracts</td>
+                        <td class="number">$200K</td>
+                        <td class="number">$5M</td>
+                        <td class="number">$30M</td>
+                    </tr>
+                    <tr>
+                        <td>Data/Research Products</td>
+                        <td class="number">$0</td>
+                        <td class="number">$1M</td>
+                        <td class="number">$10M</td>
+                    </tr>
+                    <tr>
+                        <td>Certification/Licensing</td>
+                        <td class="number">$0</td>
+                        <td class="number">$500K</td>
+                        <td class="number">$5M</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td><strong>Total Revenue</strong></td>
+                        <td class="number positive"><strong>$800K</strong></td>
+                        <td class="number positive"><strong>$14.5M</strong></td>
+                        <td class="number positive"><strong>$80M</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout">
+                <div class="callout-title">Why Open Source = Competitive Moat</div>
+                <p>
+                    <strong>Trust:</strong> Healthcare requires trust. Open code = auditable, no black boxes.<br>
+                    <strong>Adoption:</strong> Lower barrier = faster spread = more data = better AI = more value.<br>
+                    <strong>Community:</strong> Thousands of contributors improve the product for free.<br>
+                    <strong>Talent:</strong> Mission-driven open source attracts top engineers.<br>
+                    <strong>Enterprise:</strong> "No vendor lock-in" makes enterprise sales easier, not harder.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- One-Pager Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Investment Summary</h2>
+                <p>The one-page overview for investors, partners, and stakeholders.</p>
+            </div>
+
+            <div class="one-pager">
+                <div class="one-pager-header">
+                    <h2>ARIA + SENTINEL</h2>
+                    <p class="tagline">Democratizing Health Technology Through Open Infrastructure</p>
+                </div>
+
+                <div class="one-pager-grid">
+                    <div class="one-pager-section">
+                        <h4>The Problem</h4>
+                        <ul>
+                            <li>10M+ people with Parkinson's disease worldwide</li>
+                            <li>38,000 annual deaths from falls (age 65+)</li>
+                            <li>$80B annual healthcare spending on fall injuries</li>
+                            <li>85% of Earth lacks reliable emergency connectivity</li>
+                            <li>Current assistive solutions: $3,000-$70,000</li>
+                        </ul>
+                    </div>
+
+                    <div class="one-pager-section">
+                        <h4>The Solution</h4>
+                        <ul>
+                            <li><strong>ARIA:</strong> Open-source AI companions for &lt;$500</li>
+                            <li><strong>Sentinel:</strong> Satellite emergency connectivity</li>
+                            <li>Freezing of gait intervention (68% reduction)</li>
+                            <li>Fall detection with global alert capability</li>
+                            <li>Privacy-preserving, community-governed</li>
+                        </ul>
+                    </div>
+
+                    <div class="one-pager-section">
+                        <h4>Market Opportunity</h4>
+                        <ul>
+                            <li>$57B assistive tech market (6.9% CAGR)</li>
+                            <li>$2B satellite IoT market (23% CAGR)</li>
+                            <li>Launch costs down 95% in 10 years</li>
+                            <li>Edge AI now runs on $50 devices</li>
+                            <li>3GPP R17 enables satellite IoT on existing hardware</li>
+                        </ul>
+                    </div>
+
+                    <div class="one-pager-section">
+                        <h4>Business Model</h4>
+                        <ul>
+                            <li>Hardware sales (40-50% margin)</li>
+                            <li>Connectivity SaaS ($5-15/device/month)</li>
+                            <li>Enterprise contracts (hospitals, insurers)</li>
+                            <li>Anonymized health data products</li>
+                            <li>Open-source = trust = faster adoption</li>
+                        </ul>
+                    </div>
+
+                    <div class="one-pager-section">
+                        <h4>Traction & Milestones</h4>
+                        <ul>
+                            <li>Research paper published (Zenodo DOI)</li>
+                            <li>Open-source community forming</li>
+                            <li>Hardware BOM validated (&lt;$500)</li>
+                            <li>6 device form factors designed</li>
+                            <li>Satellite connectivity architecture complete</li>
+                        </ul>
+                    </div>
+
+                    <div class="one-pager-section">
+                        <h4>Use of Funds (18 months)</h4>
+                        <ul>
+                            <li>Launch 1,000 pilot devices</li>
+                            <li>Establish 3-5 enterprise customers</li>
+                            <li>Deploy first research satellite</li>
+                            <li>Build engineering team (5-7 people)</li>
+                            <li>Reach $1M ARR</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="one-pager-footer">
+                    <p style="color: var(--color-text-muted); margin-bottom: 0.5rem;">Seed Round</p>
+                    <p class="ask">$1.5M</p>
+                    <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.5rem;">
+                        18-month runway to product-market fit and $1M ARR
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citations Section -->
+    <section id="citations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Research Citations</h2>
+                <p>Every claim in this framework is backed by peer-reviewed research or authoritative sources.</p>
+            </div>
+
+            <h3>Disease Burden & Demographics</h3>
+            <ol class="citation-list">
+                <li>
+                    <span class="cite-title">Statistics on Parkinson's Disease.</span>
+                    <span class="cite-source">Parkinson's Foundation, 2024.</span>
+                    <a href="https://www.parkinson.org/understanding-parkinsons/statistics" target="_blank">parkinson.org/statistics</a>
+                </li>
+                <li>
+                    <span class="cite-title">Projections for Prevalence of Parkinson's Disease to 2050.</span>
+                    <span class="cite-source">Global Burden of Disease Study, BMJ, 2024.</span>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/40044233/" target="_blank">PubMed: 40044233</a>
+                </li>
+                <li>
+                    <span class="cite-title">Global Burden of Parkinson's Disease from 1990 to 2021.</span>
+                    <span class="cite-source">Frontiers in Aging Neuroscience, 2024.</span>
+                    <a href="https://www.frontiersin.org/journals/aging-neuroscience/articles/10.3389/fnagi.2024.1498756/full" target="_blank">Frontiers</a>
+                </li>
+                <li>
+                    <span class="cite-title">Facts About Falls.</span>
+                    <span class="cite-source">Centers for Disease Control and Prevention, 2024.</span>
+                    <a href="https://www.cdc.gov/falls/data-research/facts-stats/index.html" target="_blank">CDC Falls Data</a>
+                </li>
+                <li>
+                    <span class="cite-title">Health Care Spending for Nonfatal Falls Among Older Adults.</span>
+                    <span class="cite-source">Injury Prevention Journal, 2024.</span>
+                    <a href="https://www.ncoa.org/article/get-the-facts-on-falls-prevention/" target="_blank">NCOA Facts</a>
+                </li>
+            </ol>
+
+            <h3>Connectivity & Emergency Response</h3>
+            <ol class="citation-list" start="6">
+                <li>
+                    <span class="cite-title">Prehospital Time Interval for Urban and Rural EMS: Systematic Review.</span>
+                    <span class="cite-source">PMC, 2022.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9778378/" target="_blank">PMC9778378</a>
+                </li>
+                <li>
+                    <span class="cite-title">The Telehealth Divide: Digital Inequity in Rural Health Care.</span>
+                    <span class="cite-source">Federal Reserve Bank of Atlanta, 2024.</span>
+                    <a href="https://www.atlantafed.org/community-development/publications/partners-update/2024/10/24/the-telehealth-divide-digital-inequity-in-rural-health-care-deserts" target="_blank">Atlanta Fed</a>
+                </li>
+                <li>
+                    <span class="cite-title">Effects of EMS Response Time on Cardiac Arrest Survival.</span>
+                    <span class="cite-source">PMC, 2024.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12065030/" target="_blank">PMC12065030</a>
+                </li>
+            </ol>
+
+            <h3>Clinical Evidence & Technology</h3>
+            <ol class="citation-list" start="9">
+                <li>
+                    <span class="cite-title">Soft Robotic Wearable Device Improves Walking for Parkinson's.</span>
+                    <span class="cite-source">Harvard SEAS, January 2024.</span>
+                    <a href="https://seas.harvard.edu/news/2024/01/soft-robotic-wearable-device-improves-walking-individual-parkinsons-disease" target="_blank">Harvard SEAS</a>
+                </li>
+                <li>
+                    <span class="cite-title">Soft Robotics for Parkinson's Disease Supported by AI.</span>
+                    <span class="cite-source">PMC/BME Frontiers, 2025.</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12214301/" target="_blank">PMC12214301</a>
+                </li>
+                <li>
+                    <span class="cite-title">Systematic Review of RPM Interventions on Safety and Outcomes.</span>
+                    <span class="cite-source">npj Digital Medicine, 2024.</span>
+                    <a href="https://www.nature.com/articles/s41746-024-01182-w" target="_blank">Nature: npj Digital Medicine</a>
+                </li>
+                <li>
+                    <span class="cite-title">Efficacy of Remote Health Monitoring in Reducing Readmissions.</span>
+                    <span class="cite-source">JMIR Formative Research, 2024.</span>
+                    <a href="https://formative.jmir.org/2024/1/e53455" target="_blank">JMIR</a>
+                </li>
+            </ol>
+
+            <h3>Market & Technology Costs</h3>
+            <ol class="citation-list" start="13">
+                <li>
+                    <span class="cite-title">Disabled and Elderly Assistive Technology Market Size 2024-2034.</span>
+                    <span class="cite-source">Custom Market Insights, 2024.</span>
+                    <a href="https://www.custommarketinsights.com/report/disabled-and-elderly-assistive/" target="_blank">CMI Report</a>
+                </li>
+                <li>
+                    <span class="cite-title">Satellite IoT Market Size & Forecast 2025-2034.</span>
+                    <span class="cite-source">GM Insights, 2024.</span>
+                    <a href="https://www.gminsights.com/industry-analysis/satellite-iot-market" target="_blank">GM Insights</a>
+                </li>
+                <li>
+                    <span class="cite-title">Swarm Technologies Reveals Pricing: $5/device/month.</span>
+                    <span class="cite-source">SpaceNews, 2020.</span>
+                    <a href="https://spacenews.com/swarm-reveals-prices/" target="_blank">SpaceNews</a>
+                </li>
+                <li>
+                    <span class="cite-title">The Recent Large Reduction in Space Launch Cost.</span>
+                    <span class="cite-source">NASA Technical Reports Server, 2020.</span>
+                    <a href="https://ntrs.nasa.gov/citations/20200001093" target="_blank">NASA NTRS</a>
+                </li>
+                <li>
+                    <span class="cite-title">CubeSat Operators Launch an IoT Space Race.</span>
+                    <span class="cite-source">IEEE Spectrum, 2024.</span>
+                    <a href="https://spectrum.ieee.org/cubesat" target="_blank">IEEE Spectrum</a>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Join the Mission</h2>
+            <p>
+                We're building open infrastructure for health technology. Whether you're an investor,
+                engineer, healthcare professional, or someone who believes everyone deserves emergency
+                connectivity—there's a role for you.
+            </p>
+            <div class="cta-group">
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-primary">View on GitHub</a>
+                <a href="index.html" class="btn btn-secondary">Explore ARIA</a>
+                <a href="connectivity.html" class="btn btn-secondary">ARIA Sentinel</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html">ARIA Home</a>
+                    <a href="research-paper.html">Research Paper</a>
+                    <a href="hardware-bom.html">Hardware</a>
+                    <a href="connectivity.html">Sentinel</a>
+                    <a href="ecosystem.html">Ecosystem</a>
+                </div>
+                <div class="footer-copy">
+                    MIT License © 2025 ARIA Project — All statistics sourced and verified.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

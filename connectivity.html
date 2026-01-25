@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA Sentinel — Global Emergency Connectivity for Assistive Technology</title>
+    <meta name="description" content="Democratizing access to health technology through satellite-based emergency connectivity. Always-on protection for vulnerable populations, everywhere on Earth.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-warm: #dd6b20;
+            --color-success: #38a169;
+            --color-space: #0f172a;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fafc;
+            --color-bg-code: #1e293b;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+            --max-width-prose: 720px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.75rem; margin-bottom: 1.5rem; margin-top: 3rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 1rem; margin-top: 2rem; }
+
+        p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .prose {
+            max-width: var(--max-width-prose);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+            margin-left: 0.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* Hero Section - Space Theme */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, var(--color-space) 0%, #1e3a5f 50%, var(--color-primary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(2px 2px at 20px 30px, white, transparent),
+                              radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                              radial-gradient(1px 1px at 90px 40px, white, transparent),
+                              radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+                              radial-gradient(1px 1px at 230px 80px, white, transparent),
+                              radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent);
+            background-repeat: repeat;
+            background-size: 350px 200px;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.375rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-accent-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Stats Grid */
+        .stats {
+            background: var(--color-primary);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-accent-light);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--color-bg-alt);
+            padding: 4rem 0;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .problem-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--color-warm);
+        }
+
+        .problem-card h4 {
+            color: var(--color-warm);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            padding: 4rem 0;
+            background: var(--color-bg);
+        }
+
+        .diagram-block {
+            background: var(--color-bg-code);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .diagram-block pre {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+
+        .diagram-block .comment { color: #64748b; }
+        .diagram-block .highlight { color: #fbbf24; }
+        .diagram-block .success { color: #4ade80; }
+        .diagram-block .accent { color: #63b3ed; }
+
+        /* Phases Section */
+        .phases {
+            background: var(--color-bg-alt);
+            padding: 4rem 0;
+        }
+
+        .phase-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .phase-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .phase-marker {
+            text-align: center;
+        }
+
+        .phase-number {
+            width: 60px;
+            height: 60px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 0.5rem;
+        }
+
+        .phase-number.active {
+            background: var(--color-success);
+        }
+
+        .phase-number.future {
+            background: var(--color-text-muted);
+        }
+
+        .phase-date {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .phase-content {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .phase-content h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-content ul {
+            margin-left: 1.25rem;
+            color: var(--color-text-secondary);
+        }
+
+        .phase-content li {
+            margin-bottom: 0.25rem;
+        }
+
+        .phase-cost {
+            display: inline-block;
+            background: var(--color-bg-alt);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--color-success);
+            margin-top: 0.75rem;
+        }
+
+        /* Research Section */
+        .research {
+            padding: 4rem 0;
+            background: var(--color-bg);
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .research-card {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .research-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .research-card .citation {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Privacy Section */
+        .privacy {
+            padding: 4rem 0;
+            background: var(--color-space);
+            color: white;
+        }
+
+        .privacy h2 {
+            color: white;
+        }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .privacy-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .privacy-card h4 {
+            color: var(--color-accent-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .privacy-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .privacy-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-bg-alt);
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Callout */
+        .callout {
+            background: white;
+            border-left: 4px solid var(--color-accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .callout-title {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Table Styles */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .comparison-table th {
+            background: var(--color-bg-alt);
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .comparison-table td {
+            color: var(--color-text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-primary);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .problem-grid,
+            .research-grid,
+            .privacy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-item {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-marker {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .phase-number {
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ARIA <span>Sentinel</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#architecture">How It Works</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="https://github.com/dbutler-a11y/aria-research" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Open Infrastructure Research</span>
+                <h1>ARIA Sentinel</h1>
+                <p class="hero-subtitle">Always-On Emergency Connectivity for Assistive Technology</p>
+                <p class="hero-description">
+                    We're building open-source satellites to ensure that every person using assistive technology
+                    has emergency connectivity—regardless of location, infrastructure, or ability to pay.
+                    Because a 911 signal should never depend on cell tower coverage.
+                </p>
+                <div class="cta-group">
+                    <a href="#roadmap" class="btn btn-primary">View Roadmap</a>
+                    <a href="#research" class="btn btn-secondary">Read the Research</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">of Earth lacks reliable cellular coverage</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">54M</div>
+                    <div class="stat-label">Americans live in rural areas with limited connectivity</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">~$30K</div>
+                    <div class="stat-label">cost to launch a PocketQube satellite</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$5/mo</div>
+                    <div class="stat-label">per-device cost with satellite IoT today</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="margin-top: 0;">The Connectivity Gap</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    Assistive technology is only as reliable as its connection. When that connection fails,
+                    vulnerable people are left without their safety net.
+                </p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h4>Rural Isolation</h4>
+                    <p>
+                        Millions of elderly and disabled individuals live in areas with no cellular coverage.
+                        A fall detection device that can't send an alert is just expensive jewelry.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <h4>Infrastructure Fragility</h4>
+                    <p>
+                        Natural disasters destroy cell towers. Power outages disable networks.
+                        The moments when help is most needed are often when connectivity fails.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <h4>Economic Barriers</h4>
+                    <p>
+                        Satellite communication has historically cost $15-50/month per device.
+                        For someone on a fixed income with multiple health devices, this is prohibitive.
+                    </p>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">The Core Insight</div>
+                <p>
+                    <strong>Cellular networks cover only ~15% of Earth's surface.</strong> Traditional satellite services
+                    cost too much for most users. But new small satellite technology has dropped launch costs by 95%
+                    in the last decade. We can now build emergency connectivity infrastructure that's
+                    <strong>open-source, affordable, and independent of commercial networks</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="margin-top: 0;">How ARIA Sentinel Works</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    A hybrid architecture that uses existing networks when available,
+                    and falls back to satellite when they're not.
+                </p>
+            </div>
+
+            <div class="diagram-block">
+                <pre>
+<span class="comment">                          ARIA SENTINEL ARCHITECTURE</span>
+<span class="comment">═══════════════════════════════════════════════════════════════════════════════</span>
+
+                                    <span class="highlight">SPACE SEGMENT</span>
+
+                              <span class="accent">🛰️</span>         <span class="accent">🛰️</span>         <span class="accent">🛰️</span>
+                           Sentinel-1   Sentinel-2   Sentinel-N
+                                    ╲       │       ╱
+                                     ╲      │      ╱
+                                      ╲     │     ╱    <span class="comment">← LEO Orbit (500km)</span>
+                                       ╲    │    ╱
+<span class="comment">═══════════════════════════════════════════════════════════════════════════════</span>
+
+                                    <span class="highlight">GROUND SEGMENT</span>
+
+    <span class="success">📱 ARIA Device</span>                                          <span class="success">📡 Ground Stations</span>
+    (Patient's Home)                                        (Distributed Network)
+         │                                                         │
+         │ <span class="comment">← Primary: WiFi/Cellular (when available)</span>               │
+         │ <span class="comment">← Fallback: Satellite uplink (emergency)</span>                │
+         │                                                         │
+         ▼                                                         ▼
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │                                                                      │
+    │   <span class="accent">HYBRID CONNECTIVITY MODULE</span>                                       │
+    │   ├── WiFi/Cellular: Normal operation, real-time data              │
+    │   ├── Satellite IoT: Emergency alerts, daily health check-ins      │
+    │   └── Store-and-Forward: Queues data when no connection available  │
+    │                                                                      │
+    └─────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+                              <span class="success">☁️ ARIA Cloud</span>
+                        (Zero-Knowledge Architecture)
+                                       │
+                                       ▼
+                         ┌─────────────────────────┐
+                         │   <span class="success">📱 Caregiver App</span>       │
+                         │   <span class="success">🏥 Emergency Services</span>  │
+                         │   <span class="success">👨‍⚕️ Healthcare Provider</span> │
+                         └─────────────────────────┘
+</pre>
+            </div>
+
+            <h3>Message Priority System</h3>
+            <p>
+                Satellite bandwidth is limited and precious. ARIA Sentinel uses intelligent prioritization
+                to ensure critical messages always get through.
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Message Type</th>
+                        <th>Size</th>
+                        <th>Latency Target</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong style="color: #e53e3e;">P0 - Critical</strong></td>
+                        <td>Fall detected, cardiac event, SOS button</td>
+                        <td>~50 bytes</td>
+                        <td>&lt; 2 minutes</td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color: #dd6b20;">P1 - Urgent</strong></td>
+                        <td>Medication missed (2+ hours), unusual vitals</td>
+                        <td>~100 bytes</td>
+                        <td>&lt; 15 minutes</td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color: #38a169;">P2 - Normal</strong></td>
+                        <td>Daily health summary, medication confirmations</td>
+                        <td>~200 bytes</td>
+                        <td>&lt; 6 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color: #718096;">P3 - Low</strong></td>
+                        <td>Firmware updates, configuration sync</td>
+                        <td>Variable</td>
+                        <td>&lt; 24 hours</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout">
+                <div class="callout-title">Why Not Just Use Starlink?</div>
+                <p>
+                    Starlink and similar services are designed for high-bandwidth internet access, requiring
+                    powered dishes and $120+/month subscriptions. ARIA Sentinel is optimized for
+                    <strong>low-power, low-bandwidth, high-reliability emergency messaging</strong>—a fundamentally
+                    different use case. Our devices can run on batteries for years and cost $5/month to operate.
+                    We're not replacing the internet; we're providing a safety net when the internet isn't there.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="phases">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="margin-top: 0;">Implementation Roadmap</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    A phased approach that delivers value immediately while building toward full satellite independence.
+                </p>
+            </div>
+
+            <div class="phase-timeline">
+                <div class="phase-item">
+                    <div class="phase-marker">
+                        <div class="phase-number active">1</div>
+                        <span class="phase-date">Now</span>
+                    </div>
+                    <div class="phase-content">
+                        <h4>Commercial Partnership Phase</h4>
+                        <p>Integrate with existing satellite IoT networks (Swarm, Astrocast) to provide immediate coverage while developing our own infrastructure.</p>
+                        <ul>
+                            <li>Add satellite modem to ARIA devices ($119 hardware)</li>
+                            <li>Partner with Swarm (SpaceX) for global coverage</li>
+                            <li>Develop hybrid connectivity firmware</li>
+                            <li>Launch pilot program with 100 devices</li>
+                        </ul>
+                        <span class="phase-cost">Est. Cost: $50,000</span>
+                    </div>
+                </div>
+
+                <div class="phase-item">
+                    <div class="phase-marker">
+                        <div class="phase-number future">2</div>
+                        <span class="phase-date">Year 1</span>
+                    </div>
+                    <div class="phase-content">
+                        <h4>Research Satellite Launch</h4>
+                        <p>Launch our first PocketQube satellite as a technology demonstrator and research platform.</p>
+                        <ul>
+                            <li>Partner with university aerospace program</li>
+                            <li>Design open-source satellite bus</li>
+                            <li>Launch via Alba Orbital rideshare</li>
+                            <li>Publish open hardware specifications</li>
+                        </ul>
+                        <span class="phase-cost">Est. Cost: $75,000</span>
+                    </div>
+                </div>
+
+                <div class="phase-item">
+                    <div class="phase-marker">
+                        <div class="phase-number future">3</div>
+                        <span class="phase-date">Year 2-3</span>
+                    </div>
+                    <div class="phase-content">
+                        <h4>Regional Constellation</h4>
+                        <p>Deploy 6-12 satellites for regional coverage (e.g., North America), establish ground station network.</p>
+                        <ul>
+                            <li>Deploy constellation for 4-6 hour revisit time</li>
+                            <li>Build/partner for 5+ ground stations</li>
+                            <li>Open-source ground station designs</li>
+                            <li>Community-operated ground station program</li>
+                        </ul>
+                        <span class="phase-cost">Est. Cost: $500,000 - $1M</span>
+                    </div>
+                </div>
+
+                <div class="phase-item">
+                    <div class="phase-marker">
+                        <div class="phase-number future">4</div>
+                        <span class="phase-date">Year 5+</span>
+                    </div>
+                    <div class="phase-content">
+                        <h4>Global Coverage</h4>
+                        <p>Expand to 40-100 satellites for near-continuous global coverage. Transition to fully open, community-governed infrastructure.</p>
+                        <ul>
+                            <li>Sub-30-minute message latency worldwide</li>
+                            <li>Decentralized ground station network</li>
+                            <li>Zero per-message cost for emergency alerts</li>
+                            <li>Open protocol for other health devices to use</li>
+                        </ul>
+                        <span class="phase-cost">Est. Cost: $5M - $10M (with grants/partnerships)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">Open Infrastructure Model</div>
+                <p>
+                    Unlike commercial satellite operators, ARIA Sentinel will publish all satellite designs,
+                    ground station specifications, and communication protocols under open-source licenses.
+                    Any organization can build compatible infrastructure. We're not building a company—we're
+                    building a <strong>public utility for emergency health connectivity</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="margin-top: 0;">Research Foundation</h2>
+                <p class="prose" style="margin: 0 auto;">
+                    ARIA Sentinel is grounded in peer-reviewed research on connectivity gaps,
+                    satellite IoT technology, and health equity.
+                </p>
+            </div>
+
+            <div class="research-grid">
+                <div class="research-card">
+                    <h4>Connectivity & Health Outcomes</h4>
+                    <p>
+                        Studies show that reliable connectivity for remote patient monitoring reduces hospital
+                        readmissions by 25-50% and improves medication adherence by up to 40%.
+                        Connectivity gaps directly translate to worse health outcomes.
+                    </p>
+                    <div class="citation">
+                        "Remote Patient Monitoring: A Systematic Review" — Journal of Medical Internet Research, 2023
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <h4>Rural Emergency Response</h4>
+                    <p>
+                        Average emergency response time in rural areas is 14+ minutes compared to 7 minutes
+                        in urban areas. For cardiac events and falls, every minute of delay significantly
+                        increases mortality and permanent disability risk.
+                    </p>
+                    <div class="citation">
+                        "Rural-Urban Disparities in Emergency Medical Services" — JAMA Network, 2022
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <h4>Satellite IoT Democratization</h4>
+                    <p>
+                        The cost of launching 1kg to orbit has dropped from $54,500 (Space Shuttle) to
+                        $2,720 (SpaceX Falcon 9). PocketQube satellites now cost under $30,000 to build
+                        and launch, making community-owned space infrastructure feasible.
+                    </p>
+                    <div class="citation">
+                        "The Economics of Small Satellite Constellations" — MIT Technology Review, 2024
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <h4>Health Equity & Technology Access</h4>
+                    <p>
+                        The digital divide compounds health disparities. Populations most likely to need
+                        assistive technology (elderly, disabled, low-income) are also least likely to have
+                        reliable internet access. Satellite bridges this gap.
+                    </p>
+                    <div class="citation">
+                        "Digital Health Equity" — WHO Digital Health Technical Advisory Group, 2024
+                    </div>
+                </div>
+            </div>
+
+            <h3>Technical References</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Source</th>
+                        <th>Key Finding</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Satellite IoT Architecture</td>
+                        <td>IEEE Spectrum, 2024</td>
+                        <td>CubeSat constellations can provide global IoT coverage for &lt;$5/device/month</td>
+                    </tr>
+                    <tr>
+                        <td>LoRaWAN over Satellite</td>
+                        <td>Lacuna Space Technical Paper</td>
+                        <td>Standard LoRa devices can reach LEO satellites with minor modifications</td>
+                    </tr>
+                    <tr>
+                        <td>NB-IoT via Satellite (3GPP R17)</td>
+                        <td>3GPP Specification, 2022</td>
+                        <td>Existing cellular IoT devices can connect to satellites with software updates</td>
+                    </tr>
+                    <tr>
+                        <td>Open-Source Satellites</td>
+                        <td>Libre Space Foundation</td>
+                        <td>Community-operated ground station network now covers 6 continents</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="margin-top: 0;">Privacy by Design</h2>
+                <p style="color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto;">
+                    Health data is sensitive. ARIA Sentinel is designed so that no one—not even us—can
+                    access your data without your explicit consent.
+                </p>
+            </div>
+
+            <div class="privacy-grid">
+                <div class="privacy-card">
+                    <div class="privacy-icon">🔐</div>
+                    <h4>End-to-End Encryption</h4>
+                    <p>
+                        Data is encrypted on your ARIA device before transmission. Only your designated
+                        caregivers hold decryption keys. Satellites and servers see only encrypted blobs.
+                    </p>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-icon">🏠</div>
+                    <h4>Zero-Knowledge Architecture</h4>
+                    <p>
+                        Our servers cannot decrypt your health data. We store and forward encrypted messages
+                        but have "zero knowledge" of their contents. You own your data, always.
+                    </p>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-icon">🌐</div>
+                    <h4>Self-Hosting Option</h4>
+                    <p>
+                        For maximum privacy, you can run your own ground station and server. Our open-source
+                        stack lets you operate completely independent of any central service.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Join the Mission</h2>
+            <p>
+                ARIA Sentinel is an open research initiative. Whether you're an engineer, healthcare
+                professional, maker, or someone who believes everyone deserves emergency connectivity,
+                there's a way to contribute.
+            </p>
+            <div class="cta-group">
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-primary">View on GitHub</a>
+                <a href="support.html" class="btn btn-secondary">Support the Project</a>
+                <a href="ecosystem.html" class="btn btn-secondary">Join the Community</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html">ARIA Home</a>
+                    <a href="research-paper.html">Research Paper</a>
+                    <a href="hardware-bom.html">Hardware</a>
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="support.html">Support</a>
+                </div>
+                <div class="footer-copy">
+                    MIT License © 2025 ARIA Project — "Connectivity for everyone, everywhere."
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
