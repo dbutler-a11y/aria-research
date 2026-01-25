@@ -653,21 +653,32 @@
 
         /* CTA */
         .cta-section {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-            color: white;
+            background: #1a365d;
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: #ffffff;
             padding: 4rem 0;
             text-align: center;
         }
 
         .cta-section h2 {
-            color: white;
+            color: #ffffff !important;
             margin-top: 0;
+            text-shadow: none;
+            -webkit-text-fill-color: #ffffff;
         }
 
         .cta-section p {
-            color: rgba(255, 255, 255, 0.85);
+            color: #ffffff !important;
+            opacity: 0.9;
             max-width: 600px;
             margin: 0 auto 2rem;
+            -webkit-text-fill-color: #ffffff;
+        }
+
+        .cta-section .btn-secondary {
+            color: #ffffff !important;
+            border-color: rgba(255, 255, 255, 0.6);
+            -webkit-text-fill-color: #ffffff;
         }
 
         .btn {
