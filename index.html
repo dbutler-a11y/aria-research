@@ -479,15 +479,15 @@
         /* Responsive */
         @media (max-width: 900px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .products-grid { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: 1fr !important; }
             .videos-grid { grid-template-columns: 1fr; }
-            .links-grid { grid-template-columns: repeat(2, 1fr); }
+            .links-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 600px) {
             .nav-links { display: none; }
             h1 { font-size: 2.25rem; }
-            .links-grid { grid-template-columns: 1fr; }
+            .links-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-content { flex-direction: column; text-align: center; }
             .footer-links { flex-wrap: wrap; justify-content: center; }
         }
@@ -499,10 +499,11 @@
         <div class="container">
             <a href="#" class="logo">ARIA</a>
             <ul class="nav-links">
-                <li><a href="#products">Products</a></li>
-                <li><a href="research-paper.html">Research</a></li>
+                <li><a href="#products">Companions</a></li>
+                <li><a href="therapeutics.html">Therapeutics</a></li>
+                <li><a href="research-lab.html">Research Lab</a></li>
+                <li><a href="research-paper.html">Paper</a></li>
                 <li><a href="hardware-bom.html">Hardware</a></li>
-                <li><a href="connectivity.html">Sentinel</a></li>
                 <li><a href="research-data.html">Investors</a></li>
                 <li><a href="https://github.com/dbutler-a11y/aria-research" target="_blank">GitHub</a></li>
             </ul>
@@ -637,6 +638,68 @@
         </div>
     </section>
 
+    <!-- Therapeutic Devices -->
+    <section id="therapeutics" class="products" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fff7ed 100%);">
+        <div class="container">
+            <div class="section-header">
+                <span class="hero-badge" style="background: #92400e;">Experimental Research</span>
+                <h2 style="color: #92400e;">Therapeutic Devices</h2>
+                <p>Disease-modifying technology designed to actively slow, halt, or reverse Parkinson's progression. Based on cutting-edge neuroscience research.</p>
+            </div>
+            <div class="products-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="product-card" style="border-left: 4px solid #d97706;">
+                    <div class="product-header">
+                        <h3 style="color: #92400e;">ARIA Pulse</h3>
+                        <span class="product-price">~$78</span>
+                    </div>
+                    <p class="product-description">
+                        40Hz gamma entrainment system. Synchronized light, sound, and vibration that transforms microglia into cleaners of toxic alpha-synuclein.
+                    </p>
+                    <ul class="product-features">
+                        <li>Phase-locked 40Hz LED flicker</li>
+                        <li>40Hz amplitude-modulated audio</li>
+                        <li>40Hz vibrotactile stimulation</li>
+                        <li>MIT GENUS research-backed</li>
+                    </ul>
+                </div>
+                <div class="product-card" style="border-left: 4px solid #d97706;">
+                    <div class="product-header">
+                        <h3 style="color: #92400e;">ARIA Glow</h3>
+                        <span class="product-price">~$105</span>
+                    </div>
+                    <p class="product-description">
+                        NIR photobiomodulation helmet. 810nm infrared light rescues dying mitochondria, boosting cellular ATP production by 50-70%.
+                    </p>
+                    <ul class="product-features">
+                        <li>24x 1W 810nm NIR LEDs</li>
+                        <li>Thermal safety monitoring</li>
+                        <li>Optional 40Hz pulsing</li>
+                        <li>10-50 mW/cm&sup2; calibrated</li>
+                    </ul>
+                </div>
+                <div class="product-card" style="border-left: 4px solid #d97706;">
+                    <div class="product-header">
+                        <h3 style="color: #92400e;">ARIA Cycle</h3>
+                        <span class="product-price">~$4</span>
+                    </div>
+                    <p class="product-description">
+                        Smart forced-exercise controller. Guides pedaling at 80-90 RPM for 35% motor improvement matching levodopa.
+                    </p>
+                    <ul class="product-features">
+                        <li>Hall effect cadence sensor</li>
+                        <li>Audio metronome cueing</li>
+                        <li>Cleveland Clinic protocol</li>
+                        <li>Session logging & trends</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="therapeutics.html" class="btn btn-primary" style="background: #92400e;">Explore Therapeutic Devices</a>
+                <a href="research-lab.html" class="btn btn-secondary">Read the Research</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Videos -->
     <section class="videos">
         <div class="container">
@@ -674,10 +737,20 @@
                 <h2>Explore</h2>
             </div>
             <div class="links-grid">
+                <a href="therapeutics.html" class="link-card">
+                    <div class="icon">⚡</div>
+                    <h4>Therapeutics</h4>
+                    <p>Disease-modifying devices</p>
+                </a>
+                <a href="research-lab.html" class="link-card">
+                    <div class="icon">🔬</div>
+                    <h4>Research Lab</h4>
+                    <p>Cure & reversal research</p>
+                </a>
                 <a href="research-paper.html" class="link-card">
                     <div class="icon">📄</div>
                     <h4>Research Paper</h4>
-                    <p>Full scientific documentation</p>
+                    <p>Scientific documentation</p>
                 </a>
                 <a href="hardware-bom.html" class="link-card">
                     <div class="icon">🔧</div>
@@ -716,10 +789,11 @@
             <div class="footer-content">
                 <div class="footer-brand">ARIA Project</div>
                 <div class="footer-links">
-                    <a href="research-paper.html">Research</a>
+                    <a href="therapeutics.html">Therapeutics</a>
+                    <a href="research-lab.html">Research Lab</a>
+                    <a href="research-paper.html">Paper</a>
                     <a href="hardware-bom.html">Hardware</a>
                     <a href="ecosystem.html">Ecosystem</a>
-                    <a href="connectivity.html">Sentinel</a>
                     <a href="support.html">Support</a>
                     <a href="https://github.com/dbutler-a11y/aria-research">GitHub</a>
                 </div>

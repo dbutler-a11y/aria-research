@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA Research Lab — Exploring Every Path to a Parkinson's Cure</title>
+    <meta name="description" content="Comprehensive documentation of every creative approach to curing, reversing, or modifying Parkinson's disease. Tiered by reversal potential with status tracking.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-warm: #dd6b20;
+            --color-success: #38a169;
+            --color-purple: #5b21b6;
+            --color-purple-light: #7c3aed;
+            --color-purple-lighter: #a78bfa;
+            --color-purple-pale: #ede9fe;
+            --color-purple-dark: #4c1d95;
+            --color-purple-bg: #f5f3ff;
+            --color-purple-border: #c4b5fd;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f7fafc;
+            --color-bg-code: #1e293b;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 17px; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 3rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.875rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+
+        p { color: var(--color-text-secondary); margin-bottom: 1rem; }
+
+        a { color: var(--color-purple-light); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover { color: var(--color-primary); }
+
+        .nav-links a.active {
+            color: var(--color-purple);
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 0 5rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--color-purple-bg) 0%, var(--color-bg) 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-purple);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-purple-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--color-purple);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-purple-dark);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-purple);
+            text-decoration: none;
+        }
+
+        /* Stats Bar */
+        .stats {
+            background: linear-gradient(135deg, var(--color-purple-dark) 0%, var(--color-purple) 50%, var(--color-purple-light) 100%);
+            color: white;
+            padding: 2.5rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-purple-lighter);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label { font-size: 0.875rem; opacity: 0.9; }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header p {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Tier Sections */
+        .tier-section {
+            padding: 4rem 0;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .tier-badge.tier-1 {
+            background: linear-gradient(135deg, var(--color-purple-dark), var(--color-purple));
+            color: white;
+        }
+
+        .tier-badge.tier-2 {
+            background: linear-gradient(135deg, #92400e, #d97706);
+            color: white;
+        }
+
+        .tier-badge.tier-3 {
+            background: linear-gradient(135deg, #065f46, #059669);
+            color: white;
+        }
+
+        .tier-badge.tier-cross {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: white;
+        }
+
+        .tier-description {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Research Cards */
+        .research-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .research-card:hover {
+            box-shadow: 0 4px 20px rgba(91, 33, 182, 0.08);
+        }
+
+        .research-card details {
+            border: none;
+        }
+
+        .research-card summary {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            list-style: none;
+            user-select: none;
+            transition: background 0.15s;
+        }
+
+        .research-card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .research-card summary:hover {
+            background: var(--color-purple-bg);
+        }
+
+        .research-card details[open] summary {
+            border-bottom: 1px solid var(--color-border);
+            background: var(--color-purple-bg);
+        }
+
+        .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-purple), var(--color-purple-light));
+            color: white;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .tier-2-section .card-number {
+            background: linear-gradient(135deg, #92400e, #d97706);
+        }
+
+        .tier-3-section .card-number {
+            background: linear-gradient(135deg, #065f46, #059669);
+        }
+
+        .tier-cross-section .card-number {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        }
+
+        .card-title-block {
+            flex: 1;
+        }
+
+        .card-title-block h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            color: var(--color-primary);
+        }
+
+        .card-title-block .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin: 0.15rem 0 0 0;
+            font-style: italic;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 12px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .status-building {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fcd34d;
+        }
+
+        .status-monitoring {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        .status-future {
+            background: var(--color-purple-pale);
+            color: var(--color-purple-dark);
+            border: 1px solid var(--color-purple-border);
+        }
+
+        .status-active {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+
+        .status-investigating {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .expand-icon {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 1.25rem;
+            transition: transform 0.2s;
+        }
+
+        details[open] .expand-icon {
+            transform: rotate(45deg);
+        }
+
+        .card-body {
+            padding: 1.75rem 2rem 2rem;
+        }
+
+        .card-body h4 {
+            font-size: 1rem;
+            color: var(--color-purple);
+            margin-bottom: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .card-body h4:first-child {
+            margin-top: 0;
+        }
+
+        .card-body p {
+            font-size: 0.925rem;
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-body ul {
+            list-style: none;
+            margin-bottom: 1rem;
+            padding: 0;
+        }
+
+        .card-body ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .card-body ul li::before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: var(--color-purple-light);
+            font-weight: bold;
+        }
+
+        .tier-2-section .card-body ul li::before {
+            color: #d97706;
+        }
+
+        .tier-3-section .card-body ul li::before {
+            color: #059669;
+        }
+
+        .tier-cross-section .card-body ul li::before {
+            color: var(--color-accent);
+        }
+
+        .card-body .key-researchers {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            border-left: 3px solid var(--color-purple-border);
+            padding-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tier-2-section .card-body .key-researchers {
+            border-left-color: #fcd34d;
+        }
+
+        .tier-3-section .card-body .key-researchers {
+            border-left-color: #6ee7b7;
+        }
+
+        .card-body .mechanism-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--color-purple-pale);
+            color: var(--color-purple);
+            margin-right: 0.35rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .tier-2-section .card-body .mechanism-tag {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tier-3-section .card-body .mechanism-tag {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        /* References Section */
+        .references {
+            padding: 4rem 0;
+            background: var(--color-bg-alt);
+        }
+
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .ref-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 3px solid var(--color-purple-light);
+        }
+
+        .ref-card h4 {
+            font-size: 0.95rem;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .ref-card p {
+            font-size: 0.825rem;
+            color: var(--color-text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .ref-card .ref-type {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--color-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            padding: 3rem 0;
+            background: var(--color-purple-bg);
+            border-top: 3px solid var(--color-purple);
+            border-bottom: 3px solid var(--color-purple);
+        }
+
+        .disclaimer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .disclaimer-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer h3 {
+            color: var(--color-purple-dark);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .disclaimer p {
+            font-size: 0.95rem;
+            color: #3b0764;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--color-purple-dark) 0%, var(--color-purple) 50%, var(--color-purple-light) 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 550px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--color-purple-dark);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--color-bg-alt);
+        }
+
+        .cta-section .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .cta-section .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .ref-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2.25rem; }
+            .research-card summary { padding: 1.25rem 1.25rem; gap: 0.75rem; }
+            .card-body { padding: 1.25rem; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ARIA</a>
+            <ul class="nav-links">
+                <li><a href="index.html#products">Companions</a></li>
+                <li><a href="therapeutics.html">Therapeutics</a></li>
+                <li><a href="research-lab.html" class="active">Research Lab</a></li>
+                <li><a href="research-paper.html">Research Paper</a></li>
+                <li><a href="hardware-bom.html">Hardware</a></li>
+                <li><a href="https://github.com/dbutler-a11y/aria-research" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">Open Research</span>
+            <h1>ARIA Research Lab</h1>
+            <p class="hero-subtitle">Exploring Every Path to a Cure</p>
+            <p class="hero-description">
+                A comprehensive, living document of every creative approach to curing, reversing, or modifying Parkinson's disease &mdash; ranked by reversal potential, grounded in published science, and tracked from lab bench to bedside.
+            </p>
+            <div class="cta-group">
+                <a href="#tier-1" class="btn btn-primary">Tier 1: True Reversal</a>
+                <a href="#tier-2" class="btn btn-secondary">Tier 2: Disease-Modifying</a>
+                <a href="#tier-3" class="btn btn-secondary">Tier 3: Neuroprotection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Approaches documented &amp; tracked</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Tiers ranked by cure potential</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Devices currently being built</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Ideas too bold to explore</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- TIER 1: TRUE REVERSAL POTENTIAL                             -->
+    <!-- =========================================================== -->
+    <section id="tier-1" class="tier-section" style="background: var(--color-bg);">
+        <div class="container">
+            <div class="section-header">
+                <span class="tier-badge tier-1">Tier 1</span>
+                <h2>True Reversal Potential</h2>
+            </div>
+            <p class="tier-description">
+                These approaches could theoretically reverse Parkinson's disease by replacing lost neurons, rejuvenating aged cells, or fundamentally reprogramming cellular behavior. They represent the frontier of what a "cure" could look like.
+            </p>
+
+            <!-- 1. In Situ Neuronal Reprogramming -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">1</span>
+                        <div class="card-title-block">
+                            <h3>In Situ Neuronal Reprogramming</h3>
+                            <p class="card-subtitle">Converting existing brain cells into new dopaminergic neurons</p>
+                        </div>
+                        <span class="status-badge status-future">Future</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Instead of transplanting neurons from outside, convert the brain's own astrocytes (support cells) into functional dopaminergic neurons using transcription factor cocktails. The raw material is already there &mdash; billions of astrocytes sitting right next to the dying neurons &mdash; we just need to convince them to change careers.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>Transcription factor cocktail: <strong>Ascl1, Nurr1, Lmx1a</strong> (the "ANL" combination) specifically drives dopaminergic neuron fate</li>
+                            <li>PTB (polypyrimidine tract binding protein) knockdown via antisense oligonucleotides converts astrocytes to functional neurons</li>
+                            <li>Converted neurons integrate into existing circuits, form synapses, and produce dopamine</li>
+                            <li>No immune rejection &mdash; the cells are already the patient's own</li>
+                            <li>Potential for AAV (adeno-associated virus) delivery to target substantia nigra specifically</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>Xiang-Dong Fu's lab at UC San Diego demonstrated that PTB knockdown converts astrocytes to functional neurons in mouse models, with treated Parkinson's mice recovering motor function. Multiple independent labs have confirmed astrocyte-to-neuron conversion in vitro and in vivo. The approach is moving toward clinical translation but faces significant delivery and safety challenges.</p>
+
+                        <div class="mechanism-tag">Neurogenesis</div>
+                        <div class="mechanism-tag">Transcription Factors</div>
+                        <div class="mechanism-tag">Cell Reprogramming</div>
+                        <div class="mechanism-tag">Gene Therapy</div>
+
+                        <p class="key-researchers">Key researchers: Xiang-Dong Fu (UCSD), Gong Chen (Jinan University). Key papers: Qian et al. Nature 2020 (Fu lab), Chen lab Cell Stem Cell 2018.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2. Yamanaka Factor Partial Reprogramming -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">2</span>
+                        <div class="card-title-block">
+                            <h3>Yamanaka Factor Partial Reprogramming</h3>
+                            <p class="card-subtitle">Cellular rejuvenation without dedifferentiation using OSKM factors</p>
+                        </div>
+                        <span class="status-badge status-future">Future</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Shinya Yamanaka won the Nobel Prize for showing that four transcription factors (Oct4, Sox2, Klf4, c-Myc &mdash; collectively "OSKM") can reprogram adult cells back to a stem cell state. The breakthrough insight: if you apply these factors in <em>short pulses</em> rather than continuously, cells rejuvenate their epigenetic age without fully dedifferentiating. They become younger versions of themselves.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>Short-pulse OSKM expression (2-4 days on, then off) reverses epigenetic aging hallmarks</li>
+                            <li>Restores youthful gene expression patterns without erasing cell identity</li>
+                            <li>Reverses DNA methylation age clocks &mdash; cells become biologically younger</li>
+                            <li>Restores mitochondrial function, reduces oxidative stress, clears senescent markers</li>
+                            <li>Could rejuvenate remaining dopaminergic neurons rather than replacing them</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>The Salk Institute (Juan Carlos Izpisua Belmonte's lab) showed reversal of aging hallmarks in progeric mice using cyclical OSKM expression, extending lifespan 30%. Subsequent work demonstrated epigenetic rejuvenation in wildtype aged mice. The approach has been validated in human cells in vitro. The critical challenge for PD is targeted delivery to substantia nigra neurons and safety (avoiding tumor formation from c-Myc).</p>
+
+                        <div class="mechanism-tag">Epigenetic Reprogramming</div>
+                        <div class="mechanism-tag">Cellular Rejuvenation</div>
+                        <div class="mechanism-tag">Anti-Aging</div>
+                        <div class="mechanism-tag">Mitochondrial Rescue</div>
+
+                        <p class="key-researchers">Key researchers: Juan Carlos Izpisua Belmonte (Salk Institute), Shinya Yamanaka (Kyoto/Gladstone), David Sinclair (Harvard), Altos Labs. Key papers: Ocampo et al. Cell 2016, Lu et al. Nature 2020.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 3. iPSC-Derived Dopaminergic Neurons -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">3</span>
+                        <div class="card-title-block">
+                            <h3>iPSC-Derived Dopaminergic Neuron Transplantation</h3>
+                            <p class="card-subtitle">Patient-derived stem cells differentiated into replacement neurons</p>
+                        </div>
+                        <span class="status-badge status-active">Clinical Trials</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Take a patient's skin or blood cells, reprogram them into induced pluripotent stem cells (iPSCs), differentiate those into dopaminergic neuron precursors, and transplant them into the brain's putamen. The transplanted cells mature, integrate, produce dopamine, and restore the circuit that Parkinson's disease destroyed.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>iPSC generation from patient cells (autologous) or HLA-matched donors (allogeneic)</li>
+                            <li>Directed differentiation using floor plate protocol: SHH + FGF8 + Wnt &rarr; midbrain dopaminergic neurons</li>
+                            <li>Quality-controlled for purity (&gt;90% TH+ neurons) and safety (no residual pluripotent cells)</li>
+                            <li>Stereotactic injection into putamen, targeting the depleted dopaminergic terminal field</li>
+                            <li>Autologous approach eliminates immune rejection; allogeneic requires immunosuppression</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>Jun Takahashi at Kyoto University CiRA conducted the world's first iPSC-derived dopaminergic neuron transplant for PD in 2018, with Phase I/II trial results showing safety and preliminary efficacy. BlueRock Therapeutics (Bayer) is running the beDAMPED trial with ESC-derived neurons (DA01). The STEM-PD trial (Cambridge/Lund) uses another approach. Historical fetal tissue transplant studies (Lindvall, Isacson) proved the concept decades ago; stem cells solve the ethical and supply limitations.</p>
+
+                        <div class="mechanism-tag">Stem Cell Therapy</div>
+                        <div class="mechanism-tag">Cell Transplantation</div>
+                        <div class="mechanism-tag">Neuroregeneration</div>
+                        <div class="mechanism-tag">Personalized Medicine</div>
+
+                        <p class="key-researchers">Key researchers: Jun Takahashi (Kyoto CiRA), Lorenz Studer (Sloan Kettering / BlueRock), Olle Lindvall (Lund), Malin Parmar (Lund / STEM-PD trial). Key trials: Kyoto iPSC trial, BlueRock beDAMPED, STEM-PD (Cambridge/Lund).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 4. Bioelectric Medicine -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">4</span>
+                        <div class="card-title-block">
+                            <h3>Bioelectric Medicine</h3>
+                            <p class="card-subtitle">Manipulating membrane voltage patterns to redirect cell behavior</p>
+                        </div>
+                        <span class="status-badge status-future">Future</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Every cell in the body maintains a specific membrane voltage (Vmem) that encodes information about cell identity, proliferation state, and spatial patterning. Michael Levin's lab has demonstrated that these bioelectric patterns act as a "morphogenetic code" &mdash; change the voltage pattern, and you change the cell's behavior. For PD, this means potentially using bioelectric signals to regenerate lost neural structures or redirect aberrant cellular states.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>Membrane voltage patterns encode cell identity and can override genetic programs</li>
+                            <li>Ion channel drugs (channelopathy modulators) can reprogram cell behavior non-genetically</li>
+                            <li>Vagus nerve stimulation (VNS) reduces neuroinflammation via the cholinergic anti-inflammatory pathway</li>
+                            <li>Bioelectric fields guide neural regeneration and axon pathfinding</li>
+                            <li>Non-invasive transcranial electrical stimulation may influence substantia nigra bioelectric state</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>Levin's lab at Tufts has demonstrated extraordinary results in non-neural tissue (regenerating frog limbs, inducing eye formation via voltage manipulation), establishing that bioelectric codes are real and actionable. For PD specifically, vagus nerve stimulation trials show anti-inflammatory effects, and there's growing evidence that bioelectric state influences alpha-synuclein aggregation. This is an emerging field with high theoretical potential but PD-specific clinical data is still limited.</p>
+
+                        <div class="mechanism-tag">Bioelectricity</div>
+                        <div class="mechanism-tag">Vagus Nerve</div>
+                        <div class="mechanism-tag">Ion Channels</div>
+                        <div class="mechanism-tag">Morphogenetic Code</div>
+
+                        <p class="key-researchers">Key researchers: Michael Levin (Tufts), Kevin Tracey (Feinstein Institutes, vagus nerve stimulation). Key papers: Levin M. BioEssays 2012, Levin M. Trends in Cell Biology 2022.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 5. Biomimetic Molecular Machines -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">5</span>
+                        <div class="card-title-block">
+                            <h3>Biomimetic Molecular Machines</h3>
+                            <p class="card-subtitle">Synthetic biology approaches to build molecular cleanup crews</p>
+                        </div>
+                        <span class="status-badge status-future">Future</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Engineer synthetic biological molecules &mdash; molecular machines &mdash; that can specifically seek out, bind to, and degrade alpha-synuclein aggregates. Think of it as designing nanoscale cleanup crews that patrol the brain, find the toxic protein clumps, and dismantle them. This goes beyond antibodies (which just tag proteins for the immune system) to active molecular machines that do the work themselves.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>Engineered proteases with alpha-synuclein-specific recognition domains</li>
+                            <li>DNA origami structures that encapsulate and neutralize protein aggregates</li>
+                            <li>Synthetic protein disaggregases inspired by natural Hsp104 chaperones</li>
+                            <li>Programmable molecular circuits that activate only in the presence of toxic conformations</li>
+                            <li>Targeted autophagy inducers: chimeric molecules (AUTACs/ATTECs) that tag alpha-synuclein for cellular disposal</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>This is the most speculative category in Tier 1, combining advances from multiple cutting-edge fields. DNA origami drug delivery has been demonstrated in animal models. Engineered disaggregases have shown activity against amyloid fibrils in vitro. AUTAC/ATTEC-type targeted protein degraders are in active development at multiple biotech companies. The individual components work; the challenge is combining them into a reliable, safe, targeted system for brain delivery.</p>
+
+                        <div class="mechanism-tag">Synthetic Biology</div>
+                        <div class="mechanism-tag">Protein Engineering</div>
+                        <div class="mechanism-tag">DNA Origami</div>
+                        <div class="mechanism-tag">Targeted Degradation</div>
+
+                        <p class="key-researchers">Key researchers: Hao Yan (ASU, DNA origami), James Bhatt (Caltech, molecular machines), various PROTAC/AUTAC researchers across pharma. This is a distributed field with no single leading PD program yet.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- TIER 2: DISEASE-MODIFYING (STRONG EVIDENCE)                -->
+    <!-- =========================================================== -->
+    <section id="tier-2" class="tier-section tier-2-section" style="background: var(--color-bg-alt);">
+        <div class="container">
+            <div class="section-header">
+                <span class="tier-badge tier-2">Tier 2 &mdash; Currently Building</span>
+                <h2>Disease-Modifying Approaches</h2>
+            </div>
+            <p class="tier-description">
+                These approaches slow, halt, or partially reverse Parkinson's progression with strong published evidence. This is where ARIA focuses its immediate engineering effort &mdash; building real devices based on real science.
+            </p>
+
+            <!-- 1. 40Hz Gamma Entrainment (GENUS) -->
+            <div class="research-card">
+                <details open>
+                    <summary>
+                        <span class="card-number">1</span>
+                        <div class="card-title-block">
+                            <h3>40Hz Gamma Entrainment (GENUS)</h3>
+                            <p class="card-subtitle">Multi-sensory 40Hz stimulation transforms microglia into phagocytic cleaners</p>
+                        </div>
+                        <span class="status-badge status-building">Building</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Exposing the brain to sensory stimulation flickering at precisely 40Hz induces gamma oscillations that transform microglia (the brain's immune cells) from a resting or pro-inflammatory state into an active phagocytic state. These activated microglia then engulf and clear toxic protein aggregates &mdash; including alpha-synuclein (Parkinson's) and amyloid-beta (Alzheimer's). The effect also enhances glymphatic clearance, the brain's waste removal system.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>Phase-locked 40Hz visual flicker entrains gamma oscillations across visual and motor cortex</li>
+                            <li>40Hz amplitude-modulated sound extends entrainment to auditory and prefrontal cortex</li>
+                            <li>Vibrotactile 40Hz stimulation adds somatosensory pathway activation</li>
+                            <li>Multi-sensory combination produces the strongest and most widespread gamma entrainment</li>
+                            <li>Gamma entrainment reduces phosphorylated tau, amyloid-beta, AND alpha-synuclein in animal models</li>
+                            <li>Enhanced cerebral blood flow and glymphatic waste clearance</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>This is one of the most exciting developments in neurodegeneration research. MIT's Tsai and Boyden labs published landmark papers in 2016 (visual), 2019 (auditory), and 2020 (combined) showing dramatic protein clearance in mouse models. The 2024-2025 human trial data from Cognito Therapeutics showed statistically significant cognitive improvement and reduced brain atrophy in Alzheimer's patients. For Parkinson's specifically, 40Hz gamma entrainment has been shown to clear alpha-synuclein in motor cortex in preclinical models.</p>
+
+                        <h4>ARIA Implementation</h4>
+                        <p><strong>ARIA Pulse</strong> &mdash; a ~$78 device delivering phase-locked 40Hz light, sound, and vibration via a single Raspberry Pi controller with DMA-timed GPIO for sub-10&micro;s jitter synchronization. Currently in active development.</p>
+
+                        <div class="mechanism-tag">Gamma Entrainment</div>
+                        <div class="mechanism-tag">Microglial Activation</div>
+                        <div class="mechanism-tag">Protein Clearance</div>
+                        <div class="mechanism-tag">Glymphatic System</div>
+                        <div class="mechanism-tag">Neuroinflammation</div>
+
+                        <p class="key-researchers">Key researchers: Li-Huei Tsai &amp; Ed Boyden (MIT Picower Institute), Annabelle Singer (Georgia Tech). Key papers: Iaccarino et al. Nature 2016, Martorell et al. Cell 2019, Adaikkan et al. Neuron 2020. Human trials: Cognito Therapeutics Phase II (2024-2025).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2. NIR Photobiomodulation -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">2</span>
+                        <div class="card-title-block">
+                            <h3>Near-Infrared Photobiomodulation (PBM)</h3>
+                            <p class="card-subtitle">810nm light rescues dying mitochondria and upregulates neurotrophic factors</p>
+                        </div>
+                        <span class="status-badge status-building">Building</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Near-infrared light at 810nm penetrates the skull and is absorbed by cytochrome c oxidase (Complex IV) in the mitochondrial electron transport chain. This restores normal electron flow in damaged mitochondria, boosting ATP production by 50-70%, reducing reactive oxygen species, and triggering upregulation of neuroprotective factors BDNF and GDNF. Since mitochondrial dysfunction is a central driver of dopaminergic neuron death in PD, this directly addresses a root cause.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>810nm photons absorbed by cytochrome c oxidase, displacing inhibitory nitric oxide</li>
+                            <li>Restored electron transport chain increases ATP production 50-70%</li>
+                            <li>Reduced reactive oxygen species (ROS) and oxidative stress</li>
+                            <li>Upregulation of BDNF (brain-derived neurotrophic factor) and GDNF (glial cell-derived neurotrophic factor)</li>
+                            <li>Anti-inflammatory effects: reduced TNF-alpha and IL-1beta</li>
+                            <li>Transcranial delivery (through skull) plus intranasal delivery (via olfactory pathway to brainstem)</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>Extensive preclinical evidence across multiple labs. Mitrofanis (University of Sydney) showed neuroprotection in MPTP mouse models. Hamilton and colleagues demonstrated dose-response relationships. Liebert's work on dual-wavelength protocols (810nm + 670nm) showed enhanced effects. Benabid (the inventor of deep brain stimulation) pivoted to studying intracranial PBM, finding it safe and showing preliminary efficacy. Human case studies and small trials show motor improvement, but large-scale RCTs are still needed.</p>
+
+                        <h4>ARIA Implementation</h4>
+                        <p><strong>ARIA Glow</strong> &mdash; a ~$105 photobiomodulation helmet with 24x 1W 810nm NIR LEDs, optional 670nm red LEDs, 3x thermal safety sensors, and auto-shutoff at 41&deg;C. Delivers calibrated 10-50 mW/cm&sup2; with optional 40Hz pulsing for combined gamma+PBM benefit.</p>
+
+                        <div class="mechanism-tag">Photobiomodulation</div>
+                        <div class="mechanism-tag">Mitochondrial Rescue</div>
+                        <div class="mechanism-tag">ATP Production</div>
+                        <div class="mechanism-tag">BDNF/GDNF</div>
+                        <div class="mechanism-tag">Anti-inflammatory</div>
+
+                        <p class="key-researchers">Key researchers: John Mitrofanis (Sydney &rarr; Durham), Catherine Hamilton, Ann Liebert, Alim-Louis Benabid (CEA Grenoble). Key papers: Johnstone et al. Frontiers in Neuroscience 2015, Liebert et al. 2021, Hamilton et al. 2019.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 3. Forced Exercise -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">3</span>
+                        <div class="card-title-block">
+                            <h3>Forced Exercise (Alberts Method)</h3>
+                            <p class="card-subtitle">High-cadence cycling at 80-90 RPM produces motor improvements matching levodopa</p>
+                        </div>
+                        <span class="status-badge status-building">Building</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Pedaling a stationary bicycle at a cadence of 80-90 RPM &mdash; faster than patients would voluntarily choose &mdash; produces a 35% improvement in motor function (UPDRS scores), comparable to levodopa medication. The "forced" rate is key: voluntary exercise at self-selected pace shows less benefit. The mechanism appears to be increased global functional connectivity in the brain, upregulation of neurotrophic factors, and enhanced dopamine signaling efficiency.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>80-90 RPM cadence (above voluntary rate) is the critical parameter</li>
+                            <li>Upregulates BDNF and GDNF &mdash; natural neuroprotective factors</li>
+                            <li>Increases global functional connectivity measured by fMRI</li>
+                            <li>Enhances dopamine receptor sensitivity and signaling efficiency</li>
+                            <li>Induces mitochondrial biogenesis and improved cellular energy production</li>
+                            <li>Promotes autophagy &mdash; cellular cleanup of damaged organelles</li>
+                            <li>35% motor improvement (UPDRS-III) demonstrated in controlled trials</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>This is among the strongest evidence bases in the entire document. Dr. Jay Alberts at Cleveland Clinic discovered the effect serendipitously during a tandem cycling event, then rigorously validated it through multiple clinical trials. The CYCLE trial and the $3M NIH-funded GEARS trial (Gaining Exercise Adherence through Rigorous Supervision) confirmed the findings. The effect is dose-dependent (cadence matters) and durable with continued practice.</p>
+
+                        <h4>ARIA Implementation</h4>
+                        <p><strong>ARIA Cycle</strong> &mdash; a ~$4 smart controller (Hall effect sensor + Raspberry Pi) that monitors cadence in real-time, provides audio metronome cueing at target RPM, follows the Alberts protocol (10min warmup at 60 RPM, 40min main at 80 RPM, 10min cooldown), and logs every session for trend analysis.</p>
+
+                        <div class="mechanism-tag">Forced Exercise</div>
+                        <div class="mechanism-tag">Neuroplasticity</div>
+                        <div class="mechanism-tag">BDNF/GDNF</div>
+                        <div class="mechanism-tag">Dopamine Signaling</div>
+                        <div class="mechanism-tag">Mitochondrial Biogenesis</div>
+
+                        <p class="key-researchers">Key researchers: Jay Alberts (Cleveland Clinic), Angela Ridgel (Kent State). Key trials: CYCLE trial, GEARS trial ($3M NIH). Key papers: Alberts et al. Neurorehabilitation and Neural Repair 2011, Ridgel et al. 2015.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 4. GLP-1 Receptor Agonists -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">4</span>
+                        <div class="card-title-block">
+                            <h3>GLP-1 Receptor Agonists</h3>
+                            <p class="card-subtitle">Diabetes drugs showing 30-40% slower motor decline in PD trials</p>
+                        </div>
+                        <span class="status-badge status-monitoring">Monitoring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>GLP-1 receptor agonists (semaglutide, liraglutide, exenatide) &mdash; originally developed for type 2 diabetes and now famous as weight-loss drugs &mdash; have GLP-1 receptors throughout the brain. When activated, they reduce neuroinflammation, protect mitochondria, enhance insulin signaling in neurons, and promote neuroplasticity. Multiple clinical trials show significant slowing of PD motor decline.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li>GLP-1 receptors present on neurons and microglia throughout the brain</li>
+                            <li>Anti-neuroinflammatory: reduces activated microglia and pro-inflammatory cytokines</li>
+                            <li>Mitochondrial protection: preserves Complex I function and reduces oxidative stress</li>
+                            <li>Insulin signaling restoration: corrects brain insulin resistance common in PD</li>
+                            <li>Autophagy enhancement: promotes clearance of alpha-synuclein aggregates</li>
+                            <li>Neurotrophic effects: upregulates BDNF and promotes synaptic plasticity</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>Phase II trials of exenatide (Athauda et al. 2017, Lancet) showed clinically significant benefit persisting 12 months after drug washout &mdash; suggesting true disease modification, not just symptomatic relief. Liraglutide trials (NLY01) show similar promise. Epidemiological studies of diabetes patients on GLP-1 drugs show reduced PD incidence. Large-scale Phase III trials are now underway. This may be the most likely "repurposed drug" breakthrough for PD in the near term.</p>
+
+                        <div class="mechanism-tag">Drug Repurposing</div>
+                        <div class="mechanism-tag">Anti-inflammatory</div>
+                        <div class="mechanism-tag">Mitochondrial Protection</div>
+                        <div class="mechanism-tag">Insulin Signaling</div>
+                        <div class="mechanism-tag">Autophagy</div>
+
+                        <p class="key-researchers">Key researchers: Tom Foltynie &amp; Dilan Athauda (UCL), Seung-Pyo Hong (NLY01 / D&amp;D Pharmatech). Key papers: Athauda et al. Lancet 2017. Phase III trials ongoing.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 5. Alpha-Synuclein Clearance -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">5</span>
+                        <div class="card-title-block">
+                            <h3>Alpha-Synuclein Targeted Clearance</h3>
+                            <p class="card-subtitle">Antibodies, small molecules, and autophagy enhancers targeting toxic protein</p>
+                        </div>
+                        <span class="status-badge status-monitoring">Monitoring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Alpha-synuclein aggregation is the pathological hallmark of PD &mdash; toxic clumps of misfolded protein that spread from cell to cell in a prion-like manner. Multiple strategies aim to clear these aggregates or prevent their formation: immunotherapy (antibodies that tag aggregates for immune clearance), small molecules that prevent aggregation, enhancers of autophagy (the cell's own cleanup system), and LRRK2 kinase inhibitors that address a genetic driver of pathology.</p>
+
+                        <h4>Key Approaches</h4>
+                        <ul>
+                            <li><strong>Immunotherapy:</strong> Prasinezumab (Roche) targets extracellular alpha-synuclein; Phase II showed trends in motor improvement. Cinpanemab (Biogen) was discontinued but validated the target</li>
+                            <li><strong>Anti-aggregation:</strong> Small molecules (anle138b, NPT200-11) that bind monomeric alpha-synuclein and prevent oligomer formation</li>
+                            <li><strong>Autophagy enhancers:</strong> Rapamycin analogs (rapalogs), TFEB activators, and trehalose that boost the cell's protein disposal system</li>
+                            <li><strong>LRRK2 inhibitors:</strong> DNL201, BIIB122 targeting the kinase activity of the most common genetic PD risk factor</li>
+                            <li><strong>ASO (antisense oligonucleotides):</strong> Reducing alpha-synuclein production at the mRNA level</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>This is the most heavily invested area of PD drug development. While no single therapy has yet shown definitive disease modification in large Phase III trials, the cumulative evidence strongly supports alpha-synuclein as a valid therapeutic target. Prasinezumab Phase II results were encouraging enough for Phase III expansion. LRRK2 inhibitors show strong genetic rationale. The field is converging on combination approaches targeting multiple points in the alpha-synuclein cascade.</p>
+
+                        <div class="mechanism-tag">Immunotherapy</div>
+                        <div class="mechanism-tag">Alpha-Synuclein</div>
+                        <div class="mechanism-tag">Autophagy</div>
+                        <div class="mechanism-tag">LRRK2</div>
+                        <div class="mechanism-tag">Antisense</div>
+
+                        <p class="key-researchers">Multiple pharma programs: Roche (prasinezumab / PASADENA trial), Biogen, Denali (LRRK2), Prothena. Key trials: PASADENA, SPARK-PD (LRRK2 inhibitors).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 6. Gut-Brain Axis Modulation -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">6</span>
+                        <div class="card-title-block">
+                            <h3>Gut-Brain Axis Modulation</h3>
+                            <p class="card-subtitle">Braak's hypothesis: PD may start in the gut and travel to the brain</p>
+                        </div>
+                        <span class="status-badge status-monitoring">Monitoring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Heiko Braak's staging hypothesis proposes that Parkinson's disease begins not in the brain but in the gut, where alpha-synuclein pathology originates in the enteric nervous system and spreads to the brain via the vagus nerve. This is supported by the fact that constipation and GI dysfunction precede motor symptoms by decades. If true, modulating the gut microbiome, reducing gut inflammation, and interrupting the gut-to-brain propagation pathway could slow or prevent PD progression.</p>
+
+                        <h4>Key Mechanisms</h4>
+                        <ul>
+                            <li><strong>Fecal microbiota transplant (FMT):</strong> Restoring healthy gut microbiome composition; pilot trials show motor improvement</li>
+                            <li><strong>Specific probiotic strains:</strong> Lactobacillus and Bifidobacterium species that reduce gut inflammation and produce neuroprotective metabolites</li>
+                            <li><strong>Short-chain fatty acid (SCFA) restoration:</strong> Butyrate-producing bacteria support gut barrier integrity</li>
+                            <li><strong>Vagal pathway modulation:</strong> Interrupting alpha-synuclein transport from gut to brain</li>
+                            <li><strong>Gut barrier repair:</strong> Reducing "leaky gut" that allows inflammatory molecules to reach the brain</li>
+                        </ul>
+
+                        <h4>Evidence Strength</h4>
+                        <p>The gut-brain connection in PD is now well established. Epidemiological studies show that appendectomy and vagotomy reduce PD risk. Gut microbiome composition differs significantly between PD patients and controls. FMT studies in animal models show dramatic improvement, and early human pilot studies are encouraging. However, the field is still determining which specific interventions are most effective and whether gut-targeted therapy alone can meaningfully slow brain pathology once established.</p>
+
+                        <div class="mechanism-tag">Gut-Brain Axis</div>
+                        <div class="mechanism-tag">Microbiome</div>
+                        <div class="mechanism-tag">Vagus Nerve</div>
+                        <div class="mechanism-tag">Neuroinflammation</div>
+                        <div class="mechanism-tag">FMT</div>
+
+                        <p class="key-researchers">Key researchers: Heiko Braak (Braak staging), Filip Scheperjans (gut microbiome in PD), Sarkis Mazmanian (Caltech). Key papers: Braak et al. 2003, Sampson et al. Cell 2016.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- TIER 3: SYMPTOM RELIEF + NEUROPROTECTION                   -->
+    <!-- =========================================================== -->
+    <section id="tier-3" class="tier-section tier-3-section" style="background: var(--color-bg);">
+        <div class="container">
+            <div class="section-header">
+                <span class="tier-badge tier-3">Tier 3</span>
+                <h2>Symptom Relief &amp; Neuroprotection</h2>
+            </div>
+            <p class="tier-description">
+                These approaches protect remaining neurons, improve quality of life, and create conditions favorable for other therapies to work. They may not reverse the disease alone, but they are essential components of a comprehensive treatment strategy.
+            </p>
+
+            <!-- 1. Focused Ultrasound -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">1</span>
+                        <div class="card-title-block">
+                            <h3>Focused Ultrasound (FUS)</h3>
+                            <p class="card-subtitle">Blood-brain barrier opening for drug delivery and targeted thalamotomy</p>
+                        </div>
+                        <span class="status-badge status-active">Clinical Use</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>MRI-guided focused ultrasound can either temporarily open the blood-brain barrier (BBB) to allow drugs to reach the brain, or ablate specific brain targets (thalamotomy) to reduce tremor. BBB opening is the more exciting application: it could dramatically enhance the efficacy of any brain-targeted therapy by solving the delivery problem that limits nearly every neurological drug.</p>
+
+                        <ul>
+                            <li>Non-invasive BBB opening allows 5-8x increase in drug delivery to targeted brain regions</li>
+                            <li>MRI-guided thalamotomy for tremor-dominant PD (FDA-approved pathway via InSightec Exablate Neuro)</li>
+                            <li>Sonodynamic therapy: ultrasound-activated compounds for targeted treatment</li>
+                            <li>Could enhance delivery of antibodies, gene therapy vectors, and nanoparticles to substantia nigra</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Drug Delivery</div>
+                        <div class="mechanism-tag">BBB Opening</div>
+                        <div class="mechanism-tag">Neuromodulation</div>
+
+                        <p class="key-researchers">Key researchers: Kullervo Hynynen (Sunnybrook), Nir Lipsman (Sunnybrook), InSightec clinical program. FDA-approved: Exablate Neuro for essential tremor.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2. Electromagnetic Stimulation -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">2</span>
+                        <div class="card-title-block">
+                            <h3>Electromagnetic Stimulation (TMS/tDCS)</h3>
+                            <p class="card-subtitle">Non-invasive modulation of motor cortex excitability</p>
+                        </div>
+                        <span class="status-badge status-active">Clinical Use</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Transcranial magnetic stimulation (TMS) and transcranial direct current stimulation (tDCS) modulate cortical excitability non-invasively. High-frequency rTMS over motor cortex or supplementary motor area can improve motor function, gait, and speech in PD. tDCS is cheaper and more accessible, though effects are more modest.</p>
+
+                        <ul>
+                            <li>rTMS: repetitive magnetic pulses modulate cortical circuits; multiple RCTs show motor benefit</li>
+                            <li>tDCS: low-current electrical stimulation enhances neuroplasticity and motor learning</li>
+                            <li>Targets: M1 (motor cortex), SMA (supplementary motor area), DLPFC (for depression/cognition)</li>
+                            <li>Can be combined with physical therapy for enhanced motor learning</li>
+                        </ul>
+
+                        <div class="mechanism-tag">TMS</div>
+                        <div class="mechanism-tag">tDCS</div>
+                        <div class="mechanism-tag">Neuroplasticity</div>
+
+                        <p class="key-researchers">Multiple clinical groups worldwide. Meta-analyses: Chou et al. 2015, Goodwill et al. 2017.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 3. Circadian Rhythm Restoration -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">3</span>
+                        <div class="card-title-block">
+                            <h3>Circadian Rhythm Restoration</h3>
+                            <p class="card-subtitle">Light therapy, melatonin timing, and sleep architecture optimization</p>
+                        </div>
+                        <span class="status-badge status-investigating">Investigating</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>PD patients universally suffer from disrupted circadian rhythms: fragmented sleep, REM behavior disorder, daytime somnolence, and altered melatonin/cortisol cycles. Since the glymphatic system (brain waste clearance) operates primarily during deep sleep, circadian disruption directly impairs the brain's ability to clear toxic proteins. Restoring healthy sleep architecture could enhance the efficacy of every other therapy.</p>
+
+                        <ul>
+                            <li>Bright light therapy (10,000 lux) in the morning to anchor circadian phase</li>
+                            <li>Timed melatonin supplementation (0.5-3mg) aligned with individual chronotype</li>
+                            <li>Blue light filtering in evening to support natural melatonin production</li>
+                            <li>Sleep position optimization (lateral sleeping enhances glymphatic clearance)</li>
+                            <li>Treatment of REM behavior disorder and sleep apnea as neuroprotective interventions</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Circadian Biology</div>
+                        <div class="mechanism-tag">Sleep</div>
+                        <div class="mechanism-tag">Glymphatic System</div>
+                        <div class="mechanism-tag">Melatonin</div>
+
+                        <p class="key-researchers">Key researchers: Aleksandar Videnovic (Harvard/MGH), Maiken Nedergaard (glymphatic system). Key papers: Videnovic et al. JAMA Neurology 2017.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 4. Psychedelic-Assisted Neuroplasticity -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">4</span>
+                        <div class="card-title-block">
+                            <h3>Psychedelic-Assisted Neuroplasticity</h3>
+                            <p class="card-subtitle">Psilocybin, DMT for BDNF upregulation and neurogenesis (legal research only)</p>
+                        </div>
+                        <span class="status-badge status-investigating">Investigating</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Classical psychedelics (psilocybin, DMT, LSD) are potent 5-HT2A receptor agonists that produce dramatic increases in neurotrophic factors (BDNF), dendritic spine growth, and synaptic plasticity. Sub-perceptual doses ("microdosing") and non-hallucinogenic analogs (tabernanthalog, developed by David Olson at UC Davis) could offer the neuroplastic benefits without the psychoactive effects. This is an active area of research with PD-specific investigations emerging.</p>
+
+                        <ul>
+                            <li>5-HT2A activation produces rapid, sustained BDNF upregulation</li>
+                            <li>Promotes dendritic branching and synaptogenesis in cortical neurons</li>
+                            <li>DMT shown to promote neural stem cell proliferation and migration in animal models</li>
+                            <li>Non-hallucinogenic analogs (tabernanthalog) retain neuroplastic effects without psychoactive properties</li>
+                            <li>Depression and apathy (common PD comorbidities) may also benefit</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Neuroplasticity</div>
+                        <div class="mechanism-tag">5-HT2A</div>
+                        <div class="mechanism-tag">BDNF</div>
+                        <div class="mechanism-tag">Neurogenesis</div>
+
+                        <p class="key-researchers">Key researchers: David Olson (UC Davis, non-hallucinogenic psychoplastogens), Robin Carhart-Harris (UCSF), Jordi Riba (DMT neurogenesis). Legal status varies by jurisdiction; research purposes only.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 5. Senolytics -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">5</span>
+                        <div class="card-title-block">
+                            <h3>Senolytics</h3>
+                            <p class="card-subtitle">Clearing senescent cells with dasatinib + quercetin combination</p>
+                        </div>
+                        <span class="status-badge status-monitoring">Monitoring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Senescent cells accumulate with age and disease, secreting a toxic cocktail of inflammatory molecules (the SASP &mdash; senescence-associated secretory phenotype) that damages neighboring healthy cells. In PD, senescent astrocytes and microglia contribute to chronic neuroinflammation. Senolytic drugs selectively kill these zombie cells, reducing the inflammatory burden and creating a healthier environment for remaining neurons.</p>
+
+                        <ul>
+                            <li>Dasatinib + quercetin (D+Q): the most studied senolytic combination</li>
+                            <li>Intermittent dosing (monthly "hit and run") sufficient to clear senescent cells</li>
+                            <li>Reduces SASP-driven neuroinflammation in brain tissue</li>
+                            <li>Fisetin (natural flavonoid) as a more accessible alternative senolytic</li>
+                            <li>Phase I/II trials in various age-related diseases showing safety and biomarker improvement</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Senolytics</div>
+                        <div class="mechanism-tag">Anti-aging</div>
+                        <div class="mechanism-tag">SASP</div>
+                        <div class="mechanism-tag">Neuroinflammation</div>
+
+                        <p class="key-researchers">Key researchers: James Kirkland (Mayo Clinic), Paul Robbins (University of Minnesota). Key papers: Kirkland &amp; Tchkonia, multiple reviews in Nature Medicine.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 6. Glymphatic System Optimization -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">6</span>
+                        <div class="card-title-block">
+                            <h3>Glymphatic System Optimization</h3>
+                            <p class="card-subtitle">Enhancing the brain's waste removal system through sleep and lifestyle</p>
+                        </div>
+                        <span class="status-badge status-investigating">Investigating</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>The glymphatic system is the brain's waste clearance pathway, using cerebrospinal fluid flow along perivascular channels to flush out toxic metabolic products including alpha-synuclein. It operates primarily during deep sleep and is impaired in PD. Optimizing glymphatic function through sleep position, exercise timing, hydration, and avoiding alcohol before sleep could meaningfully enhance protein clearance.</p>
+
+                        <ul>
+                            <li>Lateral (side) sleeping position enhances glymphatic clearance vs. supine or prone</li>
+                            <li>Deep slow-wave sleep is when glymphatic clearance peaks; prioritize sleep quality</li>
+                            <li>Exercise enhances glymphatic function; timing matters (not too close to bedtime)</li>
+                            <li>Adequate hydration supports CSF production and flow</li>
+                            <li>Avoid alcohol before sleep (suppresses deep sleep and impairs glymphatic function)</li>
+                            <li>Omega-3 fatty acids may support aquaporin-4 channels critical for glymphatic flow</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Glymphatic System</div>
+                        <div class="mechanism-tag">Sleep Optimization</div>
+                        <div class="mechanism-tag">Protein Clearance</div>
+                        <div class="mechanism-tag">CSF Flow</div>
+
+                        <p class="key-researchers">Key researchers: Maiken Nedergaard (Rochester/Copenhagen), Helene Benveniste (Yale). Key papers: Iliff et al. Science Translational Medicine 2012, Lee et al. Journal of Neuroscience 2015.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 7. Environmental Toxin Mitigation -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">7</span>
+                        <div class="card-title-block">
+                            <h3>Environmental Toxin Mitigation</h3>
+                            <p class="card-subtitle">Reducing pesticide exposure and heavy metal burden</p>
+                        </div>
+                        <span class="status-badge status-investigating">Investigating</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Environmental toxins are among the strongest known risk factors for PD. Paraquat, rotenone, and trichloroethylene (TCE) exposure dramatically increases PD risk. These chemicals directly inhibit mitochondrial Complex I &mdash; the same pathway damaged in PD. While this doesn't reverse existing disease, reducing ongoing toxic exposure removes a driver of continued damage and may slow progression.</p>
+
+                        <ul>
+                            <li>Pesticide avoidance: paraquat, rotenone, organochlorines are established PD risk factors</li>
+                            <li>TCE (trichloroethylene): common industrial solvent linked to PD; avoid contaminated water sources</li>
+                            <li>Heavy metal chelation: iron accumulation in substantia nigra contributes to oxidative damage; deferiprone chelation trials ongoing</li>
+                            <li>Organic produce and filtered water to minimize ongoing environmental exposure</li>
+                            <li>Occupational hazard awareness for agricultural and industrial workers</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Toxicology</div>
+                        <div class="mechanism-tag">Prevention</div>
+                        <div class="mechanism-tag">Chelation</div>
+                        <div class="mechanism-tag">Mitochondrial Protection</div>
+
+                        <p class="key-researchers">Key researchers: Ray Dorsey (Rochester), Caroline Tanner (UCSF). Key book: "Ending Parkinson's Disease" by Dorsey, Sherer, Okun, Bloem (2020).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 8. Metabolic Interventions -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">8</span>
+                        <div class="card-title-block">
+                            <h3>Metabolic Interventions</h3>
+                            <p class="card-subtitle">Ketogenic diet, intermittent fasting, and NAD+ precursors</p>
+                        </div>
+                        <span class="status-badge status-investigating">Investigating</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Metabolic dysfunction is central to PD pathology: impaired mitochondrial function, reduced NAD+ levels, insulin resistance, and altered energy metabolism. Dietary and supplement interventions that bypass or repair these metabolic deficits show promise as adjunctive therapies. Ketone bodies provide an alternative fuel source when glucose metabolism is impaired, while NAD+ precursors directly support mitochondrial function.</p>
+
+                        <ul>
+                            <li><strong>Ketogenic diet:</strong> Ketone bodies (beta-hydroxybutyrate) bypass impaired Complex I, providing alternative mitochondrial fuel; pilot PD trials show motor improvement</li>
+                            <li><strong>Intermittent fasting:</strong> Triggers autophagy (cellular cleanup), upregulates BDNF, improves insulin sensitivity; 16:8 or 5:2 protocols</li>
+                            <li><strong>NAD+ precursors (NMN/NR):</strong> Nicotinamide mononucleotide and nicotinamide riboside restore cellular NAD+ levels, supporting sirtuin activity and mitochondrial function</li>
+                            <li><strong>Coenzyme Q10:</strong> Electron carrier in mitochondrial chain; mixed trial results but strong biochemical rationale</li>
+                            <li><strong>Creatine:</strong> Cellular energy buffer; large Phase III trial (NET-PD) was disappointing but the biochemical logic remains</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Metabolic Therapy</div>
+                        <div class="mechanism-tag">Ketones</div>
+                        <div class="mechanism-tag">NAD+</div>
+                        <div class="mechanism-tag">Autophagy</div>
+                        <div class="mechanism-tag">Fasting</div>
+
+                        <p class="key-researchers">Key researchers: Matthew Phillips (Waikato, ketogenic diet for PD), David Sinclair (Harvard, NAD+/NMN), Valter Longo (USC, fasting-mimicking diet). Key papers: Phillips et al. Movement Disorders 2018.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 9. HRV Biofeedback -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">9</span>
+                        <div class="card-title-block">
+                            <h3>HRV Biofeedback</h3>
+                            <p class="card-subtitle">Training the autonomic nervous system via heart rate variability</p>
+                        </div>
+                        <span class="status-badge status-investigating">Investigating</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Heart rate variability (HRV) biofeedback trains patients to consciously modulate their autonomic nervous system, increasing parasympathetic (vagal) tone. Since vagal activity reduces neuroinflammation via the cholinergic anti-inflammatory pathway, and since PD patients typically have reduced vagal tone, HRV biofeedback may provide non-invasive anti-inflammatory benefits while also improving autonomic symptoms (orthostatic hypotension, constipation, heart rate regulation).</p>
+
+                        <ul>
+                            <li>Resonance frequency breathing (typically ~6 breaths/min) maximizes HRV amplitude</li>
+                            <li>Increased vagal tone activates the cholinergic anti-inflammatory pathway</li>
+                            <li>Improves autonomic dysfunction symptoms common in PD</li>
+                            <li>Reduces anxiety and depression, common PD comorbidities</li>
+                            <li>Low cost, no side effects, can be practiced daily at home</li>
+                            <li>Measurable biomarker (HRV) allows objective tracking of progress</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Biofeedback</div>
+                        <div class="mechanism-tag">Vagal Tone</div>
+                        <div class="mechanism-tag">Autonomic Nervous System</div>
+                        <div class="mechanism-tag">Anti-inflammatory</div>
+
+                        <p class="key-researchers">Key researchers: Paul Lehrer (Rutgers, HRV biofeedback pioneer), Kevin Tracey (Feinstein Institutes, vagal anti-inflammatory pathway). Multiple small PD studies; larger trials needed.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- CROSS-CUTTING APPROACHES                                    -->
+    <!-- =========================================================== -->
+    <section id="cross-cutting" class="tier-section tier-cross-section" style="background: var(--color-bg-alt);">
+        <div class="container">
+            <div class="section-header">
+                <span class="tier-badge tier-cross">Cross-Cutting</span>
+                <h2>Cross-Cutting Approaches</h2>
+            </div>
+            <p class="tier-description">
+                These are not therapies themselves but paradigms that amplify the effectiveness of all other approaches. They represent ARIA's core philosophy: intelligent, adaptive, multi-modal intervention.
+            </p>
+
+            <!-- 1. Closed-Loop Adaptive Systems -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">1</span>
+                        <div class="card-title-block">
+                            <h3>Closed-Loop Adaptive Systems</h3>
+                            <p class="card-subtitle">Real-time sensor feedback driving therapy parameters</p>
+                        </div>
+                        <span class="status-badge status-building">Building</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Rather than delivering therapy at fixed parameters, closed-loop systems continuously monitor the patient's physiological state and adapt therapy in real-time. ARIA's therapeutic devices incorporate tremor sensors, heart rate monitors, and RPM tracking that could eventually feed back into therapy parameters &mdash; adjusting 40Hz stimulation intensity based on measured gamma power, or adjusting PBM dose based on pre-session tremor assessment.</p>
+
+                        <ul>
+                            <li>Pre/post session tremor measurement drives therapy intensity decisions</li>
+                            <li>Heart rate monitoring ensures exercise remains in the therapeutic zone</li>
+                            <li>Longitudinal trend analysis identifies optimal individual treatment schedules</li>
+                            <li>Adaptive deep brain stimulation (aDBS) is the clinical gold standard; ARIA applies the same principle to non-invasive therapies</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Closed-Loop</div>
+                        <div class="mechanism-tag">Adaptive Therapy</div>
+                        <div class="mechanism-tag">Biosensors</div>
+                        <div class="mechanism-tag">Personalization</div>
+
+                        <p class="key-researchers">ARIA project's core engineering paradigm. Clinical inspiration: adaptive DBS work by Philip Starr (UCSF), Tim Denison (Oxford).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2. Multi-Modal Combination Therapy -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">2</span>
+                        <div class="card-title-block">
+                            <h3>Multi-Modal Combination Therapy</h3>
+                            <p class="card-subtitle">The ARIA approach: combining multiple mechanisms simultaneously</p>
+                        </div>
+                        <span class="status-badge status-building">Building</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Parkinson's disease is not a single pathology but a convergence of multiple failures: protein aggregation, mitochondrial dysfunction, neuroinflammation, oxidative stress, impaired clearance, and circuit degradation. No single therapy addresses all of these. ARIA's core insight is that combining therapies targeting different mechanisms &mdash; protein clearance via 40Hz + mitochondrial rescue via PBM + systemic neuroprotection via exercise &mdash; may produce synergistic benefits that no individual therapy achieves alone.</p>
+
+                        <ul>
+                            <li>Pulse (protein clearance) + Glow (mitochondrial rescue) + Cycle (systemic neuroprotection)</li>
+                            <li>Each device targets a different pathological mechanism of PD</li>
+                            <li>Combined approach addresses 3 of 4 major PD pathological hallmarks simultaneously</li>
+                            <li>Optimized scheduling: exercise primes BDNF, followed by PBM to enhance mitochondrial response, followed by 40Hz to clear debris</li>
+                            <li>Analogous to combination antiretroviral therapy for HIV &mdash; the single most successful strategy in modern medicine</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Combination Therapy</div>
+                        <div class="mechanism-tag">Synergy</div>
+                        <div class="mechanism-tag">Multi-target</div>
+                        <div class="mechanism-tag">Protocol Design</div>
+
+                        <p class="key-researchers">ARIA project's therapeutic hypothesis. Inspiration: HAART (HIV combination therapy), oncology combination protocols.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 3. Digital Twin Modeling -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">3</span>
+                        <div class="card-title-block">
+                            <h3>Digital Twin Modeling</h3>
+                            <p class="card-subtitle">Computational models of individual patient pathology</p>
+                        </div>
+                        <span class="status-badge status-future">Future</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>A digital twin is a computational model of an individual patient's disease state, continuously updated with real-world sensor data (tremor measurements, exercise logs, sleep quality, medication timing). This model could predict optimal therapy scheduling, identify early signs of decline, and simulate the likely effect of treatment changes before implementing them. ARIA's data logging infrastructure lays the groundwork for future digital twin development.</p>
+
+                        <ul>
+                            <li>Patient-specific computational model of disease progression</li>
+                            <li>Continuously updated with tremor data, exercise metrics, and therapy logs</li>
+                            <li>Predictive analytics for treatment optimization</li>
+                            <li>Simulation of intervention effects before implementation</li>
+                            <li>Foundation for truly personalized precision medicine</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Digital Twin</div>
+                        <div class="mechanism-tag">Predictive Analytics</div>
+                        <div class="mechanism-tag">Personalization</div>
+                        <div class="mechanism-tag">Machine Learning</div>
+
+                        <p class="key-researchers">Emerging field. Relevant work: virtual patient models in oncology (Roche, Novartis), wearable PD monitoring (Michael J. Fox Foundation PPMI study).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 4. Social Neuroscience -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">4</span>
+                        <div class="card-title-block">
+                            <h3>Social Neuroscience</h3>
+                            <p class="card-subtitle">Group therapy effects, caregiver involvement, and motivation circuits</p>
+                        </div>
+                        <span class="status-badge status-investigating">Investigating</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <p>Social isolation accelerates neurodegeneration, while social engagement appears neuroprotective. PD patients who participate in group exercise programs show greater improvement than those exercising alone. Dance therapy (especially tango) shows remarkable benefits for gait and balance &mdash; likely because it combines exercise, rhythm, social interaction, and cognitive engagement. ARIA's companion robots address the social dimension of PD care, providing consistent engagement even when human caregivers are unavailable.</p>
+
+                        <ul>
+                            <li>Group exercise produces greater PD benefit than solo exercise (social motivation + mirror neuron activation)</li>
+                            <li>Dance therapy (tango, ballet) combines rhythm, exercise, social interaction, and cognitive challenge</li>
+                            <li>Caregiver involvement improves therapy adherence and outcomes</li>
+                            <li>Social isolation is a risk factor for faster PD progression</li>
+                            <li>ARIA companions provide social engagement when human interaction is limited</li>
+                            <li>Music therapy engages motor-auditory coupling and emotional circuits</li>
+                        </ul>
+
+                        <div class="mechanism-tag">Social Neuroscience</div>
+                        <div class="mechanism-tag">Dance Therapy</div>
+                        <div class="mechanism-tag">Group Exercise</div>
+                        <div class="mechanism-tag">Motivation</div>
+
+                        <p class="key-researchers">Key researchers: Madeleine Hackney (Emory, tango for PD), Gammon Earhart (Washington University, dance/PD). Key publications in Movement Disorders and Neurorehabilitation journals.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- REFERENCES & RESOURCES                                      -->
+    <!-- =========================================================== -->
+    <section class="references">
+        <div class="container">
+            <div class="section-header">
+                <h2>Key References &amp; Resources</h2>
+                <p>The published science behind every approach documented on this page.</p>
+            </div>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <span class="ref-type">40Hz Gamma Entrainment</span>
+                    <h4>MIT GENUS Research</h4>
+                    <p>Iaccarino et al. "Gamma frequency entrainment attenuates amyloid load and modifies microglia." <em>Nature</em> 2016. Martorell et al. "Multi-sensory gamma stimulation ameliorates Alzheimer's-associated pathology and improves cognition." <em>Cell</em> 2019. Adaikkan et al. "Gamma entrainment binds higher-order brain regions." <em>Neuron</em> 2020.</p>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-type">Forced Exercise</span>
+                    <h4>Cleveland Clinic CYCLE/GEARS Trials</h4>
+                    <p>Alberts et al. "Forced, not voluntary, exercise improves motor function in Parkinson's disease patients." <em>Neurorehabilitation and Neural Repair</em> 2011. GEARS trial: $3M NIH-funded Phase III comparing forced vs. voluntary exercise. Ridgel et al. multiple publications on forced-rate cycling mechanics.</p>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-type">Photobiomodulation</span>
+                    <h4>PBM Review Papers</h4>
+                    <p>Johnstone, Mitrofanis et al. "Turning on lights to stop neurodegeneration." <em>Frontiers in Neuroscience</em> 2015. Liebert et al. 2021. Hamilton et al. "Buckets: Early observations on the use of red and infrared light helmets in Parkinson's disease patients." 2019.</p>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-type">GLP-1 Agonists</span>
+                    <h4>Exenatide &amp; Liraglutide Trials</h4>
+                    <p>Athauda et al. "Exenatide once weekly versus placebo in Parkinson's disease: a randomised, double-blind, placebo-controlled trial." <em>The Lancet</em> 2017. Phase III trials ongoing. Epidemiological studies of GLP-1 use and PD incidence.</p>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-type">Cell Reprogramming</span>
+                    <h4>Neuronal Conversion &amp; Stem Cells</h4>
+                    <p>Qian et al. "Reversing a model of Parkinson's disease with in situ converted nigral neurons." <em>Nature</em> 2020. Takahashi lab iPSC-DA neuron transplant publications. STEM-PD trial (Cambridge/Lund). BlueRock beDAMPED trial data.</p>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-type">Gut-Brain Axis</span>
+                    <h4>Braak Staging &amp; Microbiome</h4>
+                    <p>Braak et al. "Staging of brain pathology related to sporadic Parkinson's disease." <em>Neurobiology of Aging</em> 2003. Sampson et al. "Gut microbiota regulate motor deficits and neuroinflammation in a model of Parkinson's disease." <em>Cell</em> 2016.</p>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-type">Epigenetic Reprogramming</span>
+                    <h4>Yamanaka Factors &amp; Aging Reversal</h4>
+                    <p>Ocampo et al. "In vivo amelioration of age-associated hallmarks by partial reprogramming." <em>Cell</em> 2016. Lu et al. "Reprogramming to recover youthful epigenetic information and restore vision." <em>Nature</em> 2020.</p>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-type">Environmental Factors</span>
+                    <h4>Toxins, Prevention &amp; Advocacy</h4>
+                    <p>Dorsey, Sherer, Okun, Bloem. <em>"Ending Parkinson's Disease: A Prescription for Action."</em> PublicAffairs, 2020. Comprehensive overview of environmental risk factors, the TCE connection, and the case for prevention-first approaches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- MEDICAL DISCLAIMER                                          -->
+    <!-- =========================================================== -->
+    <section class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-content">
+                <div class="disclaimer-icon">&#9888;</div>
+                <h3>Research Documentation Disclaimer</h3>
+                <p>This page is a research documentation resource, not medical advice. The approaches described here range from active clinical trials to early-stage laboratory research to theoretical proposals. No claims of efficacy are made for any specific intervention. Always consult a qualified neurologist before making any changes to your treatment plan. Do not discontinue prescribed medications based on information presented here. The ARIA therapeutic devices are experimental research tools, not FDA-approved medical devices. Individual results will vary. This document is provided for educational and research purposes under the MIT open-source license.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Every Approach Deserves Investigation</h2>
+            <p>Open research. Open hardware. Open minds. Help us explore every path to a cure &mdash; because the answer might come from the direction no one expected.</p>
+            <div class="cta-group">
+                <a href="therapeutics.html" class="btn btn-primary">See What We're Building</a>
+                <a href="research-paper.html" class="btn btn-secondary">Read the Full Paper</a>
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-secondary" target="_blank">Contribute on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">ARIA Project</div>
+                <div class="footer-links">
+                    <a href="index.html">Companions</a>
+                    <a href="therapeutics.html">Therapeutics</a>
+                    <a href="research-lab.html">Research Lab</a>
+                    <a href="research-paper.html">Paper</a>
+                    <a href="hardware-bom.html">Hardware</a>
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="support.html">Support</a>
+                    <a href="https://github.com/dbutler-a11y/aria-research">GitHub</a>
+                </div>
+                <div class="footer-copy">
+                    MIT License &copy; 2025 ARIA Project &mdash; "Made with care by humans and AI, for humans."
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

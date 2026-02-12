@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA Therapeutic Devices — Disease-Modifying Technology for Parkinson's</title>
+    <meta name="description" content="Experimental therapeutic devices designed to actively slow, halt, or reverse Parkinson's disease progression. 40Hz gamma entrainment, NIR photobiomodulation, and forced-exercise cycling.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-warm: #dd6b20;
+            --color-warm-light: #ed8936;
+            --color-warm-dark: #c05621;
+            --color-warm-bg: #fffaf0;
+            --color-warm-border: #fbd38d;
+            --color-success: #38a169;
+            --color-purple: #6b46c1;
+            --color-purple-light: #9f7aea;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f7fafc;
+            --color-bg-code: #1e293b;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 17px; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 3rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.875rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+
+        p { color: var(--color-text-secondary); margin-bottom: 1rem; }
+
+        a { color: var(--color-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+
+        /* Navigation - Clean & Simple */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover { color: var(--color-primary); }
+
+        .nav-links a.active {
+            color: var(--color-warm);
+            font-weight: 600;
+        }
+
+        /* Hero - Warm Therapeutic Theme */
+        .hero {
+            padding: 10rem 0 5rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--color-warm-bg) 0%, var(--color-bg) 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-warm);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-warm-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            max-width: 680px;
+            margin: 0 auto 2.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--color-warm);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-warm-dark);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-warm);
+            text-decoration: none;
+        }
+
+        /* Stats Bar - Warm/Amber */
+        .stats {
+            background: linear-gradient(135deg, #7b341e 0%, var(--color-warm-dark) 50%, var(--color-warm) 100%);
+            color: white;
+            padding: 2.5rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #fbd38d;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label { font-size: 0.875rem; opacity: 0.9; }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Grid */
+        .products {
+            padding: 5rem 0;
+            background: var(--color-bg-alt);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.2s;
+            border-top: 3px solid var(--color-warm);
+        }
+
+        .product-card:hover {
+            border-color: var(--color-warm);
+            box-shadow: 0 4px 20px rgba(221, 107, 32, 0.12);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card h3 {
+            margin: 0;
+            color: var(--color-primary);
+        }
+
+        .product-price {
+            font-family: var(--font-mono);
+            font-size: 1.125rem;
+            color: var(--color-success);
+            font-weight: 500;
+        }
+
+        .product-type {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-warm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: var(--color-text-secondary);
+        }
+
+        .product-features {
+            list-style: none;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--color-border);
+            padding-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-features li {
+            padding: 0.3rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--color-text-muted);
+        }
+
+        .product-features li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: var(--color-warm);
+        }
+
+        .product-science {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            border-top: 1px solid var(--color-border);
+            padding-top: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .product-science strong {
+            color: var(--color-purple);
+        }
+
+        /* How They Work Together */
+        .synergy {
+            padding: 5rem 0;
+            background: var(--color-bg);
+        }
+
+        .synergy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .synergy-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--color-bg-alt);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .synergy-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .synergy-icon.pulse {
+            background: linear-gradient(135deg, #fbd38d, #ed8936);
+        }
+
+        .synergy-icon.glow {
+            background: linear-gradient(135deg, #fed7e2, #f56565);
+        }
+
+        .synergy-icon.cycle {
+            background: linear-gradient(135deg, #c6f6d5, #38a169);
+        }
+
+        .synergy-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .synergy-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+
+        .synergy-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .synergy-connector-line {
+            height: 2px;
+            flex: 1;
+            background: linear-gradient(90deg, var(--color-warm), var(--color-purple), var(--color-success));
+            border-radius: 1px;
+            max-width: 800px;
+        }
+
+        /* Command Center */
+        .command-center {
+            padding: 5rem 0;
+            background: var(--color-bg-alt);
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .command-text h2 {
+            margin-bottom: 1rem;
+        }
+
+        .command-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .command-features {
+            list-style: none;
+        }
+
+        .command-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .command-features li::before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: var(--color-warm);
+            font-weight: bold;
+        }
+
+        .command-visual {
+            background: var(--color-bg-code);
+            border-radius: 12px;
+            padding: 2rem;
+            color: #e2e8f0;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        .command-visual .prompt {
+            color: var(--color-warm-light);
+        }
+
+        .command-visual .comment {
+            color: #718096;
+        }
+
+        .command-visual .value {
+            color: #68d391;
+        }
+
+        .command-visual .device {
+            color: #90cdf4;
+        }
+
+        /* Safety Section */
+        .safety {
+            padding: 5rem 0;
+            background: var(--color-bg);
+        }
+
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .safety-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .safety-card:hover {
+            border-color: var(--color-warm);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .safety-layer {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-warm), var(--color-warm-dark));
+            color: white;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .safety-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .safety-card p {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            padding: 3rem 0;
+            background: #fffbeb;
+            border-top: 3px solid var(--color-warm);
+            border-bottom: 3px solid var(--color-warm);
+        }
+
+        .disclaimer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .disclaimer-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer h3 {
+            color: var(--color-warm-dark);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .disclaimer p {
+            font-size: 0.95rem;
+            color: #744210;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #7b341e 0%, var(--color-warm-dark) 50%, var(--color-warm) 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--color-warm-dark);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--color-bg-alt);
+        }
+
+        .cta-section .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .cta-section .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .products-grid { grid-template-columns: 1fr; }
+            .synergy-grid { grid-template-columns: 1fr; }
+            .command-grid { grid-template-columns: 1fr; }
+            .safety-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2.25rem; }
+            .safety-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ARIA</a>
+            <ul class="nav-links">
+                <li><a href="index.html#products">Companions</a></li>
+                <li><a href="therapeutics.html" class="active">Therapeutics</a></li>
+                <li><a href="research-lab.html">Research Lab</a></li>
+                <li><a href="research-paper.html">Research Paper</a></li>
+                <li><a href="hardware-bom.html">Hardware</a></li>
+                <li><a href="https://github.com/dbutler-a11y/aria-research" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">Experimental Research</span>
+            <h1>ARIA Therapeutic Devices</h1>
+            <p class="hero-subtitle">Disease-Modifying Technology</p>
+            <p class="hero-description">
+                Experimental therapeutic devices designed to actively slow, halt, or reverse Parkinson's disease progression. Based on cutting-edge neuroscience research from MIT, Cleveland Clinic, and leading photobiomodulation labs worldwide.
+            </p>
+            <div class="cta-group">
+                <a href="hardware-bom.html" class="btn btn-primary">Start Building</a>
+                <a href="research-lab.html" class="btn btn-secondary">Read the Science</a>
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-secondary" target="_blank">View Source Code</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">40Hz</div>
+                    <div class="stat-label">Gamma frequency that clears toxic proteins</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-label">Motor improvement from forced cycling</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50-70%</div>
+                    <div class="stat-label">ATP boost from NIR photobiomodulation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">~$399</div>
+                    <div class="stat-label">Total build cost for all 3 devices</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Therapeutic Devices -->
+    <section id="devices" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Therapeutic Device Specifications</h2>
+                <p>Three devices, three disease mechanisms. Each targets a distinct pathway of Parkinson's pathology with published scientific evidence.</p>
+            </div>
+            <div class="products-grid">
+                <!-- ARIA Pulse -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>ARIA Pulse</h3>
+                        <span class="product-price">~$78</span>
+                    </div>
+                    <span class="product-type">40Hz Multi-Modal Gamma Entrainment</span>
+                    <p class="product-description">
+                        Synchronized light, sound, and vibration at 40Hz to transform microglia into phagocytic cleaners that consume toxic alpha-synuclein protein aggregates.
+                    </p>
+                    <ul class="product-features">
+                        <li>Phase-locked 40Hz LED flicker (DMA-timed, &lt;10&mu;s jitter)</li>
+                        <li>40Hz amplitude-modulated audio via I2S DAC</li>
+                        <li>40Hz vibrotactile stimulation (4 ERM motors)</li>
+                        <li>All 3 modalities synchronized to single clock source</li>
+                        <li>30-60 minute sessions, configurable protocols</li>
+                    </ul>
+                    <div class="product-science">
+                        <strong>Science:</strong> MIT GENUS research (Tsai &amp; Boyden, 2016-2025)
+                    </div>
+                </div>
+
+                <!-- ARIA Glow -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>ARIA Glow</h3>
+                        <span class="product-price">~$105</span>
+                    </div>
+                    <span class="product-type">NIR Photobiomodulation Helmet</span>
+                    <p class="product-description">
+                        810nm near-infrared light rescues dying mitochondria in dopaminergic neurons by restoring cytochrome c oxidase activity, boosting cellular ATP production by 50-70%.
+                    </p>
+                    <ul class="product-features">
+                        <li>24x 1W 810nm near-infrared LEDs</li>
+                        <li>Optional 8x 670nm red LEDs</li>
+                        <li>Thermal safety monitoring (3x DS18B20 sensors)</li>
+                        <li>Auto-shutoff at 41&deg;C with graduated power reduction</li>
+                        <li>Optional 40Hz pulsing for combined gamma+PBM benefit</li>
+                        <li>10-20 minute sessions at 10-50 mW/cm&sup2;</li>
+                    </ul>
+                    <div class="product-science">
+                        <strong>Science:</strong> Mitrofanis, Liebert, Hamilton, Benabid research
+                    </div>
+                </div>
+
+                <!-- ARIA Cycle -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>ARIA Cycle</h3>
+                        <span class="product-price">~$4</span>
+                    </div>
+                    <span class="product-type">Smart Forced-Exercise Controller</span>
+                    <p class="product-description">
+                        Monitors and guides pedaling cadence at 80-90 RPM &mdash; above voluntary pace &mdash; producing 35% motor improvement comparable to levodopa medication.
+                    </p>
+                    <ul class="product-features">
+                        <li>Hall effect sensor cadence monitoring</li>
+                        <li>Audio metronome cueing at target RPM</li>
+                        <li>Alberts protocol: 10min warmup (60 RPM) &rarr; 40min main (80 RPM) &rarr; 10min cooldown</li>
+                        <li>Real-time RPM display with adaptive targets</li>
+                        <li>Full session logging and trend analysis</li>
+                    </ul>
+                    <div class="product-science">
+                        <strong>Science:</strong> Dr. Jay Alberts, Cleveland Clinic CYCLE/GEARS trials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How They Work Together -->
+    <section class="synergy">
+        <div class="container">
+            <div class="section-header">
+                <h2>How They Work Together</h2>
+                <p>Each device targets a distinct mechanism of Parkinson's disease. Together, they mount a multi-front assault on neurodegeneration.</p>
+            </div>
+            <div class="synergy-grid">
+                <div class="synergy-card">
+                    <div class="synergy-icon pulse">
+                        <span>~</span>
+                    </div>
+                    <h3>ARIA Pulse</h3>
+                    <p>Clears toxic alpha-synuclein protein aggregates. Reduces neuroinflammation by converting microglia from pro-inflammatory to phagocytic state. Enhances cerebrospinal fluid clearance via glymphatic system activation.</p>
+                </div>
+                <div class="synergy-card">
+                    <div class="synergy-icon glow">
+                        <span>*</span>
+                    </div>
+                    <h3>ARIA Glow</h3>
+                    <p>Rescues dying mitochondria in dopaminergic neurons. Boosts neurotrophic factors (BDNF, GDNF) that protect remaining neurons. Reduces oxidative stress and restores cellular energy production.</p>
+                </div>
+                <div class="synergy-card">
+                    <div class="synergy-icon cycle">
+                        <span>&infin;</span>
+                    </div>
+                    <h3>ARIA Cycle</h3>
+                    <p>Upregulates BDNF and GDNF through forced aerobic exercise. Improves mitochondrial biogenesis and function. Induces autophagy to clear damaged cellular components. Enhances dopamine signaling efficiency.</p>
+                </div>
+            </div>
+            <div class="synergy-connector">
+                <div class="synergy-connector-line"></div>
+            </div>
+            <p style="text-align: center; font-size: 0.95rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto;">
+                <strong style="color: var(--color-primary);">Combined approach:</strong> Protein clearance (Pulse) + mitochondrial rescue (Glow) + systemic neuroprotection (Cycle) addresses three of the four major pathological hallmarks of Parkinson's disease simultaneously.
+            </p>
+        </div>
+    </section>
+
+    <!-- The Command Center -->
+    <section class="command-center">
+        <div class="container">
+            <div class="command-grid">
+                <div class="command-text">
+                    <h2>The Command Center</h2>
+                    <p>All three therapeutic devices are orchestrated by a single Raspberry Pi 4, providing unified control, monitoring, and data analysis through a local web dashboard.</p>
+                    <ul class="command-features">
+                        <li>Unified control dashboard for all 3 devices</li>
+                        <li>Tremor tracking with pre/post therapy comparison</li>
+                        <li>Heart rate monitoring via MAX30102 pulse oximeter</li>
+                        <li>Session scheduling with protocol management</li>
+                        <li>Complete data logging with SQLite storage</li>
+                        <li>Trend visualization over weeks and months</li>
+                        <li>CSV/JSON data export for clinician review</li>
+                    </ul>
+                </div>
+                <div class="command-visual">
+                    <div class="comment">// ARIA Therapy Command Center</div>
+                    <div class="comment">// Raspberry Pi 4 | Local Dashboard</div>
+                    <br>
+                    <div><span class="prompt">ARIA&gt;</span> <span class="device">status --all</span></div>
+                    <br>
+                    <div><span class="device">Pulse</span> <span class="value">READY</span> &nbsp;40Hz | 3-modal sync</div>
+                    <div><span class="device">Glow&nbsp;</span> <span class="value">READY</span> &nbsp;810nm | 38.2&deg;C nominal</div>
+                    <div><span class="device">Cycle</span> <span class="value">READY</span> &nbsp;Target: 80 RPM</div>
+                    <br>
+                    <div><span class="prompt">ARIA&gt;</span> <span class="device">tremor --compare</span></div>
+                    <div>Pre-session: &nbsp;<span class="value">4.2 Hz</span> | 12.3 mm/s</div>
+                    <div>Post-session: <span class="value">3.1 Hz</span> | &nbsp;8.7 mm/s</div>
+                    <div>Improvement: &nbsp;<span class="value">29.3%</span></div>
+                    <br>
+                    <div><span class="prompt">ARIA&gt;</span> <span class="device">trends --weeks 4</span></div>
+                    <div>Week 1: baseline &nbsp;&nbsp;&nbsp;<span class="value">||||</span></div>
+                    <div>Week 2: -12% tremor <span class="value">|||</span></div>
+                    <div>Week 3: -21% tremor <span class="value">||</span></div>
+                    <div>Week 4: -29% tremor <span class="value">|</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety -->
+    <section class="safety">
+        <div class="container">
+            <div class="section-header">
+                <h2>4-Layer Safety Architecture</h2>
+                <p>Medical-grade safety design with redundant protection at every level. No single point of failure can harm the user.</p>
+            </div>
+            <div class="safety-grid">
+                <div class="safety-card">
+                    <div class="safety-layer">1</div>
+                    <h4>Hardware</h4>
+                    <p>Physical emergency stop button, thermal fuse (auto-disconnect at 42&deg;C), current-limiting resistors on all LED drivers, optically isolated control circuits.</p>
+                </div>
+                <div class="safety-card">
+                    <div class="safety-layer">2</div>
+                    <h4>Watchdog</h4>
+                    <p>Independent hardware watchdog timer. If the main application freezes or crashes, all therapeutic outputs are automatically disabled within 500ms.</p>
+                </div>
+                <div class="safety-card">
+                    <div class="safety-layer">3</div>
+                    <h4>Application</h4>
+                    <p>State machine enforcing valid transitions only. Continuous thermal monitoring with graduated power reduction. Session time limits with mandatory cooldown periods.</p>
+                </div>
+                <div class="safety-card">
+                    <div class="safety-layer">4</div>
+                    <h4>User Interface</h4>
+                    <p>Prominent epilepsy warnings before 40Hz sessions. Large, high-contrast emergency stop buttons. Clear session status with countdown timers. Accessibility-first design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-content">
+                <div class="disclaimer-icon">&#9888;</div>
+                <h3>Important Medical Disclaimer</h3>
+                <p>These devices are experimental research tools, not FDA-approved medical devices. They do not replace standard medical care. Always consult your neurologist before using any complementary therapeutic approach. The research cited on this page is promising but preliminary. Individual results may vary. Do not discontinue prescribed medications based on information presented here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Build the Future of Therapy</h2>
+            <p>Open-source hardware and software. Published science. Everything you need to start building disease-modifying therapeutic devices.</p>
+            <div class="cta-group">
+                <a href="hardware-bom.html" class="btn btn-primary">Start Building</a>
+                <a href="research-lab.html" class="btn btn-secondary">Read the Science</a>
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-secondary" target="_blank">View Source Code</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">ARIA Project</div>
+                <div class="footer-links">
+                    <a href="index.html">Companions</a>
+                    <a href="therapeutics.html">Therapeutics</a>
+                    <a href="research-paper.html">Research</a>
+                    <a href="hardware-bom.html">Hardware</a>
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="support.html">Support</a>
+                    <a href="https://github.com/dbutler-a11y/aria-research">GitHub</a>
+                </div>
+                <div class="footer-copy">
+                    MIT License &copy; 2025 ARIA Project &mdash; "Made with care by humans and AI, for humans."
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
