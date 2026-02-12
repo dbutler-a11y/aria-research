@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA Heal — Musculoskeletal Diagnostic & Therapeutic Platform</title>
+    <meta name="description" content="Open-source shoulder diagnostic and rehabilitation platform combining ultrasound imaging, 4-channel EMG, PEMF therapy, NIR photobiomodulation, and sensor-guided rehabilitation. Build for under $560.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-teal: #0d9488;
+            --color-teal-light: #14b8a6;
+            --color-teal-dark: #0f766e;
+            --color-teal-bg: #f0fdfa;
+            --color-teal-border: #99f6e4;
+            --color-success: #38a169;
+            --color-purple: #6b46c1;
+            --color-purple-light: #9f7aea;
+            --color-red: #e53e3e;
+            --color-red-light: #fc8181;
+            --color-amber: #d69e2e;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f7fafc;
+            --color-bg-code: #1e293b;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 17px; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 3rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.875rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+
+        p { color: var(--color-text-secondary); margin-bottom: 1rem; }
+
+        a { color: var(--color-teal); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+
+        /* Navigation - Clean & Simple */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover { color: var(--color-primary); }
+
+        .nav-links a.active {
+            color: var(--color-teal);
+            font-weight: 600;
+        }
+
+        /* Hero - Teal Therapeutic Theme */
+        .hero {
+            padding: 10rem 0 5rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--color-teal-bg) 0%, var(--color-bg) 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-teal);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-teal-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--color-teal);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-teal-dark);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-teal);
+            text-decoration: none;
+        }
+
+        /* Stats Bar - Teal */
+        .stats {
+            background: linear-gradient(135deg, #134e4a 0%, var(--color-teal-dark) 50%, var(--color-teal) 100%);
+            color: white;
+            padding: 2.5rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #99f6e4;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label { font-size: 0.875rem; opacity: 0.9; }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header p {
+            max-width: 660px;
+            margin: 0 auto;
+        }
+
+        /* The Problem Section */
+        .problem {
+            padding: 5rem 0;
+            background: var(--color-bg);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-top: 2rem;
+        }
+
+        .problem-text h3 {
+            color: var(--color-red);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .problem-text p {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-stats {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--color-teal);
+        }
+
+        .problem-stat-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .problem-stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .problem-stat-item .number {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--color-teal);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .problem-stat-item .label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Subsystems Section */
+        .subsystems {
+            padding: 5rem 0;
+            background: var(--color-bg-alt);
+        }
+
+        .subsystem-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--color-teal);
+            transition: all 0.2s;
+        }
+
+        .subsystem-card:hover {
+            box-shadow: 0 4px 20px rgba(13, 148, 136, 0.1);
+        }
+
+        .subsystem-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .subsystem-header h3 {
+            margin: 0;
+            font-size: 1.35rem;
+            color: var(--color-primary);
+        }
+
+        .subsystem-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-teal), var(--color-teal-dark));
+            color: white;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .subsystem-type {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .subsystem-description {
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .subsystem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subsystem-specs, .subsystem-science {
+            font-size: 0.85rem;
+        }
+
+        .subsystem-specs h4, .subsystem-science h4 {
+            font-size: 0.9rem;
+            color: var(--color-teal-dark);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+
+        .subsystem-specs ul, .subsystem-science ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .subsystem-specs li, .subsystem-science li {
+            padding: 0.3rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--color-text-muted);
+        }
+
+        .subsystem-specs li::before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: var(--color-teal);
+            font-weight: bold;
+        }
+
+        .subsystem-science li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: var(--color-success);
+        }
+
+        .subsystem-hardware {
+            background: var(--color-bg-alt);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            border: 1px solid var(--color-border);
+        }
+
+        .subsystem-hardware h4 {
+            font-size: 0.85rem;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+
+        .hardware-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .hardware-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
+            background: white;
+            border: 1px solid var(--color-teal-border);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--color-teal-dark);
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+
+        .hardware-link:hover {
+            background: var(--color-teal-bg);
+            border-color: var(--color-teal);
+            text-decoration: none;
+        }
+
+        .hardware-link .price {
+            font-family: var(--font-mono);
+            font-weight: 500;
+            color: var(--color-success);
+        }
+
+        /* Architecture Section */
+        .architecture {
+            padding: 5rem 0;
+            background: var(--color-bg);
+        }
+
+        .arch-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .arch-text h2 {
+            margin-bottom: 1rem;
+        }
+
+        .arch-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .arch-features {
+            list-style: none;
+        }
+
+        .arch-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .arch-features li::before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: var(--color-teal);
+            font-weight: bold;
+        }
+
+        .arch-visual {
+            background: var(--color-bg-code);
+            border-radius: 12px;
+            padding: 1.75rem;
+            color: #e2e8f0;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+
+        .arch-visual .comment { color: #718096; }
+        .arch-visual .prompt { color: var(--color-teal-light); }
+        .arch-visual .value { color: #68d391; }
+        .arch-visual .device { color: #90cdf4; }
+        .arch-visual .warn { color: #fbd38d; }
+        .arch-visual .dim { color: #4a5568; }
+        .arch-visual .border-char { color: #4a5568; }
+
+        /* GPIO Diagram */
+        .gpio-section {
+            margin-top: 2rem;
+        }
+
+        .gpio-visual {
+            background: var(--color-bg-code);
+            border-radius: 12px;
+            padding: 2rem;
+            color: #e2e8f0;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        /* Treatment Protocol */
+        .protocol {
+            padding: 5rem 0;
+            background: var(--color-bg-alt);
+        }
+
+        .protocol-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .protocol-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            border-top: 3px solid var(--color-teal);
+        }
+
+        .protocol-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .protocol-card .time {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .protocol-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .protocol-card li {
+            padding: 0.4rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .protocol-card li::before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: var(--color-teal);
+            font-weight: bold;
+        }
+
+        .recovery-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .recovery-phase {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .recovery-phase:hover {
+            border-color: var(--color-teal);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .recovery-phase .weeks {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--color-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .recovery-phase h4 {
+            font-size: 0.95rem;
+            color: var(--color-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .recovery-phase p {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+
+        .recovery-bar {
+            height: 4px;
+            border-radius: 2px;
+            margin-top: 0.75rem;
+        }
+
+        .recovery-bar.phase-1 { background: linear-gradient(90deg, var(--color-teal-bg), var(--color-teal-light)); width: 25%; margin: 0.75rem auto 0; }
+        .recovery-bar.phase-2 { background: linear-gradient(90deg, var(--color-teal-light), var(--color-teal)); width: 50%; margin: 0.75rem auto 0; }
+        .recovery-bar.phase-3 { background: linear-gradient(90deg, var(--color-teal), var(--color-teal-dark)); width: 75%; margin: 0.75rem auto 0; }
+        .recovery-bar.phase-4 { background: linear-gradient(90deg, var(--color-teal-dark), var(--color-success)); width: 100%; margin: 0.75rem auto 0; }
+
+        /* BOM Section */
+        .bom {
+            padding: 5rem 0;
+            background: var(--color-bg);
+        }
+
+        .bom-table-wrapper {
+            overflow-x: auto;
+            margin-top: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .bom-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .bom-table thead {
+            background: linear-gradient(135deg, #134e4a, var(--color-teal-dark));
+            color: white;
+        }
+
+        .bom-table th {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .bom-table td {
+            padding: 0.875rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        .bom-table tbody tr:hover {
+            background: var(--color-teal-bg);
+        }
+
+        .bom-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .bom-table .price {
+            font-family: var(--font-mono);
+            color: var(--color-success);
+            font-weight: 500;
+        }
+
+        .bom-table .subsystem-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--color-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .bom-table .total-row {
+            background: var(--color-bg-alt);
+            font-weight: 600;
+        }
+
+        .bom-table .total-row td {
+            color: var(--color-primary);
+            font-size: 1rem;
+        }
+
+        .bom-table .total-row .price {
+            font-size: 1.125rem;
+            color: var(--color-teal-dark);
+        }
+
+        .bom-link {
+            color: var(--color-teal);
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .bom-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Safety Section */
+        .safety {
+            padding: 5rem 0;
+            background: var(--color-bg-alt);
+        }
+
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .safety-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .safety-card:hover {
+            border-color: var(--color-teal);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .safety-layer {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-teal), var(--color-teal-dark));
+            color: white;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .safety-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .safety-card p {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            padding: 3rem 0;
+            background: #f0fdfa;
+            border-top: 3px solid var(--color-teal);
+            border-bottom: 3px solid var(--color-teal);
+        }
+
+        .disclaimer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .disclaimer-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer h3 {
+            color: var(--color-teal-dark);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .disclaimer p {
+            font-size: 0.95rem;
+            color: #134e4a;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* Dashboard Preview */
+        .dashboard {
+            padding: 5rem 0;
+            background: var(--color-bg);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .dashboard-text h2 { margin-bottom: 1rem; }
+        .dashboard-text p { margin-bottom: 1.5rem; }
+
+        .dashboard-features {
+            list-style: none;
+        }
+
+        .dashboard-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .dashboard-features li::before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: var(--color-teal);
+            font-weight: bold;
+        }
+
+        .dashboard-visual {
+            background: var(--color-bg-code);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: #e2e8f0;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            line-height: 1.65;
+            overflow-x: auto;
+        }
+
+        .dashboard-visual .comment { color: #718096; }
+        .dashboard-visual .prompt { color: var(--color-teal-light); }
+        .dashboard-visual .value { color: #68d391; }
+        .dashboard-visual .device { color: #90cdf4; }
+        .dashboard-visual .warn { color: #fbd38d; }
+        .dashboard-visual .danger { color: #fc8181; }
+        .dashboard-visual .bar-fill { color: var(--color-teal-light); }
+        .dashboard-visual .bar-empty { color: #4a5568; }
+        .dashboard-visual .label { color: #a0aec0; }
+
+        /* References */
+        .references {
+            padding: 5rem 0;
+            background: var(--color-bg-alt);
+        }
+
+        .references-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .reference-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            font-size: 0.85rem;
+            transition: all 0.15s;
+        }
+
+        .reference-card:hover {
+            border-color: var(--color-teal);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .reference-number {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--color-teal);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .reference-title {
+            color: var(--color-primary);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .reference-authors {
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .reference-journal {
+            font-style: italic;
+            color: var(--color-teal-dark);
+            font-size: 0.78rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #134e4a 0%, var(--color-teal-dark) 50%, var(--color-teal) 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 550px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--color-teal-dark);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--color-bg-alt);
+        }
+
+        .cta-section .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .cta-section .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .problem-grid { grid-template-columns: 1fr; }
+            .subsystem-grid { grid-template-columns: 1fr; }
+            .arch-grid { grid-template-columns: 1fr; }
+            .protocol-timeline { grid-template-columns: 1fr; }
+            .recovery-timeline { grid-template-columns: repeat(2, 1fr); }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .safety-grid { grid-template-columns: repeat(2, 1fr); }
+            .references-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2.25rem; }
+            .safety-grid { grid-template-columns: 1fr; }
+            .recovery-timeline { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ARIA</a>
+            <ul class="nav-links">
+                <li><a href="index.html#products">Companions</a></li>
+                <li><a href="therapeutics.html">Therapeutics</a></li>
+                <li><a href="aria-heal.html" class="active">ARIA Heal</a></li>
+                <li><a href="research-lab.html">Research Lab</a></li>
+                <li><a href="research-paper.html">Paper</a></li>
+                <li><a href="hardware-bom.html">Hardware</a></li>
+                <li><a href="research-data.html">Investors</a></li>
+                <li><a href="https://github.com/dbutler-a11y/aria-research" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+        <div class="container">
+            <span class="hero-badge">Musculoskeletal Research</span>
+            <h1>ARIA Heal</h1>
+            <p class="hero-subtitle">Musculoskeletal Diagnostic &amp; Therapeutic Platform</p>
+            <p class="hero-description">
+                Five integrated subsystems &mdash; diagnostic ultrasound, 4-channel surface EMG, pulsed electromagnetic field therapy, near-infrared photobiomodulation, and sensor-guided rehabilitation &mdash; unified on a single Raspberry Pi 4 to diagnose, treat, and rehabilitate shoulder injuries at home. Professional-grade musculoskeletal care for under $560.
+            </p>
+            <div class="cta-group">
+                <a href="#bom" class="btn btn-primary">View Bill of Materials</a>
+                <a href="#subsystems" class="btn btn-secondary">Explore Subsystems</a>
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-secondary" target="_blank">View Source Code</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Integrated diagnostic &amp; therapeutic subsystems</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Ultrasound sensitivity for full-thickness tears</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">810nm</div>
+                    <div class="stat-label">NIR wavelength for deep tendon penetration</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">~$560</div>
+                    <div class="stat-label">Total build cost for complete platform</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Shoulder Injury Crisis</h2>
+                <p>Rotator cuff injuries are among the most common and most mismanaged musculoskeletal conditions. The current care model fails patients at nearly every step.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-text">
+                    <h3>Rotator cuff tears don't heal on their own</h3>
+                    <p>The rotator cuff tendons have notoriously poor blood supply, especially at the "critical zone" near their insertion on the greater tuberosity. Without adequate vascularity, the inflammatory cascade stalls, fibroblasts fail to deposit organized collagen, and the tear propagates under continued mechanical load. A partial tear today becomes a full-thickness tear tomorrow &mdash; and a full-thickness tear becomes a massive, retracted, fatty-infiltrated tear that no surgery can reverse.</p>
+
+                    <h3>Resistance bands can make it worse</h3>
+                    <p>The well-meaning advice to "just do some resistance band exercises" ignores the biomechanical reality of subacromial impingement. When the supraspinatus tendon is partially torn, it swells. That swelling narrows the subacromial space &mdash; the gap between the humeral head and the acromion. Resistance-band abduction exercises compress the swollen tendon against the acromion with every repetition, creating a vicious cycle: exercise causes impingement, impingement causes inflammation, inflammation causes more swelling, more swelling causes more impingement. Without imaging to know the tear's size and location, exercise prescriptions are a coin flip.</p>
+
+                    <h3>Imaging is critical &mdash; but prohibitively expensive</h3>
+                    <p>The standard diagnostic pathway requires an initial physician visit ($200-400), an MRI ($1,200-3,500), a follow-up with an orthopedic specialist ($300-500), and possibly a diagnostic ultrasound ($400-800). Before you even begin treatment, you're $2,000-5,000 into the process &mdash; assuming you have insurance. For the 27 million uninsured Americans, this cost is simply prohibitive. Many patients never get diagnosed at all.</p>
+
+                    <h3>The gap between diagnosis and recovery</h3>
+                    <p>Even after diagnosis, rehabilitation is fragmented. Physical therapy sessions ($150-300 each, 2-3x/week for months) lack objective measurement. Therapists rely on subjective patient reports and visual assessment. There's no EMG data showing which muscles are firing. No force measurements tracking strength recovery. No ultrasound confirming that the tendon is actually healing. Patients are flying blind through a 6-month rehabilitation process.</p>
+                </div>
+                <div class="problem-stats">
+                    <div class="problem-stat-item">
+                        <span class="number">2M+</span>
+                        <span class="label">Americans visit a doctor for rotator cuff problems each year</span>
+                    </div>
+                    <div class="problem-stat-item">
+                        <span class="number">30%</span>
+                        <span class="label">Of adults over 60 have a rotator cuff tear (many asymptomatic)</span>
+                    </div>
+                    <div class="problem-stat-item">
+                        <span class="number">$5,000+</span>
+                        <span class="label">Typical cost for professional diagnosis (MRI + specialist visits)</span>
+                    </div>
+                    <div class="problem-stat-item">
+                        <span class="number">50%</span>
+                        <span class="label">Of surgical repairs re-tear within 2 years without proper rehab</span>
+                    </div>
+                    <div class="problem-stat-item">
+                        <span class="number">6-9 mo</span>
+                        <span class="label">Average recovery timeline with no objective progress tracking</span>
+                    </div>
+                    <div class="problem-stat-item">
+                        <span class="number">27M</span>
+                        <span class="label">Uninsured Americans who cannot access standard diagnostic imaging</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Five Subsystems -->
+    <section class="subsystems" id="subsystems">
+        <div class="container">
+            <div class="section-header">
+                <h2>Five Integrated Subsystems</h2>
+                <p>Each subsystem addresses a critical gap in shoulder care. Together, they form a closed-loop diagnostic-therapeutic-rehabilitation platform that rivals clinical-grade equipment at a fraction of the cost.</p>
+            </div>
+
+            <!-- Subsystem 1: Diagnostic Ultrasound -->
+            <div class="subsystem-card" id="ultrasound">
+                <div class="subsystem-header">
+                    <div>
+                        <h3>Diagnostic Ultrasound</h3>
+                        <span class="subsystem-type">USB B-Mode Imaging &middot; 6 ESSR Scan Planes</span>
+                    </div>
+                    <span class="subsystem-number">1</span>
+                </div>
+                <p class="subsystem-description">
+                    Point-of-care ultrasound has transformed musculoskeletal diagnostics. A USB-connected linear probe delivers real-time B-mode imaging of the rotator cuff tendons, allowing visualization of partial and full-thickness tears, tendinosis, bursitis, and calcific deposits. The system guides users through the six standardized scan planes defined by the European Society of Skeletal Radiology (ESSR): long-axis supraspinatus, short-axis supraspinatus, subscapularis, biceps tendon (transverse and longitudinal), and infraspinatus/teres minor. Each plane is captured, timestamped, and stored for longitudinal comparison.
+                </p>
+                <div class="subsystem-grid">
+                    <div class="subsystem-specs">
+                        <h4>Technical Specifications</h4>
+                        <ul>
+                            <li>USB-connected B-mode linear probe (7.5-12 MHz)</li>
+                            <li>Resolution: axial ~0.3mm, lateral ~0.5mm</li>
+                            <li>Depth: 2-6cm (adjustable, optimal for superficial tendons)</li>
+                            <li>6 ESSR standard scan planes with guided positioning</li>
+                            <li>Frame capture &amp; storage with SQLite metadata</li>
+                            <li>Image processing via OpenCV (contrast enhancement, annotation)</li>
+                            <li>Future: YOLOv7 ML model for automated tear detection (98% accuracy target)</li>
+                        </ul>
+                    </div>
+                    <div class="subsystem-science">
+                        <h4>Clinical Performance</h4>
+                        <ul>
+                            <li>92% sensitivity for full-thickness rotator cuff tears</li>
+                            <li>94% specificity (comparable to MRI for full tears)</li>
+                            <li>67-79% sensitivity for partial-thickness tears</li>
+                            <li>Operator-dependent &mdash; guided scan protocol reduces learning curve</li>
+                            <li>Dynamic imaging reveals impingement not visible on static MRI</li>
+                            <li>Real-time visualization during movement impossible with MRI</li>
+                            <li>Longitudinal tracking: compare same scan planes week over week</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="subsystem-hardware">
+                    <h4>Hardware &amp; Purchase Links</h4>
+                    <div class="hardware-links">
+                        <a href="https://www.kontedmed.com/products/c10ul-color-superfical-ultrasound-usb-linear-probe/" class="hardware-link" target="_blank">KONTED C10UL USB Linear Probe <span class="price">~$300</span></a>
+                        <a href="https://geteagleview.com/products/linear-wireless-probe-type-ultrasound-scanner" class="hardware-link" target="_blank">EagleView Linear Wireless (alt.) <span class="price">~$500</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsystem 2: 4-Channel Surface EMG -->
+            <div class="subsystem-card" id="emg">
+                <div class="subsystem-header">
+                    <div>
+                        <h3>4-Channel Surface EMG</h3>
+                        <span class="subsystem-type">MyoWare 2.0 &middot; ADS1115 16-bit ADC &middot; 860 SPS</span>
+                    </div>
+                    <span class="subsystem-number">2</span>
+                </div>
+                <p class="subsystem-description">
+                    Surface electromyography captures the electrical activity of all four rotator cuff muscles simultaneously: supraspinatus, infraspinatus, subscapularis, and teres minor. Four MyoWare 2.0 analog sensors feed into an ADS1115 16-bit ADC sampling at 860 samples per second, providing clinical-grade temporal resolution for motor unit recruitment analysis. The system detects pathological firing patterns that are invisible to visual assessment &mdash; delayed activation onset, asymmetric amplitude between sides, abnormal co-contraction patterns, and median frequency shifts that indicate early muscle fatigue. This data transforms rehabilitation from guesswork into precision medicine.
+                </p>
+                <div class="subsystem-grid">
+                    <div class="subsystem-specs">
+                        <h4>Technical Specifications</h4>
+                        <ul>
+                            <li>4x MyoWare 2.0 muscle sensors (analog output)</li>
+                            <li>ADS1115 16-bit ADC via I2C (860 SPS per channel)</li>
+                            <li>Bandwidth: 20-500Hz (muscle activity band)</li>
+                            <li>RMS amplitude calculation per channel</li>
+                            <li>Median frequency tracking via FFT (fatigue index)</li>
+                            <li>Cross-channel timing analysis (activation onset delay)</li>
+                            <li>Real-time bar graph visualization in web dashboard</li>
+                        </ul>
+                    </div>
+                    <div class="subsystem-science">
+                        <h4>Diagnostic Capabilities</h4>
+                        <ul>
+                            <li>Detects delayed activation onset (&gt;50ms vs. contralateral side)</li>
+                            <li>Flags &gt;15% amplitude asymmetry (pathological threshold)</li>
+                            <li>Identifies abnormal co-contraction ratios</li>
+                            <li>Spectral analysis reveals median frequency shift (fatigue)</li>
+                            <li>Guides muscle re-education with biofeedback</li>
+                            <li>Tracks recovery: activation patterns normalize with healing</li>
+                            <li>MVC (Maximum Voluntary Contraction) baseline testing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="subsystem-hardware">
+                    <h4>Hardware &amp; Purchase Links</h4>
+                    <div class="hardware-links">
+                        <a href="https://www.sparkfun.com/products/21265" class="hardware-link" target="_blank">MyoWare 2.0 Sensor (x4) <span class="price">~$40 ea</span></a>
+                        <a href="https://www.adafruit.com/product/1085" class="hardware-link" target="_blank">ADS1115 16-bit ADC <span class="price">~$15</span></a>
+                        <a href="https://www.sparkfun.com/disposable-surface-emg-ecg-ekg-electrode-24mm-10-pack.html" class="hardware-link" target="_blank">EMG Electrode Pads (10pk) <span class="price">~$10</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsystem 3: PEMF Therapy -->
+            <div class="subsystem-card" id="pemf">
+                <div class="subsystem-header">
+                    <div>
+                        <h3>PEMF Therapy</h3>
+                        <span class="subsystem-type">Pulsed Electromagnetic Field &middot; 50Hz &middot; 1.5mT</span>
+                    </div>
+                    <span class="subsystem-number">3</span>
+                </div>
+                <p class="subsystem-description">
+                    Pulsed electromagnetic field therapy delivers time-varying magnetic fields to injured tissue, inducing micro-currents that stimulate cellular repair processes. At 50Hz with a 10% duty cycle and 1.5mT field strength, the PEMF coil targets three interconnected healing pathways: collagen synthesis by tenocytes (the cells that build tendon), angiogenesis (formation of new blood vessels to restore the tendon's meager blood supply), and cell proliferation to repopulate the tear margin with repair cells. The science is compelling &mdash; multiple randomized controlled trials have demonstrated accelerated tendon-to-bone healing in rotator cuff repair models, with treated tendons showing 40-60% greater pull-out strength at 8 weeks compared to controls.
+                </p>
+                <div class="subsystem-grid">
+                    <div class="subsystem-specs">
+                        <h4>Technical Specifications</h4>
+                        <ul>
+                            <li>Frequency: 50Hz pulsed square wave</li>
+                            <li>Duty cycle: 10% (5ms on, 45ms off)</li>
+                            <li>Field strength: 1.5mT at coil surface</li>
+                            <li>Coil: custom-wound solenoid (22AWG, ferrite core)</li>
+                            <li>Driver: IRLZ44N MOSFET, GPIO PWM control</li>
+                            <li>Power: 12V 10A DC power supply</li>
+                            <li>Session duration: 30-60 minutes daily</li>
+                            <li>Flyback diode protection on coil</li>
+                        </ul>
+                    </div>
+                    <div class="subsystem-science">
+                        <h4>Biological Mechanisms</h4>
+                        <ul>
+                            <li>Stimulates tenocyte collagen synthesis (Type I &amp; III)</li>
+                            <li>Promotes angiogenesis in hypovascular tendon zones</li>
+                            <li>Upregulates BMP-2 and TGF-beta growth factors</li>
+                            <li>Enhances cell proliferation at tear margins</li>
+                            <li>Reduces inflammatory cytokines (IL-1, TNF-alpha)</li>
+                            <li>40-60% greater tendon-to-bone pull-out strength (animal models)</li>
+                            <li>Non-invasive, no known adverse effects at therapeutic doses</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="subsystem-hardware">
+                    <h4>Hardware &amp; Purchase Links (~$130 total)</h4>
+                    <div class="hardware-links">
+                        <a href="https://www.amazon.com/Magnet-Enameled-Copper-Winding-Crafts/dp/B01FVJNBSW" class="hardware-link" target="_blank">22AWG Magnet Wire (200ft) <span class="price">~$12</span></a>
+                        <a href="https://www.amazon.com/uxcell-Transformer-Bobbin-Ferrite-Halves/dp/B07X23GDRD" class="hardware-link" target="_blank">EE50 Ferrite Core + Bobbin <span class="price">~$8</span></a>
+                        <a href="https://www.amazon.com/Bestol-5PCS-IRLZ44N-MOSFET-220AB/dp/B07DWYGNHC" class="hardware-link" target="_blank">IRLZ44N MOSFET 5-pack <span class="price">~$6</span></a>
+                        <a href="https://www.amazon.com/SHNITPWR-100V-240V-Converter-Transformer-5-5x2-5mm/dp/B07PWZQ33N" class="hardware-link" target="_blank">12V 10A DC PSU (SHNITPWR) <span class="price">~$18</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsystem 4: NIR Photobiomodulation -->
+            <div class="subsystem-card" id="pbm">
+                <div class="subsystem-header">
+                    <div>
+                        <h3>NIR Photobiomodulation</h3>
+                        <span class="subsystem-type">810nm Shoulder Array &middot; 40 mW/cm&sup2; &middot; Flexible LED Wrap</span>
+                    </div>
+                    <span class="subsystem-number">4</span>
+                </div>
+                <p class="subsystem-description">
+                    Near-infrared photobiomodulation at 810nm penetrates 1-3cm through skin and subcutaneous tissue to reach the rotator cuff tendons directly. At this wavelength, photons are absorbed by cytochrome c oxidase (Complex IV) in the mitochondrial electron transport chain, displacing inhibitory nitric oxide and restoring the enzyme's ability to reduce oxygen. The result is immediate: ATP production increases, reactive oxygen species normalize, and the cell shifts from a stressed, inflammatory state to an active repair state. A flexible LED array of 20 high-power 810nm LEDs is worn as a shoulder wrap, delivering 40 mW/cm&sup2; uniformly across the supraspinatus, infraspinatus, and posterior deltoid regions. Three DS18B20 temperature sensors monitor skin contact temperature with graduated thermal safety: warning at 40&deg;C, automatic power reduction at 41&deg;C, and complete cutoff at 42&deg;C.
+                </p>
+                <div class="subsystem-grid">
+                    <div class="subsystem-specs">
+                        <h4>Technical Specifications</h4>
+                        <ul>
+                            <li>20x 810nm 1W near-infrared LEDs</li>
+                            <li>Irradiance: 40 mW/cm&sup2; at tissue surface</li>
+                            <li>Penetration depth: 1-3cm (reaches tendon insertion)</li>
+                            <li>4x constant current LED drivers (5 LEDs per string)</li>
+                            <li>Flexible PCB shoulder wrap form factor</li>
+                            <li>3x DS18B20 temperature sensors (500ms polling)</li>
+                            <li>Graduated thermal response: 40&deg;C warn, 41&deg;C reduce, 42&deg;C cutoff</li>
+                            <li>Optional 40Hz pulsing mode for combined PBM+gamma benefit</li>
+                            <li>Session: 15-30 minutes, 1-2x daily</li>
+                        </ul>
+                    </div>
+                    <div class="subsystem-science">
+                        <h4>Biological Mechanisms</h4>
+                        <ul>
+                            <li>Restores cytochrome c oxidase function (displaces NO)</li>
+                            <li>Boosts cellular ATP production by 50-70%</li>
+                            <li>Reduces pro-inflammatory cytokines (NF-kB pathway)</li>
+                            <li>Increases collagen synthesis and fibroblast proliferation</li>
+                            <li>Promotes angiogenesis in hypovascular tendon zones</li>
+                            <li>Modulates reactive oxygen species to signaling levels</li>
+                            <li>Enhances stem cell migration to injury site</li>
+                            <li>Synergistic with PEMF (different cellular targets)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="subsystem-hardware">
+                    <h4>Hardware &amp; Purchase Links (~$240 total)</h4>
+                    <div class="hardware-links">
+                        <a href="https://www.amazon.com/LEDGUHON-Infrared-Emitter-Degrees-805nm-810nm/dp/B0CD4472PB" class="hardware-link" target="_blank">810nm 3W IR LEDs 10-pack (x2) <span class="price">~$28</span></a>
+                        <a href="https://www.amazon.com/Driver-Constant-Current-Control-Dimming/dp/B0C2ZXXTSD" class="hardware-link" target="_blank">700mA CC LED Drivers 6-pack <span class="price">~$10</span></a>
+                        <a href="https://www.amazon.com/HiLetgo-DS18B20-Temperature-Stainless-Waterproof/dp/B00M1PM55K" class="hardware-link" target="_blank">DS18B20 Temp Sensors 5-pack <span class="price">~$8</span></a>
+                        <a href="https://www.adafruit.com/product/1518" class="hardware-link" target="_blank">Adafruit Flex Perma-Proto (x3) <span class="price">~$39</span></a>
+                        <a href="https://www.amazon.com/s?k=aluminum+star+heatsink+LED+3W+20mm" class="hardware-link" target="_blank">LED Star Heatsinks &amp; Thermal Paste <span class="price">~$15</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsystem 5: Sensor-Guided Rehabilitation -->
+            <div class="subsystem-card" id="rehab">
+                <div class="subsystem-header">
+                    <div>
+                        <h3>Sensor-Guided Rehabilitation</h3>
+                        <span class="subsystem-type">IMU + Load Cell &middot; 3-Phase Protocol &middot; EMG Biofeedback</span>
+                    </div>
+                    <span class="subsystem-number">5</span>
+                </div>
+                <p class="subsystem-description">
+                    Rehabilitation without measurement is guesswork. This subsystem combines an MPU-6050 inertial measurement unit for range-of-motion tracking (abduction, flexion, internal/external rotation) with HX711 load cells for isometric and isotonic force measurement. The data feeds into a 3-phase progressive rehabilitation protocol that adapts to the patient's recovery status. Critically, the EMG subsystem provides real-time biofeedback during exercises &mdash; if the supraspinatus shows delayed activation or the patient compensates with upper trapezius, the system alerts immediately. Every repetition is quantified: angle, force, muscle activation pattern, and perceived effort. This creates an objective recovery curve that no clinical setting can match.
+                </p>
+                <div class="subsystem-grid">
+                    <div class="subsystem-specs">
+                        <h4>Technical Specifications</h4>
+                        <ul>
+                            <li>MPU-6050 (GY-521) 6-axis IMU via I2C</li>
+                            <li>3-axis accelerometer + 3-axis gyroscope</li>
+                            <li>ROM tracking: abduction, flexion, rotation (1&deg; resolution)</li>
+                            <li>HX711 24-bit ADC with 10kg load cells (x2)</li>
+                            <li>Isometric force measurement (0.01 kg resolution)</li>
+                            <li>Real-time EMG biofeedback integration</li>
+                            <li>Protocol engine with progressive overload logic</li>
+                            <li>Session logging: every rep with full sensor data</li>
+                        </ul>
+                    </div>
+                    <div class="subsystem-science">
+                        <h4>3-Phase Rehabilitation Protocol</h4>
+                        <ul>
+                            <li><strong>Phase 1 (Weeks 0-4):</strong> Isometric holds at 70% MVC, 3 sets x 32 seconds, zero joint movement &mdash; load tendon without risking impingement</li>
+                            <li><strong>Phase 2 (Weeks 4-12):</strong> Eccentric loading, 3 sets x 10 reps, 3-second lowering phase &mdash; stimulates tendon remodeling and collagen alignment</li>
+                            <li><strong>Phase 3 (Weeks 12+):</strong> Progressive isotonic with EMG feedback &mdash; increase load only when muscle activation patterns normalize</li>
+                            <li>Automatic phase progression based on ROM &amp; force milestones</li>
+                            <li>Compensation detection via EMG (upper trap substitution alerts)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="subsystem-hardware">
+                    <h4>Hardware &amp; Purchase Links (~$50 total)</h4>
+                    <div class="hardware-links">
+                        <a href="https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B078SS8NQV" class="hardware-link" target="_blank">MPU-6050 GY-521 IMU (HiLetgo) <span class="price">~$4</span></a>
+                        <a href="https://www.amazon.com/NOYITO-10kg-20kg-HX711-Combo/dp/B07CN1VDC4" class="hardware-link" target="_blank">HX711 + 10kg Load Cell (x2) <span class="price">~$12</span></a>
+                        <a href="https://www.amazon.com/STARELO-Mushroom-Emergency-Latching-Normally/dp/B0B7H6GX3H" class="hardware-link" target="_blank">E-Stop Button (STARELO, NC) <span class="price">~$8</span></a>
+                        <a href="https://www.amazon.com/s?k=dupont+jumper+wires+breadboard+connectors+kit" class="hardware-link" target="_blank">Wiring &amp; Connectors <span class="price">~$18</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture / How It Works -->
+    <section class="architecture" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>System Architecture</h2>
+                <p>All five subsystems are orchestrated by a single Raspberry Pi 4, providing unified control, monitoring, safety enforcement, and data analysis through a local web dashboard.</p>
+            </div>
+            <div class="arch-grid">
+                <div class="arch-text">
+                    <h3>Central Hub: Raspberry Pi 4 (4GB)</h3>
+                    <p>The Pi serves as the brain of ARIA Heal &mdash; coordinating sensor acquisition, running therapy protocols, enforcing safety limits, and hosting the web-based dashboard. All data stays local. No cloud dependency. No internet required for operation.</p>
+                    <ul class="arch-features">
+                        <li><strong>Python 3.11</strong> with asyncio for concurrent subsystem management</li>
+                        <li><strong>FastAPI</strong> web framework with WebSocket real-time updates</li>
+                        <li><strong>SQLite WAL</strong> mode for concurrent read/write without locking</li>
+                        <li><strong>NumPy / SciPy</strong> for EMG signal processing and FFT analysis</li>
+                        <li><strong>OpenCV</strong> for ultrasound image processing and annotation</li>
+                        <li><strong>GPIO / I2C / SPI</strong> hardware interfaces via pigpio daemon</li>
+                        <li><strong>4-layer safety architecture</strong> with hardware watchdog</li>
+                        <li><strong>Session scheduler</strong> with protocol state machine</li>
+                        <li><strong>Data export</strong> as CSV/JSON for clinician review</li>
+                    </ul>
+                </div>
+                <div class="arch-visual">
+                    <div class="comment">// ARIA Heal &mdash; System Architecture</div>
+                    <div class="comment">// Raspberry Pi 4 (4GB) | Python 3.11 | FastAPI</div>
+                    <br>
+                    <div><span class="prompt">HEAL&gt;</span> <span class="device">status --all</span></div>
+                    <br>
+                    <div><span class="device">Ultrasound</span> <span class="value">READY</span> &nbsp;USB probe connected</div>
+                    <div><span class="device">EMG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="value">READY</span> &nbsp;4ch | ADS1115 @ 860 SPS</div>
+                    <div><span class="device">PEMF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="value">READY</span> &nbsp;50Hz | 1.5mT | 10% duty</div>
+                    <div><span class="device">PBM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="value">READY</span> &nbsp;810nm | 38.4&deg;C nominal</div>
+                    <div><span class="device">Rehab&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="value">READY</span> &nbsp;IMU + load cells online</div>
+                    <br>
+                    <div><span class="prompt">HEAL&gt;</span> <span class="device">safety --check</span></div>
+                    <div>Layer 1 (Hardware): &nbsp;&nbsp;<span class="value">OK</span> &nbsp;E-stop armed</div>
+                    <div>Layer 2 (Watchdog): &nbsp;<span class="value">OK</span> &nbsp;WDT heartbeat 200ms</div>
+                    <div>Layer 3 (Thermal):&nbsp;&nbsp;&nbsp;<span class="value">OK</span> &nbsp;38.4 / 38.1 / 37.9 &deg;C</div>
+                    <div>Layer 4 (Software): &nbsp;<span class="value">OK</span> &nbsp;State: IDLE</div>
+                    <br>
+                    <div><span class="prompt">HEAL&gt;</span> <span class="device">session --start morning</span></div>
+                    <div><span class="warn">Starting morning protocol...</span></div>
+                    <div>09:00 Ultrasound scan (6 planes)&nbsp;&nbsp;&nbsp;<span class="value">15 min</span></div>
+                    <div>09:15 PEMF therapy session&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value">30 min</span></div>
+                    <div>09:45 PBM shoulder array&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value">20 min</span></div>
+                    <div>10:05 <span class="value">Morning session complete</span></div>
+                </div>
+            </div>
+
+            <!-- GPIO Diagram -->
+            <div class="gpio-section">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">GPIO / Interface Map</h3>
+                <div class="gpio-visual"><span class="comment">  ARIA Heal &mdash; Raspberry Pi 4 Interface Diagram</span>
+
+<span class="device">  USB Ports</span>                    <span class="device">I2C Bus (GPIO 2/3)</span>             <span class="device">1-Wire (GPIO 4)</span>
+  <span class="border-char">+-----------------+</span>       <span class="border-char">+-------------------+</span>       <span class="border-char">+------------------+</span>
+  <span class="border-char">|</span> <span class="value">USB Ultrasound</span>  <span class="border-char">|</span>       <span class="border-char">|</span> <span class="value">ADS1115</span> (EMG ADC) <span class="border-char">|</span>       <span class="border-char">|</span> <span class="value">DS18B20 #1</span> (PBM) <span class="border-char">|</span>
+  <span class="border-char">|</span>  Probe (B-mode) <span class="border-char">|</span>       <span class="border-char">|</span> <span class="value">MPU-6050</span> (IMU)    <span class="border-char">|</span>       <span class="border-char">|</span> <span class="value">DS18B20 #2</span> (PBM) <span class="border-char">|</span>
+  <span class="border-char">+-----------------+</span>       <span class="border-char">|</span> <span class="value">HX711</span> (Load Cell) <span class="border-char">|</span>       <span class="border-char">|</span> <span class="value">DS18B20 #3</span> (PBM) <span class="border-char">|</span>
+                            <span class="border-char">+-------------------+</span>       <span class="border-char">+------------------+</span>
+
+  <span class="device">GPIO PWM Outputs</span>                                    <span class="device">Safety Inputs</span>
+  <span class="border-char">+-------------------------------+</span>                <span class="border-char">+---------------------+</span>
+  <span class="border-char">|</span> <span class="warn">GPIO 12</span>  PEMF coil driver      <span class="border-char">|</span>                <span class="border-char">|</span> <span class="danger">GPIO 17</span>  E-STOP (NC) <span class="border-char">|</span>
+  <span class="border-char">|</span> <span class="warn">GPIO 13</span>  PBM LED array driver  <span class="border-char">|</span>                <span class="border-char">|</span> <span class="danger">GPIO 27</span>  HW Watchdog <span class="border-char">|</span>
+  <span class="border-char">|</span> <span class="warn">GPIO 18</span>  PBM 40Hz pulse gate   <span class="border-char">|</span>                <span class="border-char">|</span> <span class="danger">GPIO 22</span>  Relay Kill  <span class="border-char">|</span>
+  <span class="border-char">|</span> <span class="warn">GPIO 19</span>  PEMF enable relay     <span class="border-char">|</span>                <span class="border-char">+---------------------+</span>
+  <span class="border-char">+-------------------------------+</span>
+
+  <span class="device">Power Distribution</span>
+  <span class="border-char">+--------------------------------------------+</span>
+  <span class="border-char">|</span>  <span class="value">5V / 3A</span>   &rarr; Raspberry Pi 4 (USB-C)       <span class="border-char">|</span>
+  <span class="border-char">|</span>  <span class="value">12V / 10A</span> &rarr; PEMF coil via MOSFET          <span class="border-char">|</span>
+  <span class="border-char">|</span>  <span class="value">12V / 5A</span>  &rarr; PBM LED array (CC drivers)    <span class="border-char">|</span>
+  <span class="border-char">|</span>  <span class="value">3.3V</span>      &rarr; Sensors (IMU, temp, ADC)      <span class="border-char">|</span>
+  <span class="border-char">+--------------------------------------------+</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatment Protocol -->
+    <section class="protocol" id="protocol">
+        <div class="container">
+            <div class="section-header">
+                <h2>Treatment Protocol</h2>
+                <p>A structured daily and weekly schedule designed to maximize tissue healing while preventing overloading. Adapted from clinical rehabilitation timelines with objective sensor-based progression gates.</p>
+            </div>
+
+            <div class="protocol-timeline">
+                <div class="protocol-card">
+                    <h3>Morning Session</h3>
+                    <span class="time">Diagnostic + Healing &middot; ~65 minutes</span>
+                    <ul>
+                        <li><strong>09:00</strong> &mdash; Ultrasound scan: 6 ESSR planes, compare to baseline</li>
+                        <li><strong>09:15</strong> &mdash; PEMF therapy: 30 min at 50Hz, 1.5mT over affected tendons</li>
+                        <li><strong>09:45</strong> &mdash; PBM shoulder array: 20 min at 40 mW/cm&sup2;, monitor thermal</li>
+                        <li><strong>10:05</strong> &mdash; Session log saved, morning protocol complete</li>
+                    </ul>
+                </div>
+                <div class="protocol-card">
+                    <h3>Evening Session</h3>
+                    <span class="time">Rehabilitation + Recovery &middot; ~55 minutes</span>
+                    <ul>
+                        <li><strong>18:00</strong> &mdash; EMG baseline: 4-channel activation check, MVC test</li>
+                        <li><strong>18:05</strong> &mdash; Rehabilitation exercises: phase-appropriate protocol with IMU + load cell tracking and real-time EMG biofeedback</li>
+                        <li><strong>18:35</strong> &mdash; Recovery PBM: 15 min at 30 mW/cm&sup2; (reduced intensity)</li>
+                        <li><strong>18:50</strong> &mdash; ROM assessment, force measurement, session complete</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin-bottom: 0.5rem;">Weekly: Ultrasound Progress Check</h3>
+            <p style="text-align: center; max-width: 660px; margin: 0 auto 2.5rem; font-size: 0.9rem;">Every 7 days, capture a full 6-plane ultrasound scan set and compare side-by-side with baseline images. Track tendon thickness, echogenicity changes, and tear margin measurements. Export images for clinician review if desired.</p>
+
+            <h3 style="text-align: center; margin-bottom: 1.5rem;">Expected Recovery Timeline</h3>
+            <div class="recovery-timeline">
+                <div class="recovery-phase">
+                    <span class="weeks">Weeks 1&ndash;4</span>
+                    <h4>Pain Reduction</h4>
+                    <p>Inflammation decreases. Night pain resolves. PEMF + PBM reduce cytokines. Isometric loading begins.</p>
+                    <div class="recovery-bar phase-1"></div>
+                </div>
+                <div class="recovery-phase">
+                    <span class="weeks">Weeks 4&ndash;8</span>
+                    <h4>ROM Improvement</h4>
+                    <p>Active range of motion increases. Eccentric loading begins. EMG shows improved activation patterns.</p>
+                    <div class="recovery-bar phase-2"></div>
+                </div>
+                <div class="recovery-phase">
+                    <span class="weeks">Weeks 8&ndash;16</span>
+                    <h4>Strength Recovery</h4>
+                    <p>Progressive isotonic loading. Force measurements approach 75% of contralateral side. Ultrasound shows tendon remodeling.</p>
+                    <div class="recovery-bar phase-3"></div>
+                </div>
+                <div class="recovery-phase">
+                    <span class="weeks">Weeks 16&ndash;24</span>
+                    <h4>Full Restoration</h4>
+                    <p>Functional strength restored. EMG patterns normalized. ROM symmetry achieved. Return to full activity.</p>
+                    <div class="recovery-bar phase-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bill of Materials -->
+    <section class="bom" id="bom">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bill of Materials</h2>
+                <p>Every component needed to build ARIA Heal. All parts are commodity hardware available from major retailers. Total build cost: approximately $560.</p>
+            </div>
+
+            <div class="bom-table-wrapper">
+                <table class="bom-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Subsystem</th>
+                            <th>Qty</th>
+                            <th>Est. Price</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Raspberry Pi 4 (4GB)</strong></td>
+                            <td><span class="subsystem-label">Central Hub</span></td>
+                            <td>1</td>
+                            <td class="price">$55</td>
+                            <td><a href="https://www.canakit.com/raspberry-pi-4-8gb.html" class="bom-link" target="_blank">CanaKit</a> &middot; <a href="https://www.pishop.us/product/raspberry-pi-4-model-b-8gb/" class="bom-link" target="_blank">PiShop</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>USB Ultrasound Probe (7.5MHz+ linear)</strong></td>
+                            <td><span class="subsystem-label">Ultrasound</span></td>
+                            <td>1</td>
+                            <td class="price">$300</td>
+                            <td><a href="https://www.kontedmed.com/products/c10ul-color-superfical-ultrasound-usb-linear-probe/" class="bom-link" target="_blank">KONTED</a> &middot; <a href="https://www.amazon.com/s?k=USB+ultrasound+probe+linear+7.5MHz" class="bom-link" target="_blank">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>MyoWare 2.0 Muscle Sensor</strong></td>
+                            <td><span class="subsystem-label">EMG</span></td>
+                            <td>4</td>
+                            <td class="price">$160</td>
+                            <td><a href="https://www.sparkfun.com/products/21265" class="bom-link" target="_blank">SparkFun</a> &middot; <a href="https://www.adafruit.com/product/6423" class="bom-link" target="_blank">Adafruit</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>ADS1115 16-bit ADC Breakout</strong></td>
+                            <td><span class="subsystem-label">EMG</span></td>
+                            <td>1</td>
+                            <td class="price">$15</td>
+                            <td><a href="https://www.adafruit.com/product/1085" class="bom-link" target="_blank">Adafruit</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>EMG Electrode Gel Pads (100pk)</strong></td>
+                            <td><span class="subsystem-label">EMG</span></td>
+                            <td>1</td>
+                            <td class="price">$20</td>
+                            <td><a href="https://www.sparkfun.com/disposable-surface-emg-ecg-ekg-electrode-24mm-10-pack.html" class="bom-link" target="_blank">SparkFun</a> &middot; <a href="https://www.adafruit.com/product/2773" class="bom-link" target="_blank">Adafruit</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>22AWG Magnet Wire (100ft)</strong></td>
+                            <td><span class="subsystem-label">PEMF</span></td>
+                            <td>1</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.amazon.com/Magnet-Enameled-Copper-Winding-Crafts/dp/B01FVJNBSW" class="bom-link" target="_blank">Amazon</a> &middot; <a href="https://bntechgo.com/magnet-wire/22-gauge-magnet-wire/" class="bom-link" target="_blank">BNTECHGO</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ferrite Core / Bobbin</strong></td>
+                            <td><span class="subsystem-label">PEMF</span></td>
+                            <td>1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com/uxcell-Transformer-Bobbin-Ferrite-Halves/dp/B07X23GDRD" class="bom-link" target="_blank">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>IRLZ44N Logic-Level MOSFET</strong></td>
+                            <td><span class="subsystem-label">PEMF</span></td>
+                            <td>2</td>
+                            <td class="price">$6</td>
+                            <td><a href="https://www.amazon.com/Bestol-5PCS-IRLZ44N-MOSFET-220AB/dp/B07DWYGNHC" class="bom-link" target="_blank">Amazon</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>12V 10A DC Power Supply</strong></td>
+                            <td><span class="subsystem-label">PEMF / PBM</span></td>
+                            <td>1</td>
+                            <td class="price">$25</td>
+                            <td><a href="https://www.amazon.com/SHNITPWR-100V-240V-Converter-Transformer-5-5x2-5mm/dp/B07PWZQ33N" class="bom-link" target="_blank">Amazon (SHNITPWR)</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>810nm 1W Near-Infrared LEDs</strong></td>
+                            <td><span class="subsystem-label">PBM</span></td>
+                            <td>20</td>
+                            <td class="price">$40</td>
+                            <td><a href="https://www.amazon.com/LEDGUHON-Infrared-Emitter-Degrees-805nm-810nm/dp/B0CD4472PB" class="bom-link" target="_blank">Amazon (LEDGUHON)</a> &middot; <a href="https://www.ledsupply.com/infrared-high-power-leds" class="bom-link" target="_blank">LEDSupply</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>LED Constant Current Drivers (350mA)</strong></td>
+                            <td><span class="subsystem-label">PBM</span></td>
+                            <td>4</td>
+                            <td class="price">$20</td>
+                            <td><a href="https://www.amazon.com/Driver-Constant-Current-Control-Dimming/dp/B0C2ZXXTSD" class="bom-link" target="_blank">Amazon</a> &middot; <a href="https://www.superbrightleds.com/constant-current-led-driver-700ma-3-12-vdc-3w-led-driver-3-12-vdc" class="bom-link" target="_blank">SuperBright</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DS18B20 Temperature Sensors</strong></td>
+                            <td><span class="subsystem-label">PBM / Safety</span></td>
+                            <td>3</td>
+                            <td class="price">$12</td>
+                            <td><a href="https://www.amazon.com/HiLetgo-DS18B20-Temperature-Stainless-Waterproof/dp/B00M1PM55K" class="bom-link" target="_blank">Amazon (HiLetgo)</a> &middot; <a href="https://www.sparkfun.com/temperature-sensor-waterproof-ds18b20.html" class="bom-link" target="_blank">SparkFun</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>MPU-6050 GY-521 IMU Module</strong></td>
+                            <td><span class="subsystem-label">Rehab</span></td>
+                            <td>1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B078SS8NQV" class="bom-link" target="_blank">Amazon (HiLetgo)</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>HX711 Load Cell Amplifier + 10kg Cell</strong></td>
+                            <td><span class="subsystem-label">Rehab</span></td>
+                            <td>2</td>
+                            <td class="price">$16</td>
+                            <td><a href="https://www.amazon.com/NOYITO-10kg-20kg-HX711-Combo/dp/B07CN1VDC4" class="bom-link" target="_blank">Amazon (NOYITO)</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Emergency Stop Button (NC)</strong></td>
+                            <td><span class="subsystem-label">Safety</span></td>
+                            <td>1</td>
+                            <td class="price">$8</td>
+                            <td><a href="https://www.amazon.com/STARELO-Mushroom-Emergency-Latching-Normally/dp/B0B7H6GX3H" class="bom-link" target="_blank">Amazon (STARELO)</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flexible PCB / Protoboard</strong></td>
+                            <td><span class="subsystem-label">PBM Array</span></td>
+                            <td>1</td>
+                            <td class="price">$15</td>
+                            <td><a href="https://www.adafruit.com/product/1518" class="bom-link" target="_blank">Adafruit</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wiring, Connectors, Misc Hardware</strong></td>
+                            <td><span class="subsystem-label">All</span></td>
+                            <td>&mdash;</td>
+                            <td class="price">$30</td>
+                            <td><a href="https://www.amazon.com/s?k=dupont+jumper+wires+breadboard+connectors+kit" class="bom-link" target="_blank">Amazon</a></td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>TOTAL</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td class="price">~$560</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align: center; font-size: 0.85rem; color: var(--color-text-muted); margin-top: 1.5rem;">
+                All prices are approximate and may vary. Links are search URLs to help you find the correct components. Some components (MyoWare, ADS1115) are also available from Adafruit and SparkFun with better documentation and support. The USB ultrasound probe is the most expensive component &mdash; prices range from $250-$350 depending on brand and frequency.
+            </p>
+        </div>
+    </section>
+
+    <!-- Safety Architecture -->
+    <section class="safety" id="safety">
+        <div class="container">
+            <div class="section-header">
+                <h2>4-Layer Safety Architecture</h2>
+                <p>Medical-grade safety design with redundant protection at every level. No single point of failure &mdash; hardware, software, or human &mdash; can harm the user. All therapeutic outputs can be killed in under 100ms.</p>
+            </div>
+            <div class="safety-grid">
+                <div class="safety-card">
+                    <div class="safety-layer">1</div>
+                    <h4>Thermal Monitor</h4>
+                    <p>3x DS18B20 sensors under the PBM array poll every 500ms. Graduated response: audible warning at 40&deg;C, automatic power reduction at 41&deg;C, complete output cutoff at 42&deg;C. Temperature data logged for every session.</p>
+                </div>
+                <div class="safety-card">
+                    <div class="safety-layer">2</div>
+                    <h4>Hardware Watchdog</h4>
+                    <p>Independent watchdog timer expects heartbeat every 200ms. If the Python application freezes, crashes, or enters an infinite loop, the watchdog triggers a hardware relay that cuts power to all therapeutic outputs within 500ms.</p>
+                </div>
+                <div class="safety-card">
+                    <div class="safety-layer">3</div>
+                    <h4>Emergency Stop</h4>
+                    <p>Physical normally-closed (NC) mushroom-head E-stop button. Pressing it immediately breaks the circuit to all PEMF and PBM outputs via hardware relay. No software in the path. Response time under 100ms. Requires manual twist-to-reset.</p>
+                </div>
+                <div class="safety-card">
+                    <div class="safety-layer">4</div>
+                    <h4>Software Safety</h4>
+                    <p>State machine enforces valid transitions only. Session time limits with mandatory cooldown periods. Current limiting in LED drivers. Flyback diode on PEMF coil. Input validation on all user parameters. Automatic session abort on any anomaly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-content">
+                <div class="disclaimer-icon">&#9888;</div>
+                <h3>Important Medical Disclaimer</h3>
+                <p>ARIA Heal is an experimental research platform, not an FDA-approved medical device. It is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Diagnostic ultrasound interpretation requires training &mdash; this system provides imaging assistance but does not replace professional radiological assessment. PEMF and photobiomodulation parameters are based on published research but have not undergone clinical trials in this specific configuration. Always consult a qualified orthopedic specialist or sports medicine physician before beginning any rehabilitation program, especially for suspected rotator cuff tears. Do not use this device as a substitute for professional medical evaluation, MRI imaging, or surgical consultation when indicated. Self-treatment of a serious shoulder injury without proper diagnosis can lead to worsening of the condition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <div class="dashboard-grid">
+                <div class="dashboard-text">
+                    <h2>Web Dashboard</h2>
+                    <p>A real-time web interface served locally on the Raspberry Pi provides complete visibility into every subsystem. All sensor data, therapy status, and safety metrics are displayed simultaneously with sub-second update rates via WebSocket.</p>
+                    <ul class="dashboard-features">
+                        <li><strong>EMG Bars:</strong> 4-channel real-time amplitude with activation onset markers</li>
+                        <li><strong>Session Timer:</strong> Protocol phase, elapsed time, remaining time with audio cues</li>
+                        <li><strong>Thermal Display:</strong> 3-zone temperature map with color-coded safety status</li>
+                        <li><strong>ROM Progress:</strong> Abduction, flexion, rotation charts with weekly trend overlays</li>
+                        <li><strong>Force Readings:</strong> Live load cell output during exercises with target zones</li>
+                        <li><strong>Ultrasound Viewer:</strong> Image capture, annotation, and side-by-side comparison</li>
+                        <li><strong>Recovery Curve:</strong> Multi-metric progress chart tracking all outcome measures</li>
+                        <li><strong>Data Export:</strong> CSV and JSON export for clinical review or personal records</li>
+                    </ul>
+                </div>
+                <div class="dashboard-visual">
+                    <div class="comment">// ARIA Heal &mdash; Web Dashboard Preview</div>
+                    <div class="comment">// http://ariaheal.local:8080</div>
+                    <br>
+                    <div><span class="prompt">&#9608; ARIA Heal Dashboard</span> <span class="label">v1.0 | Session Active</span></div>
+                    <div><span class="dim">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</span></div>
+                    <br>
+                    <div><span class="device">EMG Channels</span> <span class="label">(real-time &mu;V RMS)</span></div>
+                    <div>&nbsp;Supraspinatus&nbsp;&nbsp;<span class="bar-fill">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span><span class="bar-empty">&#9608;&#9608;&#9608;&#9608;</span>&nbsp;<span class="value">142 &mu;V</span></div>
+                    <div>&nbsp;Infraspinatus&nbsp;&nbsp;<span class="bar-fill">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span><span class="bar-empty">&#9608;</span>&nbsp;<span class="value">198 &mu;V</span></div>
+                    <div>&nbsp;Subscapularis&nbsp;&nbsp;<span class="bar-fill">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span><span class="bar-empty">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span>&nbsp;<span class="value">107 &mu;V</span></div>
+                    <div>&nbsp;Teres Minor&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar-fill">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span><span class="bar-empty">&#9608;&#9608;&#9608;</span>&nbsp;<span class="value">164 &mu;V</span></div>
+                    <br>
+                    <div><span class="device">Therapy Status</span></div>
+                    <div>&nbsp;PEMF:&nbsp;&nbsp;<span class="value">ACTIVE</span>&nbsp;&nbsp;50Hz | 1.5mT | 14:32 remaining</div>
+                    <div>&nbsp;PBM:&nbsp;&nbsp;&nbsp;<span class="label">STANDBY</span>&nbsp;Queued after PEMF completes</div>
+                    <br>
+                    <div><span class="device">Thermal Monitor</span></div>
+                    <div>&nbsp;Zone 1: <span class="value">37.8&deg;C</span>&nbsp;&nbsp;Zone 2: <span class="value">38.2&deg;C</span>&nbsp;&nbsp;Zone 3: <span class="value">37.5&deg;C</span></div>
+                    <div>&nbsp;Status: <span class="value">NOMINAL</span> (cutoff: 42&deg;C)</div>
+                    <br>
+                    <div><span class="device">ROM Progress</span> <span class="label">(today vs. baseline)</span></div>
+                    <div>&nbsp;Abduction:&nbsp;&nbsp;baseline <span class="warn">95&deg;</span> &rarr; today <span class="value">128&deg;</span> (+33&deg;)</div>
+                    <div>&nbsp;Flexion:&nbsp;&nbsp;&nbsp;&nbsp;baseline <span class="warn">110&deg;</span> &rarr; today <span class="value">148&deg;</span> (+38&deg;)</div>
+                    <div>&nbsp;Ext. Rot.:&nbsp;&nbsp;baseline <span class="warn">35&deg;</span> &rarr; today <span class="value">52&deg;</span>&nbsp; (+17&deg;)</div>
+                    <br>
+                    <div><span class="device">Force (Isometric)</span></div>
+                    <div>&nbsp;Current: <span class="value">4.2 kg</span>&nbsp;&nbsp;Target: 5.8 kg (72% MVC)</div>
+                    <div>&nbsp;<span class="bar-fill">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span><span class="bar-empty">&#9608;&#9608;&#9608;</span>&nbsp;<span class="value">72%</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Science & References -->
+    <section class="references" id="references">
+        <div class="container">
+            <div class="section-header">
+                <h2>Science &amp; References</h2>
+                <p>ARIA Heal's protocols are grounded in peer-reviewed research. Key citations for each therapeutic modality and diagnostic approach are listed below.</p>
+            </div>
+            <div class="references-grid">
+                <div class="reference-card">
+                    <span class="reference-number">[1] ULTRASOUND DIAGNOSTICS</span>
+                    <div class="reference-title">Accuracy of Ultrasonography in the Diagnosis of Rotator Cuff Tears: A Systematic Review and Meta-Analysis</div>
+                    <p class="reference-authors">Roy JS, Braen C, Leblond J, et al.</p>
+                    <span class="reference-journal">Journal of Rehabilitation Medicine, 2015; 47(7): 577-585</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[2] ULTRASOUND vs MRI</span>
+                    <div class="reference-title">Diagnostic Accuracy of Ultrasonography for Rotator Cuff Tears: A Comparison with MRI and Surgical Findings</div>
+                    <p class="reference-authors">de Jesus JO, Parker L, Frangos AJ, Nazarian LN.</p>
+                    <span class="reference-journal">American Journal of Roentgenology, 2009; 192(6): 1701-1707</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[3] EMG IN ROTATOR CUFF</span>
+                    <div class="reference-title">Electromyographic Analysis of the Rotator Cuff and Deltoid Musculature During Common Shoulder External Rotation Exercises</div>
+                    <p class="reference-authors">Reinold MM, Wilk KE, Fleisig GS, et al.</p>
+                    <span class="reference-journal">Journal of Orthopaedic & Sports Physical Therapy, 2004; 34(7): 385-394</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[4] PEMF TENDON HEALING</span>
+                    <div class="reference-title">Pulsed Electromagnetic Fields Stimulate Repair of Achilles Tendon Injuries in Rats</div>
+                    <p class="reference-authors">Lee EW, Maffulli N, Li CK, Chan KM.</p>
+                    <span class="reference-journal">Journal of Orthopaedic Research, 1997; 15(1): 69-73</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[5] PEMF ROTATOR CUFF</span>
+                    <div class="reference-title">Effects of Pulsed Electromagnetic Field on Healing of Rotator Cuff Tendon-to-Bone Repair in Rats</div>
+                    <p class="reference-authors">Tucker JJ, Cirone JM, Morris TR, et al.</p>
+                    <span class="reference-journal">Journal of Bone and Joint Surgery, 2016; 98(1): 35-44</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[6] PHOTOBIOMODULATION</span>
+                    <div class="reference-title">Mechanisms and Applications of the Anti-Inflammatory Effects of Photobiomodulation</div>
+                    <p class="reference-authors">Hamblin MR.</p>
+                    <span class="reference-journal">AIMS Biophysics, 2017; 4(3): 337-361</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[7] NIR TENDON REPAIR</span>
+                    <div class="reference-title">Low-Level Laser Therapy (810nm) Improves Collagen Organization in Injured Achilles Tendons</div>
+                    <p class="reference-authors">Fillipin LI, Mauriz JL, Vedovelli K, et al.</p>
+                    <span class="reference-journal">Lasers in Surgery and Medicine, 2005; 37(4): 293-300</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[8] ECCENTRIC LOADING</span>
+                    <div class="reference-title">Eccentric Exercise for the Management of Tendinopathy: A Systematic Review</div>
+                    <p class="reference-authors">Kingma JJ, de Knikker R, Wittink HM, Takken T.</p>
+                    <span class="reference-journal">British Journal of Sports Medicine, 2007; 41(4): e3</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[9] ISOMETRIC TENDON LOADING</span>
+                    <div class="reference-title">Isometric Exercise Induces Analgesia and Reduces Inhibition in Patellar Tendinopathy</div>
+                    <p class="reference-authors">Rio E, Kidgell D, Purdam C, et al.</p>
+                    <span class="reference-journal">British Journal of Sports Medicine, 2015; 49(19): 1277-1283</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[10] ESSR GUIDELINES</span>
+                    <div class="reference-title">ESSR Ultrasound Protocols for Shoulder Examination</div>
+                    <p class="reference-authors">Defined scan planes for standardized musculoskeletal ultrasound of the shoulder</p>
+                    <span class="reference-journal">European Society of Skeletal Radiology, Technical Standards</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[11] CYTOCHROME C OXIDASE</span>
+                    <div class="reference-title">Biphasic Dose Response in Low Level Light Therapy &mdash; An Update</div>
+                    <p class="reference-authors">Huang YY, Sharma SK, Carroll JD, Hamblin MR.</p>
+                    <span class="reference-journal">Dose-Response, 2011; 9(4): 602-618</span>
+                </div>
+                <div class="reference-card">
+                    <span class="reference-number">[12] ROTATOR CUFF EPIDEMIOLOGY</span>
+                    <div class="reference-title">Prevalence of Rotator Cuff Tears in Adults Over 60: A Population-Based Study</div>
+                    <p class="reference-authors">Yamamoto A, Takagishi K, Osawa T, et al.</p>
+                    <span class="reference-journal">Journal of Shoulder and Elbow Surgery, 2010; 19(1): 116-120</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Build Your Own ARIA Heal</h2>
+            <p>Open-source hardware designs, software, and published science. Everything you need to build a professional-grade shoulder diagnostic and therapeutic platform for under $560.</p>
+            <div class="cta-group">
+                <a href="#bom" class="btn btn-primary">View Full BOM</a>
+                <a href="#subsystems" class="btn btn-secondary">Explore Subsystems</a>
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-secondary" target="_blank">View Source Code</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">ARIA Project</div>
+                <div class="footer-links">
+                    <a href="index.html">Companions</a>
+                    <a href="therapeutics.html">Therapeutics</a>
+                    <a href="aria-heal.html">ARIA Heal</a>
+                    <a href="research-paper.html">Research</a>
+                    <a href="hardware-bom.html">Hardware</a>
+                    <a href="research-data.html">Investors</a>
+                    <a href="https://github.com/dbutler-a11y/aria-research">GitHub</a>
+                </div>
+                <div class="footer-copy">
+                    MIT License &copy; 2025 ARIA Project &mdash; "Made with care by humans and AI, for humans."
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

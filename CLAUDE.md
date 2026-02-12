@@ -1,7 +1,7 @@
 # ARIA Research
 
 ## What This Is
-Open-source research initiative for accessible AI-powered companion systems for Parkinson's disease patients. Under $500 using commodity hardware (Raspberry Pi 5). Author: Durayveon Butler.
+Open-source research initiative for accessible AI-powered companion and therapeutic systems. Includes Parkinson's disease companions and therapeutic devices, plus ARIA Heal musculoskeletal diagnostic/therapeutic platform. Under $560 using commodity hardware (Raspberry Pi). Author: Durayveon Butler.
 
 ## Repo & Deployment
 - **GitHub:** github.com/dbutler-a11y/aria-research
@@ -17,6 +17,9 @@ Open-source research initiative for accessible AI-powered companion systems for 
 ## Files
 ```
 index.html               # Landing page (products, videos, overview)
+therapeutics.html        # Parkinson's therapeutic devices (Pulse, Glow, Cycle)
+aria-heal.html           # ARIA Heal shoulder diagnostic & therapeutic platform
+research-lab.html        # Research lab (25+ approaches to Parkinson's)
 research-paper.html      # Academic paper (18 citations, 51KB)
 hardware-bom.html        # Interactive bill of materials
 connectivity.html        # ARIA Sentinel satellite connectivity
@@ -29,6 +32,8 @@ aria-bloom-video.mp4     # Medication reminder demo
 ```
 
 ## Product Variants
+
+### Companions (Parkinson's)
 | Model | Cost | Purpose |
 |-------|------|---------|
 | ARIA Bloom | ~$280 | Tabletop companion, medication reminders |
@@ -36,11 +41,30 @@ aria-bloom-video.mp4     # Medication reminder demo
 | ARIA Frame | ~$220 | Digital portrait companion, video calling |
 | ARIA Rover | ~$430 | Mobile autonomous companion robot |
 
+### Therapeutics (Parkinson's)
+| Model | Cost | Purpose |
+|-------|------|---------|
+| ARIA Pulse | ~$78 | 40Hz gamma entrainment (light + sound + vibration) |
+| ARIA Glow | ~$105 | NIR photobiomodulation helmet (810nm) |
+| ARIA Cycle | ~$4 | Forced-exercise cycling controller |
+
+### Musculoskeletal
+| Model | Cost | Purpose |
+|-------|------|---------|
+| ARIA Heal | ~$560 | Shoulder diagnostic & therapeutic platform (ultrasound, EMG, PEMF, PBM, rehab) |
+
+## Color Themes
+- Companions: navy #1a365d, blue #3182ce
+- Therapeutics (Parkinson's): amber #92400e, orange #dd6b20
+- ARIA Heal: teal #0f766e, emerald #0d9488
+
 ## Hardware Platform
-- Raspberry Pi 5 (8GB), ReSpeaker 4-Mic Array, Pi Camera Module 3
+- Raspberry Pi 4/5, various sensor/therapeutic hardware per device
 - AI: Whisper.cpp (speech), Qwen 3:1.7b (LLM, local), Piper (TTS)
 - Cloud fallback: Claude API for complex conversations
-- Satellite IoT: Swarm, Astrocast
+- Satellite IoT: Swarm, Astrocast (companions only)
 
-## Related Project
-The Claw Protocol Collective (~/open-claw/) — community framework that includes ARIA as a flagship initiative.
+## Related Projects
+- The Claw Protocol Collective (~/open-claw/) — community framework
+- Parkinson's Therapy Platform (~/parkinsons-therapy-platform/) — Pulse/Glow/Cycle codebase
+- Shoulder Therapy Platform (~/shoulder-therapy-platform/) — ARIA Heal codebase
