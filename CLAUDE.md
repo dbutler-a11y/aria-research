@@ -20,6 +20,7 @@ index.html               # Landing page (products, videos, overview)
 therapeutics.html        # Parkinson's therapeutic devices (Pulse, Glow, Cycle)
 aria-heal.html           # ARIA Heal shoulder diagnostic & therapeutic platform
 research-lab.html        # Research lab (25+ approaches to Parkinson's)
+cancer-research.html     # Cancer cure research (AI-driven unconventional approaches)
 research-paper.html      # Academic paper (18 citations, 51KB)
 hardware-bom.html        # Interactive bill of materials
 connectivity.html        # ARIA Sentinel satellite connectivity
@@ -57,6 +58,7 @@ aria-bloom-video.mp4     # Medication reminder demo
 - Companions: navy #1a365d, blue #3182ce
 - Therapeutics (Parkinson's): amber #92400e, orange #dd6b20
 - ARIA Heal: teal #0f766e, emerald #0d9488
+- Cancer Research: rose #9f1239, crimson #e11d48
 
 ## Hardware Platform
 - Raspberry Pi 4/5, various sensor/therapeutic hardware per device

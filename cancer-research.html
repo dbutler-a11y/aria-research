@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA — Cancer Cure Research: AI-Driven Approaches Beyond Conventional Oncology</title>
+    <meta name="description" content="Exploring unconventional, AI-driven approaches to curing cancer. From metabolic reprogramming to bioelectric identity restoration — the ideas mainstream research may have overlooked.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-rose: #9f1239;
+            --color-rose-light: #e11d48;
+            --color-rose-lighter: #fb7185;
+            --color-rose-pale: #fff1f2;
+            --color-rose-dark: #881337;
+            --color-rose-bg: #fef2f2;
+            --color-rose-border: #fda4af;
+            --color-success: #38a169;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f7fafc;
+            --color-border: #e2e8f0;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --max-width: 1100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 17px; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--color-primary);
+        }
+
+        h1 { font-size: 3rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.875rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+
+        p { color: var(--color-text-secondary); margin-bottom: 1rem; }
+
+        a { color: var(--color-rose-light); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover { color: var(--color-primary); }
+
+        .nav-links a.active {
+            color: var(--color-rose);
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 0 5rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--color-rose-bg) 0%, var(--color-bg) 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-rose);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-rose-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            color: var(--color-text-secondary);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--color-rose);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-rose-dark);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-rose);
+            text-decoration: none;
+        }
+
+        /* Stats Bar */
+        .stats {
+            background: linear-gradient(135deg, var(--color-rose-dark) 0%, var(--color-rose) 50%, var(--color-rose-light) 100%);
+            color: white;
+            padding: 2.5rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-rose-lighter);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label { font-size: 0.875rem; opacity: 0.9; }
+
+        /* Mission Statement */
+        .mission {
+            padding: 4rem 0;
+            background: var(--color-bg);
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-content h2 {
+            margin-bottom: 1.5rem;
+            color: var(--color-rose-dark);
+        }
+
+        .mission-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .mission-content .highlight-box {
+            background: var(--color-rose-bg);
+            border: 1px solid var(--color-rose-border);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .mission-content .highlight-box p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--color-rose-dark);
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header p {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Tier Sections */
+        .tier-section {
+            padding: 4rem 0;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .tier-badge.paradigm {
+            background: linear-gradient(135deg, var(--color-rose-dark), var(--color-rose));
+            color: white;
+        }
+
+        .tier-badge.strategy {
+            background: linear-gradient(135deg, #7c2d12, #ea580c);
+            color: white;
+        }
+
+        .tier-badge.ai-edge {
+            background: linear-gradient(135deg, #1e3a5f, #3182ce);
+            color: white;
+        }
+
+        .tier-description {
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Research Cards */
+        .research-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .research-card:hover {
+            box-shadow: 0 4px 20px rgba(159, 18, 57, 0.08);
+        }
+
+        .research-card details {
+            border: none;
+        }
+
+        .research-card summary {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            list-style: none;
+            user-select: none;
+            transition: background 0.15s;
+        }
+
+        .research-card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .research-card summary:hover {
+            background: var(--color-rose-bg);
+        }
+
+        .research-card details[open] summary {
+            border-bottom: 1px solid var(--color-border);
+            background: var(--color-rose-bg);
+        }
+
+        .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-rose), var(--color-rose-light));
+            color: white;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .strategy-section .card-number {
+            background: linear-gradient(135deg, #7c2d12, #ea580c);
+        }
+
+        .ai-section .card-number {
+            background: linear-gradient(135deg, #1e3a5f, #3182ce);
+        }
+
+        .card-title-block {
+            flex: 1;
+        }
+
+        .card-title-block h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            color: var(--color-primary);
+        }
+
+        .card-title-block .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin: 0.15rem 0 0 0;
+            font-style: italic;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 12px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .status-exploring {
+            background: var(--color-rose-pale);
+            color: var(--color-rose-dark);
+            border: 1px solid var(--color-rose-border);
+        }
+
+        .status-monitoring {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        .status-high-interest {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fcd34d;
+        }
+
+        .expand-icon {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 1.25rem;
+            transition: transform 0.2s;
+        }
+
+        details[open] .expand-icon {
+            transform: rotate(45deg);
+        }
+
+        .card-body {
+            padding: 1.75rem 2rem 2rem;
+        }
+
+        .card-body h4 {
+            font-size: 1rem;
+            color: var(--color-rose);
+            margin-bottom: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .card-body h4:first-child {
+            margin-top: 0;
+        }
+
+        .card-body p {
+            font-size: 0.925rem;
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-body ul {
+            list-style: none;
+            margin-bottom: 1rem;
+            padding: 0;
+        }
+
+        .card-body ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .card-body ul li::before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: var(--color-rose-light);
+            font-weight: bold;
+        }
+
+        .strategy-section .card-body h4 { color: #c2410c; }
+
+        .strategy-section .card-body ul li::before {
+            color: #ea580c;
+        }
+
+        .ai-section .card-body h4 { color: var(--color-accent); }
+
+        .ai-section .card-body ul li::before {
+            color: var(--color-accent);
+        }
+
+        .card-body .key-researchers {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            border-left: 3px solid var(--color-rose-border);
+            padding-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        .strategy-section .card-body .key-researchers {
+            border-left-color: #fed7aa;
+        }
+
+        .ai-section .card-body .key-researchers {
+            border-left-color: #93c5fd;
+        }
+
+        .card-body .mechanism-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--color-rose-pale);
+            color: var(--color-rose);
+            margin-right: 0.35rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .strategy-section .card-body .mechanism-tag {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .ai-section .card-body .mechanism-tag {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        /* Paradigm Box */
+        .paradigm-box {
+            background: linear-gradient(135deg, var(--color-rose-bg) 0%, #fff7ed 100%);
+            border: 2px solid var(--color-rose-border);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .paradigm-box h3 {
+            color: var(--color-rose-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .paradigm-box p {
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .paradigm-box .insight-list {
+            list-style: none;
+            padding: 0;
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .paradigm-box .insight-list li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+        }
+
+        .paradigm-box .insight-list li::before {
+            content: "01";
+            position: absolute;
+            left: 0;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-rose);
+        }
+
+        .paradigm-box .insight-list li:nth-child(1)::before { content: "01"; }
+        .paradigm-box .insight-list li:nth-child(2)::before { content: "02"; }
+        .paradigm-box .insight-list li:nth-child(3)::before { content: "03"; }
+        .paradigm-box .insight-list li:nth-child(4)::before { content: "04"; }
+        .paradigm-box .insight-list li:nth-child(5)::before { content: "05"; }
+
+        /* AI Capabilities Table */
+        .capabilities-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .capabilities-table th {
+            background: var(--color-primary);
+            color: white;
+            padding: 0.875rem 1.25rem;
+            text-align: left;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .capabilities-table th:first-child { border-radius: 8px 0 0 0; }
+        .capabilities-table th:last-child { border-radius: 0 8px 0 0; }
+
+        .capabilities-table td {
+            padding: 0.875rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        .capabilities-table tr:nth-child(even) td {
+            background: var(--color-bg-alt);
+        }
+
+        .capabilities-table td:first-child {
+            font-weight: 500;
+            color: var(--color-primary);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            padding: 3rem 0;
+            background: var(--color-rose-bg);
+            border-top: 3px solid var(--color-rose);
+            border-bottom: 3px solid var(--color-rose);
+        }
+
+        .disclaimer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .disclaimer-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer h3 {
+            color: var(--color-rose-dark);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .disclaimer p {
+            font-size: 0.95rem;
+            color: #4c0519;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--color-rose-dark) 0%, var(--color-rose) 50%, var(--color-rose-light) 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 550px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--color-rose-dark);
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--color-bg-alt);
+        }
+
+        .cta-section .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .cta-section .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .capabilities-table { font-size: 0.8rem; }
+            .capabilities-table th, .capabilities-table td { padding: 0.65rem 0.75rem; }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2.25rem; }
+            .research-card summary { padding: 1.25rem 1.25rem; gap: 0.75rem; }
+            .card-body { padding: 1.25rem; }
+            .paradigm-box { padding: 2rem 1.5rem; }
+            .capabilities-table { display: block; overflow-x: auto; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">ARIA</a>
+            <ul class="nav-links">
+                <li><a href="index.html#products">Companions</a></li>
+                <li><a href="therapeutics.html">Therapeutics</a></li>
+                <li><a href="research-lab.html">Research Lab</a></li>
+                <li><a href="cancer-research.html" class="active">Cancer Research</a></li>
+                <li><a href="research-paper.html">Paper</a></li>
+                <li><a href="hardware-bom.html">Hardware</a></li>
+                <li><a href="https://github.com/dbutler-a11y/aria-research" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">Emerging Research Focus</span>
+            <h1>Cancer Cure Research</h1>
+            <p class="hero-subtitle">What if the cure requires thinking differently about the disease?</p>
+            <p class="hero-description">
+                Conventional oncology has made real progress, but a general cure remains elusive. We're exploring the unconventional theories, overlooked science, and AI-native approaches that mainstream research may have missed &mdash; because the biggest breakthroughs come from asking different questions.
+            </p>
+            <div class="cta-group">
+                <a href="#paradigm-shifts" class="btn btn-primary">Paradigm Shifts</a>
+                <a href="#treatment-strategies" class="btn btn-secondary">Treatment Strategies</a>
+                <a href="#ai-advantage" class="btn btn-secondary">The AI Advantage</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10M+</div>
+                    <div class="stat-label">New cancer diagnoses worldwide per year</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Unconventional approaches we're exploring</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Years of the mutation-only paradigm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Ideas too bold to investigate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why This Matters -->
+    <section class="mission">
+        <div class="container">
+            <div class="mission-content">
+                <h2>Why ARIA Is Looking at Cancer</h2>
+                <p>
+                    Our work on Parkinson's disease taught us something fundamental: the most promising approaches often live at the intersection of fields that rarely talk to each other. Neuroscience meets bioelectricity. Rehabilitation meets AI. Engineering meets compassion.
+                </p>
+                <p>
+                    Cancer research has a similar problem. For over 50 years, the dominant paradigm has been: <strong>cancer is a genetic disease caused by mutations, so find the mutations and target them.</strong> This has produced important wins &mdash; imatinib for CML, checkpoint immunotherapy, targeted kinase inhibitors &mdash; but it has not produced a general cure.
+                </p>
+                <p>
+                    We believe the mutations may be <strong>symptoms</strong>, not root causes. And we believe AI is uniquely positioned to explore the alternatives at a scale and speed that human researchers alone cannot achieve.
+                </p>
+                <div class="highlight-box">
+                    <p><strong>Our position:</strong> This is an emerging research focus for ARIA. We are not making clinical claims. We are documenting the unconventional theories and approaches we find most compelling, tracking the science as it develops, and exploring where AI-driven analysis could accelerate progress. This is open research &mdash; a living document &mdash; and we invite collaboration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- PARADIGM SHIFTS                                             -->
+    <!-- =========================================================== -->
+    <section id="paradigm-shifts" class="tier-section" style="background: var(--color-bg-alt);">
+        <div class="container">
+            <div class="section-header">
+                <span class="tier-badge paradigm">Paradigm Shifts</span>
+                <h2>Rethinking What Cancer Actually Is</h2>
+            </div>
+            <p class="tier-description">
+                These theories challenge the foundational assumption that cancer is primarily a genetic disease. If any of them are substantially correct, they would redirect the entire search for a cure. We think they deserve serious investigation.
+            </p>
+
+            <!-- 1. Cancer as a Metabolic Disease -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">1</span>
+                        <div class="card-title-block">
+                            <h3>Cancer as a Metabolic Disease</h3>
+                            <p class="card-subtitle">The Warburg revival &mdash; what if mitochondrial dysfunction comes first?</p>
+                        </div>
+                        <span class="status-badge status-high-interest">High Interest</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Otto Warburg observed in the 1920s that cancer cells preferentially ferment glucose even when oxygen is abundant (the "Warburg effect"). This was largely abandoned when the oncogene paradigm took over in the 1970s-80s. Thomas Seyfried and others now argue that mitochondrial metabolic dysfunction comes <em>first</em>, and genomic instability is a downstream consequence &mdash; not the root cause.</p>
+                        <p>If cancer is fundamentally a metabolic disease, then targeting metabolism (rather than individual mutations) could be a universal strategy. Every cancer cell shares metabolic vulnerabilities that normal cells do not.</p>
+
+                        <h4>Why Mainstream Research Missed It</h4>
+                        <p>Genomics received the overwhelming majority of funding after the Human Genome Project. Metabolism was considered "solved" and unglamorous. The entire drug development pipeline is oriented around targeting gene products, not metabolic pathways.</p>
+
+                        <h4>Key Evidence</h4>
+                        <ul>
+                            <li>Cancer cells exhibit the Warburg effect across virtually all tumor types &mdash; it's the basis of PET scanning</li>
+                            <li>Nuclear-cytoplasmic transfer experiments show that normal mitochondria suppress tumorigenesis even in cells with oncogenic mutations</li>
+                            <li>Ketogenic diets and caloric restriction slow tumor growth in multiple animal models by restricting glucose availability</li>
+                            <li>Drugs targeting mitochondrial metabolism (metformin, dichloroacetate) show anti-cancer effects in preclinical studies</li>
+                            <li>Mitochondrial damage is found in cancer cells even before detectable mutations accumulate</li>
+                        </ul>
+
+                        <h4>Where AI Could Accelerate</h4>
+                        <p>Model the metabolic networks of thousands of tumor types simultaneously. Identify which metabolic dependencies are truly universal vs. tissue-specific. Find metabolic chokepoints that cancer cells share but normal cells do not &mdash; a computational problem at a scale only AI can handle.</p>
+
+                        <div class="mechanism-tag">Metabolomics</div>
+                        <div class="mechanism-tag">Warburg Effect</div>
+                        <div class="mechanism-tag">Mitochondrial Dysfunction</div>
+                        <div class="mechanism-tag">Ketogenic Therapy</div>
+
+                        <p class="key-researchers">Key researchers: Thomas Seyfried (Boston College), Dominic D'Agostino (USF), Otto Warburg (historical). Key text: Seyfried, "Cancer as a Metabolic Disease" (2012).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2. Bioelectric Identity Crisis -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">2</span>
+                        <div class="card-title-block">
+                            <h3>Cancer as a Bioelectric Identity Crisis</h3>
+                            <p class="card-subtitle">Cells that lose their voltage pattern forget what tissue they belong to</p>
+                        </div>
+                        <span class="status-badge status-exploring">Exploring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Every cell maintains a specific membrane voltage pattern that encodes its "tissue identity" &mdash; what it is, where it belongs, and how it should behave. Michael Levin's lab at Tufts University has demonstrated that artificially altering these bioelectric patterns can <em>induce</em> tumors in normal tissue and, remarkably, <em>revert</em> tumors back to normal tissue in frog models.</p>
+                        <p>Cancer cells may be cells that have lost their "bioelectric address." They revert to a default proliferative state because they no longer receive the voltage signals that tell them what tissue they're part of. The mutations accumulate <em>after</em> the bioelectric identity is lost, as cells destabilize without their organizational framework.</p>
+
+                        <h4>Why Mainstream Research Missed It</h4>
+                        <p>Bioelectricity is studied primarily in developmental biology, not oncology. The two fields have almost no overlap in conferences, journals, or funding streams. Oncologists think in terms of molecules; developmental biologists think in terms of morphogenetic fields. The insight lives in the gap between them.</p>
+
+                        <h4>Key Evidence</h4>
+                        <ul>
+                            <li>Depolarized membrane potential is a near-universal feature of cancer cells across all tumor types</li>
+                            <li>Forced hyperpolarization of oncogene-expressing cells prevents tumor formation in Xenopus (frog) models</li>
+                            <li>Gap junction-mediated bioelectric signaling can normalize tumor cells by reconnecting them to surrounding tissue patterns</li>
+                            <li>Ion channel drugs (already FDA-approved for other conditions) can modulate bioelectric states</li>
+                            <li>Tumors can be induced in normal cells by disrupting bioelectric gradients, even without introducing any oncogenes</li>
+                        </ul>
+
+                        <h4>Where AI Could Accelerate</h4>
+                        <p>Map the bioelectric signatures of every tissue type in the human body. Model how those signatures degrade during tumorigenesis. Predict which ion channel drug combinations could restore normal bioelectric identity to specific cancer types. This requires integrating electrophysiology, genomics, and pharmacology simultaneously &mdash; a perfect AI problem.</p>
+
+                        <div class="mechanism-tag">Bioelectricity</div>
+                        <div class="mechanism-tag">Membrane Potential</div>
+                        <div class="mechanism-tag">Ion Channels</div>
+                        <div class="mechanism-tag">Morphogenetic Fields</div>
+                        <div class="mechanism-tag">Gap Junctions</div>
+
+                        <p class="key-researchers">Key researchers: Michael Levin (Tufts University), Mustafa Bhatt (Levin Lab). Key papers: Chernet &amp; Levin, Oncotarget 2014; Pai et al., Oncotarget 2012.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 3. Atavism Theory -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">3</span>
+                        <div class="card-title-block">
+                            <h3>The Atavism Theory</h3>
+                            <p class="card-subtitle">Cancer as a reversion to a billion-year-old unicellular survival program</p>
+                        </div>
+                        <span class="status-badge status-exploring">Exploring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Physicists Paul Davies and Charles Lineweaver proposed that cancer isn't a disease of "broken" cells &mdash; it's cells <em>reverting to an ancient unicellular survival program</em> that predates multicellularity by over a billion years. When the genes responsible for multicellular cooperation get disrupted, cells fall back to a deep ancestral genetic toolkit optimized for: proliferate, migrate, ferment glucose, resist cell death, and evade collective control.</p>
+                        <p>This would explain why cancers across completely different organs and tissue types converge on strikingly similar behaviors &mdash; they're all accessing the same ancient program. It also explains the Warburg effect: anaerobic fermentation is the default energy strategy of unicellular organisms.</p>
+
+                        <h4>Why Mainstream Research Missed It</h4>
+                        <p>Oncologists are physicians, not evolutionary biologists. The atavism theory requires thinking about cancer on a billion-year evolutionary timescale, which is foreign to clinical medicine. The framing is considered "too theoretical" for the drug-development pipeline, even though it generates testable predictions.</p>
+
+                        <h4>Key Evidence</h4>
+                        <ul>
+                            <li>Cancer gene expression profiles systematically upregulate genes conserved in unicellular organisms (pre-metazoan genes)</li>
+                            <li>Genes that evolved with multicellularity (tumor suppressors, apoptosis, cell adhesion) are the ones most frequently mutated in cancer</li>
+                            <li>Cancer behaviors (migration, immune evasion, metabolic switching) map precisely to unicellular survival strategies</li>
+                            <li>Phylostratigraphic analysis shows cancer transcriptomes shift toward older evolutionary layers</li>
+                            <li>The convergence of cancer phenotypes across tissues is better explained by reversion to a common ancestral program than by random mutation accumulation</li>
+                        </ul>
+
+                        <h4>Where AI Could Accelerate</h4>
+                        <p>Comparative genomics across the entire tree of life at massive scale. Identify which genes in cancer cells correspond to unicellular ancestors, map the precise "reversion pathway," and find the molecular switches that trigger the transition from multicellular cooperation to unicellular selfishness. Then target those switches.</p>
+
+                        <div class="mechanism-tag">Evolutionary Biology</div>
+                        <div class="mechanism-tag">Phylostratigraphy</div>
+                        <div class="mechanism-tag">Atavism</div>
+                        <div class="mechanism-tag">Gene Conservation</div>
+                        <div class="mechanism-tag">Multicellularity</div>
+
+                        <p class="key-researchers">Key researchers: Paul Davies (Arizona State University), Charles Lineweaver (Australian National University), Kimberly Bussey (ASU). Key paper: Davies &amp; Lineweaver, Physical Biology 2011.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 4. Tumor Microenvironment -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">4</span>
+                        <div class="card-title-block">
+                            <h3>The Tumor Microenvironment as the Real Target</h3>
+                            <p class="card-subtitle">A cancer cell in normal tissue often stops behaving like cancer</p>
+                        </div>
+                        <span class="status-badge status-high-interest">High Interest</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Mina Bissell's landmark work at Lawrence Berkeley National Laboratory demonstrated something profound: a cancer cell placed in a normal tissue microenvironment often <em>stops behaving like cancer</em>. The extracellular matrix, surrounding stromal cells, immune cells, and tissue signaling can override oncogenic mutations. The environment matters as much as &mdash; or more than &mdash; the mutations.</p>
+                        <p>This suggests that cancer may not be a cell-autonomous disease at all. It may be a tissue-level organizational failure. The cancer cell isn't broken in isolation; the conversation between the cell and its neighborhood has broken down.</p>
+
+                        <h4>Why Mainstream Research Missed It</h4>
+                        <p>The cell-autonomous view of cancer (the cancer cell itself is broken, fix the cell) has dominated oncology since the discovery of oncogenes. Drug development targets molecules inside cancer cells. The tissue-level view requires a systems approach that the reductionist drug pipeline isn't designed for.</p>
+
+                        <h4>Key Evidence</h4>
+                        <ul>
+                            <li>Bissell showed that blocking beta-1 integrin signaling reverts malignant breast cancer cells to normal-appearing, organized structures in 3D culture</li>
+                            <li>Embryonic environments can reprogram melanoma cells to non-malignant behavior (Hendrix lab)</li>
+                            <li>Cancer-associated fibroblasts, immune cells, and vasculature actively promote tumor progression &mdash; remove them and the cancer often stalls</li>
+                            <li>Normal wound healing uses the same signaling pathways as cancer; tumors are sometimes called "wounds that never heal"</li>
+                            <li>Decellularized normal tissue matrices can slow or halt cancer cell growth in vitro</li>
+                        </ul>
+
+                        <h4>Where AI Could Accelerate</h4>
+                        <p>Build comprehensive computational models of the tumor microenvironment &mdash; immune cells, fibroblasts, vasculature, extracellular matrix, hundreds of signaling molecules &mdash; and identify which environmental factors to manipulate to make the neighborhood inhospitable to cancer behavior. This is a systems problem with thousands of interacting variables, exactly where AI excels and human cognition hits its limits.</p>
+
+                        <div class="mechanism-tag">Microenvironment</div>
+                        <div class="mechanism-tag">Extracellular Matrix</div>
+                        <div class="mechanism-tag">Tissue Architecture</div>
+                        <div class="mechanism-tag">Stromal Signaling</div>
+                        <div class="mechanism-tag">Systems Biology</div>
+
+                        <p class="key-researchers">Key researchers: Mina Bissell (Lawrence Berkeley National Lab), Mary Hendrix (Northwestern), Valerie Weaver (UCSF). Key papers: Bissell &amp; Hines, Nature Medicine 2011; Weaver et al., Cancer Cell 2002.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- TREATMENT STRATEGIES                                        -->
+    <!-- =========================================================== -->
+    <section id="treatment-strategies" class="tier-section strategy-section" style="background: var(--color-bg);">
+        <div class="container">
+            <div class="section-header">
+                <span class="tier-badge strategy">Treatment Strategies</span>
+                <h2>Don't Just Kill It &mdash; Outsmart It</h2>
+            </div>
+            <p class="tier-description">
+                These approaches challenge the fundamental treatment philosophy. Instead of maximum destruction, they use evolutionary logic, cellular reprogramming, and biological timing to manage or normalize cancer. Some already have clinical evidence.
+            </p>
+
+            <!-- 5. Adaptive Therapy -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">5</span>
+                        <div class="card-title-block">
+                            <h3>Adaptive Therapy (Evolutionary Game Theory)</h3>
+                            <p class="card-subtitle">Using ecology to keep cancer in check instead of driving resistance</p>
+                        </div>
+                        <span class="status-badge status-high-interest">High Interest</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Robert Gatenby at Moffitt Cancer Center recognized something that oncology had systematically ignored: <strong>maximum-dose chemotherapy is an evolutionary mistake.</strong> It kills drug-sensitive cells, removes their competitive pressure, and hands the entire tumor to drug-resistant cells. It's the same logic as antibiotic resistance, but oncology hasn't internalized it.</p>
+                        <p>Adaptive therapy deliberately maintains a population of drug-sensitive cells to <em>outcompete</em> resistant ones for resources. Instead of trying to eradicate the tumor (which selects for the worst actors), you manage it like an ecosystem &mdash; keeping the balance tipped in your favor.</p>
+
+                        <h4>Why Mainstream Research Missed It</h4>
+                        <p>Oncology culture is "hit it as hard as you can." Maximum tolerated dose is the default. The idea of deliberately leaving cancer alive and managing it as a chronic condition feels deeply counterintuitive to clinicians trained in eradication. FDA trial design also doesn't easily accommodate adaptive dosing protocols.</p>
+
+                        <h4>Key Evidence</h4>
+                        <ul>
+                            <li>In a Phase II clinical trial for metastatic castration-resistant prostate cancer, adaptive therapy patients used <strong>53% less drug</strong> with significantly longer time to progression</li>
+                            <li>Mathematical models from evolutionary game theory accurately predict tumor response to adaptive dosing</li>
+                            <li>Competitive release (removing sensitive cells causes resistant cell explosion) is well-documented in ecology and increasingly observed in oncology</li>
+                            <li>Similar principles are being explored for ovarian cancer, melanoma, and breast cancer</li>
+                            <li>Evolutionary-informed treatment sequencing shows improved outcomes in multiple tumor models</li>
+                        </ul>
+
+                        <h4>Where AI Could Accelerate</h4>
+                        <p>Model tumor evolution in real-time using liquid biopsies and AI, predicting exactly when to apply and withdraw treatment to maintain ecological balance. This is a game theory and dynamic optimization problem &mdash; AI excels at exactly this kind of real-time strategic decision-making.</p>
+
+                        <div class="mechanism-tag">Evolutionary Dynamics</div>
+                        <div class="mechanism-tag">Game Theory</div>
+                        <div class="mechanism-tag">Competitive Release</div>
+                        <div class="mechanism-tag">Adaptive Dosing</div>
+                        <div class="mechanism-tag">Ecology</div>
+
+                        <p class="key-researchers">Key researchers: Robert Gatenby (Moffitt Cancer Center), Joel Brown (Moffitt), Jingsong Zhang (Moffitt). Key paper: Zhang et al., Nature Communications 2017 (adaptive therapy clinical trial).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 6. Differentiation Therapy -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">6</span>
+                        <div class="card-title-block">
+                            <h3>Differentiation Therapy</h3>
+                            <p class="card-subtitle">Don't kill the cancer cell &mdash; force it to grow up</p>
+                        </div>
+                        <span class="status-badge status-exploring">Exploring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Instead of destroying cancer cells, force them to <em>differentiate</em> into mature, normal, non-dividing cells. This already works spectacularly for one cancer: acute promyelocytic leukemia (APL). All-trans retinoic acid (ATRA) causes leukemia cells to mature into normal white blood cells. APL went from one of the deadliest leukemias to one of the most curable cancers &mdash; with a >90% cure rate.</p>
+                        <p>Yet this approach has barely been systematically attempted for solid tumors. If cancer cells are "stuck" in an immature, proliferative state (as both the atavism and bioelectric theories suggest), then finding the right differentiation signals for each cancer type could normalize them without the collateral damage of cytotoxic therapy.</p>
+
+                        <h4>Why Mainstream Research Missed It</h4>
+                        <p>The APL success was treated as a special case &mdash; a lucky one-off &mdash; rather than as proof of a general principle. The entire drug development infrastructure is oriented around cytotoxicity: "did it kill cancer cells in a petri dish?" Differentiation agents don't kill cells, so they look like failures in standard screening assays. The problem is in the screening methodology itself.</p>
+
+                        <h4>Key Evidence</h4>
+                        <ul>
+                            <li>ATRA + arsenic trioxide cures >90% of APL patients by forcing terminal differentiation of leukemia cells</li>
+                            <li>IDH inhibitors (ivosidenib, enasidenib) induce differentiation in AML with IDH mutations</li>
+                            <li>BET bromodomain inhibitors show differentiation effects in NUT midline carcinoma</li>
+                            <li>Vitamin D derivatives induce differentiation in some breast cancer and colon cancer cell lines</li>
+                            <li>Cancer stem cells can be pushed toward differentiation, depleting the self-renewing population</li>
+                        </ul>
+
+                        <h4>Where AI Could Accelerate</h4>
+                        <p>Screen every known compound and combination for differentiation-inducing effects across tumor types using high-throughput single-cell RNA sequencing plus AI pattern recognition. Identify the transcription factor combinations that force maturation in each cancer type &mdash; a massive combinatorial search that only AI can perform at scale.</p>
+
+                        <div class="mechanism-tag">Differentiation</div>
+                        <div class="mechanism-tag">Cell Maturation</div>
+                        <div class="mechanism-tag">Retinoic Acid</div>
+                        <div class="mechanism-tag">Transcription Factors</div>
+                        <div class="mechanism-tag">Epigenetic Reprogramming</div>
+
+                        <p class="key-researchers">Key researchers: Hugues de Th&eacute; (Universit&eacute; de Paris), Zhu Chen (Shanghai Jiao Tong), Stuart Schreiber (Broad Institute). Key breakthrough: Wang &amp; Chen, Blood 2008 (ATRA + arsenic trioxide protocol).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 7. Chronobiology -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">7</span>
+                        <div class="card-title-block">
+                            <h3>Chronotherapy (Circadian-Timed Treatment)</h3>
+                            <p class="card-subtitle">The same drug can be curative or lethal depending on when you give it</p>
+                        </div>
+                        <span class="status-badge status-monitoring">Monitoring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Core Idea</h4>
+                        <p>Cancer treatment efficacy varies dramatically based on <strong>time of day</strong>. Francis L&eacute;vi's research demonstrated that the same chemotherapy dose can produce significantly better tumor response or dramatically worse toxicity depending on when in the 24-hour circadian cycle it's administered. This is because drug metabolism, DNA repair capacity, immune function, and cell division all follow circadian rhythms &mdash; in both normal and cancer cells.</p>
+                        <p>Critically, tumor cells often have disrupted circadian clocks, creating a window where normal cells are at their most resistant but cancer cells are at their most vulnerable. Chronotherapy exploits this window.</p>
+
+                        <h4>Why Mainstream Research Missed It</h4>
+                        <p>Clinical trials are designed for convenience &mdash; drugs are administered when the patient has an appointment, not when their circadian biology is optimal. Hospital schedules don't accommodate 3am infusions. Chronobiology is a small field with limited oncology funding. And the effect is invisible in trials that don't track timing, which is nearly all of them.</p>
+
+                        <h4>Key Evidence</h4>
+                        <ul>
+                            <li>5-fluorouracil toxicity varies by 5-fold depending on time of administration in patients with metastatic colorectal cancer</li>
+                            <li>Chronotherapy protocols for oxaliplatin/5-FU showed 50% objective response rate vs. 30% with flat-rate infusion in randomized trials</li>
+                            <li>Circadian genes (PER2, BMAL1) are frequently mutated or silenced in cancer, disrupting the tumor's internal clock</li>
+                            <li>Time-restricted feeding (a circadian intervention) reduces tumor growth in mouse models independent of calorie reduction</li>
+                            <li>Immune checkpoint efficacy shows circadian variation &mdash; morning dosing of anti-PD-1 may be superior</li>
+                        </ul>
+
+                        <h4>Where AI Could Accelerate</h4>
+                        <p>Personalized chronotherapy at scale: model each patient's individual circadian biology using wearable sensor data, blood biomarkers, and genetic chronotype. Optimize not just <em>what</em> drugs to give but <em>exactly when</em> to give them for maximum tumor kill and minimum side effects. This is a multivariate optimization problem across drug pharmacokinetics, circadian rhythms, and individual biology &mdash; perfectly suited to AI.</p>
+
+                        <div class="mechanism-tag">Circadian Rhythms</div>
+                        <div class="mechanism-tag">Chronobiology</div>
+                        <div class="mechanism-tag">Drug Timing</div>
+                        <div class="mechanism-tag">Personalized Medicine</div>
+                        <div class="mechanism-tag">Wearable Data</div>
+
+                        <p class="key-researchers">Key researchers: Francis L&eacute;vi (Universit&eacute; Paris-Saclay), Satchidananda Panda (Salk Institute), Joseph Takahashi (UT Southwestern). Key paper: L&eacute;vi et al., Annual Review of Pharmacology and Toxicology 2010.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Synthesis Box -->
+    <section style="padding: 4rem 0; background: var(--color-bg-alt);">
+        <div class="container">
+            <div class="paradigm-box">
+                <h3>The Synthesis: What a Real Cure Might Look Like</h3>
+                <p>The cure likely isn't a single magic bullet. It's a paradigm shift that combines several of these ideas into an integrated, AI-driven approach:</p>
+                <ul class="insight-list">
+                    <li><strong>Reframe cancer</strong> as a metabolic, bioelectric, and evolutionary problem &mdash; not purely genetic</li>
+                    <li><strong>Use AI</strong> to model the whole system: tumor, microenvironment, immune system, metabolism, and circadian rhythms as one integrated model</li>
+                    <li><strong>Shift from "kill" to "control and revert"</strong> &mdash; adaptive therapy to manage, differentiation therapy to normalize, bioelectric interventions to restore tissue identity</li>
+                    <li><strong>Personalize timing and combinations</strong> using continuous AI monitoring of each patient's unique biology</li>
+                    <li><strong>Break down disciplinary silos</strong> &mdash; the insights are at the intersections of fields that rarely collaborate: oncology, evolutionary biology, physics, ecology, developmental biology, and bioelectricity</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================== -->
+    <!-- AI ADVANTAGE                                                -->
+    <!-- =========================================================== -->
+    <section id="ai-advantage" class="tier-section ai-section" style="background: var(--color-bg);">
+        <div class="container">
+            <div class="section-header">
+                <span class="tier-badge ai-edge">The AI Advantage</span>
+                <h2>What AI Uniquely Brings to Cancer Research</h2>
+            </div>
+            <p class="tier-description">
+                The biggest thing cancer research has missed isn't a molecule or a pathway. It's that cancer is a <strong>systems-level problem</strong> being attacked with reductionist tools. AI is the first technology capable of operating at the systems level.
+            </p>
+
+            <table class="capabilities-table">
+                <thead>
+                    <tr>
+                        <th>AI Capability</th>
+                        <th>Application to Cancer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Multi-Omics Integration</td>
+                        <td>Simultaneously analyze genomics, proteomics, metabolomics, epigenomics, and microbiome data for a single patient &mdash; far too complex for human cognition to hold together</td>
+                    </tr>
+                    <tr>
+                        <td>Cross-Domain Pattern Recognition</td>
+                        <td>Find connections between cancer biology, evolutionary biology, physics, ecology, and developmental biology that siloed researchers never see</td>
+                    </tr>
+                    <tr>
+                        <td>Drug Combination Modeling</td>
+                        <td>There are billions of possible drug combinations at varying doses and timings. AI can predict synergies without testing each one in the lab</td>
+                    </tr>
+                    <tr>
+                        <td>Real-Time Tumor Evolution Tracking</td>
+                        <td>Process liquid biopsy data continuously to model how the tumor's clonal composition is evolving, enabling truly adaptive treatment</td>
+                    </tr>
+                    <tr>
+                        <td>Drug Repurposing at Scale</td>
+                        <td>Screen all existing FDA-approved drugs for anti-cancer mechanisms they were never designed for &mdash; metformin, statins, anti-parasitics, and others already show signal</td>
+                    </tr>
+                    <tr>
+                        <td>Protein Structure Prediction</td>
+                        <td>AlphaFold-class tools can identify novel drug targets by predicting the 3D structure of cancer-specific proteins that have never been crystallized</td>
+                    </tr>
+                    <tr>
+                        <td>Microenvironment Simulation</td>
+                        <td>Build digital twins of the tumor microenvironment &mdash; immune cells, fibroblasts, vasculature, signaling molecules &mdash; to test interventions computationally before clinical trials</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- AI Research Card 1 -->
+            <div class="research-card" style="margin-top: 2rem;">
+                <details>
+                    <summary>
+                        <span class="card-number">A</span>
+                        <div class="card-title-block">
+                            <h3>AI-Driven Metabolic Vulnerability Mapping</h3>
+                            <p class="card-subtitle">Computational identification of universal cancer metabolic chokepoints</p>
+                        </div>
+                        <span class="status-badge status-exploring">Exploring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Approach</h4>
+                        <p>Use machine learning to integrate metabolomic data from thousands of tumor samples across all cancer types. Identify metabolic enzymes and pathways that are consistently essential for cancer cell survival but dispensable for normal cells. Map the "metabolic Achilles heels" that could be targeted universally.</p>
+
+                        <h4>Required Data Sources</h4>
+                        <ul>
+                            <li>TCGA (The Cancer Genome Atlas) metabolomic profiles across 33 cancer types</li>
+                            <li>DepMap (Cancer Dependency Map) &mdash; essential genes across 1,000+ cancer cell lines</li>
+                            <li>Human Metabolome Database for normal tissue metabolic baselines</li>
+                            <li>Single-cell metabolomics data for tumor heterogeneity analysis</li>
+                        </ul>
+
+                        <h4>Expected Outputs</h4>
+                        <p>A ranked list of metabolic targets with predicted therapeutic windows, cross-referenced against existing approved drugs that could be repurposed. Essentially a computational fast-track for the metabolic theory of cancer.</p>
+
+                        <div class="mechanism-tag">Machine Learning</div>
+                        <div class="mechanism-tag">Metabolomics</div>
+                        <div class="mechanism-tag">Drug Repurposing</div>
+                        <div class="mechanism-tag">TCGA Analysis</div>
+                    </div>
+                </details>
+            </div>
+
+            <!-- AI Research Card 2 -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">B</span>
+                        <div class="card-title-block">
+                            <h3>Evolutionary Phylostratigraphy at Scale</h3>
+                            <p class="card-subtitle">Testing the atavism theory with AI-powered comparative genomics</p>
+                        </div>
+                        <span class="status-badge status-exploring">Exploring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Approach</h4>
+                        <p>Apply large-scale comparative genomics across the entire tree of life to systematically test the atavism prediction: that cancer transcriptomes should shift toward gene expression patterns found in unicellular organisms. Map the "evolutionary age" of every gene upregulated in cancer and identify the molecular switches that trigger the reversion from multicellular cooperation to unicellular selfishness.</p>
+
+                        <h4>Required Data Sources</h4>
+                        <ul>
+                            <li>Pan-cancer gene expression profiles (TCGA, ICGC, GEO)</li>
+                            <li>Ortholog databases spanning unicellular to metazoan organisms (OrthoDB, OMA)</li>
+                            <li>Phylostratigraphic gene age assignments across evolutionary layers</li>
+                            <li>Single-cell RNA-seq data to track atavistic gene expression at cellular resolution</li>
+                        </ul>
+
+                        <h4>Expected Outputs</h4>
+                        <p>If confirmed, a "reversion map" identifying exactly which ancestral programs are activated in each cancer type, with specific molecular targets for blocking the unicellular reversion. Could reveal entirely new drug target classes invisible to conventional oncogene-focused approaches.</p>
+
+                        <div class="mechanism-tag">Comparative Genomics</div>
+                        <div class="mechanism-tag">Phylostratigraphy</div>
+                        <div class="mechanism-tag">Transcriptomics</div>
+                        <div class="mechanism-tag">Evolutionary Analysis</div>
+                    </div>
+                </details>
+            </div>
+
+            <!-- AI Research Card 3 -->
+            <div class="research-card">
+                <details>
+                    <summary>
+                        <span class="card-number">C</span>
+                        <div class="card-title-block">
+                            <h3>Personalized Adaptive Therapy Optimization</h3>
+                            <p class="card-subtitle">Real-time AI for evolutionary-informed treatment scheduling</p>
+                        </div>
+                        <span class="status-badge status-exploring">Exploring</span>
+                        <div class="expand-icon">+</div>
+                    </summary>
+                    <div class="card-body">
+                        <h4>The Approach</h4>
+                        <p>Build an AI system that continuously processes liquid biopsy data (circulating tumor DNA, circulating tumor cells) to model the evolving clonal composition of a patient's tumor in real-time. Use reinforcement learning to optimize treatment timing and dosing &mdash; applying drugs when sensitive clones are expanding and withdrawing when resistant clones are being outcompeted.</p>
+
+                        <h4>Technical Architecture</h4>
+                        <ul>
+                            <li>Longitudinal liquid biopsy data pipeline with rapid-turnaround ctDNA sequencing</li>
+                            <li>Lotka-Volterra competition models for clonal dynamics, parameterized by AI</li>
+                            <li>Reinforcement learning agent trained on simulation and retrospective clinical data</li>
+                            <li>Integration with circadian biomarkers from wearable devices for chronotherapy overlay</li>
+                        </ul>
+
+                        <h4>Expected Outputs</h4>
+                        <p>A decision-support system that tells oncologists not just <em>what</em> to give, but <em>when</em>, <em>how much</em>, and <em>when to pause</em> &mdash; informed by real-time evolutionary dynamics and individual patient biology. The goal: turn advanced cancer from a death sentence into a managed chronic condition.</p>
+
+                        <div class="mechanism-tag">Reinforcement Learning</div>
+                        <div class="mechanism-tag">Liquid Biopsy</div>
+                        <div class="mechanism-tag">Clonal Dynamics</div>
+                        <div class="mechanism-tag">Decision Support</div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-content">
+                <div class="disclaimer-icon">&#9888;</div>
+                <h3>Research Disclaimer</h3>
+                <p>This page documents emerging research directions that ARIA is monitoring and exploring. Nothing here constitutes medical advice, a treatment recommendation, or a clinical claim. Many of these approaches are preclinical, theoretical, or in early-phase trials. We present them because we believe open exploration of unconventional ideas &mdash; grounded in published science &mdash; is how breakthroughs happen. Always consult qualified oncologists for cancer treatment decisions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>This Is Open Research</h2>
+            <p>We believe the cure for cancer won't come from one lab or one discipline. It'll come from connecting ideas that haven't been connected yet. Help us explore.</p>
+            <div class="cta-group">
+                <a href="research-lab.html" class="btn btn-primary">Parkinson's Research Lab</a>
+                <a href="https://github.com/dbutler-a11y/aria-research" class="btn btn-secondary">Contribute on GitHub</a>
+                <a href="support.html" class="btn btn-secondary">Support the Mission</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">ARIA Project</div>
+                <div class="footer-links">
+                    <a href="therapeutics.html">Therapeutics</a>
+                    <a href="aria-heal.html">ARIA Heal</a>
+                    <a href="research-lab.html">Research Lab</a>
+                    <a href="cancer-research.html">Cancer Research</a>
+                    <a href="research-paper.html">Paper</a>
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="support.html">Support</a>
+                    <a href="https://github.com/dbutler-a11y/aria-research">GitHub</a>
+                </div>
+                <div class="footer-copy">
+                    MIT License &copy; 2025 ARIA Project &mdash; "Made with care by humans and AI, for humans."
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
